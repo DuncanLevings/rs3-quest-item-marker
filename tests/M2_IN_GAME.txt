@@ -1,0 +1,167 @@
+Quest Item Marker - M2 (backpack) in-game test
+==============================================
+
+What M2 covers: quest status (read once at login, then kept fresh by quest
+variable events), icons and hover tooltips on the backpack, the ribbon settings
+panel, and the on/off checkbox plus shortcut. Bank and shops come in M3 and M4.
+
+Automated checks (no client): from the plugin folder run
+
+    lua tests/run.lua
+
+It should end with "51 passed, 0 failed". Those tests use a fake client, so they
+don't prove anything about the real one. That's what the steps below are for.
+
+Write down what you see at each "Check", and copy the [Quest Item Marker] lines from
+the console (Alt + `) into your notes. The console keeps only about 1000 lines.
+
+
+0. Set up
+---------
+1. Turn the M0 probe off if it's on (it draws its own test icons).
+2. In the console: prf, then pon prettyui-dev (if it isn't on already), then
+   pon quest-item-marker. After an edit, use prl quest-item-marker to reload.
+3. Check: the console shows
+     data loaded: snapshot 2026-11-16 | 227 quests | ... 0 bad quests, 0 bad needs skipped
+     started | markers on
+   and, once you're in game,
+     quest status read: 227 quests | N with no watchable variable ... | M unknown to this client
+     Backpack: OK, <k> marked
+   WRITE DOWN N and M. (N is the design doc's open count of quests with no varPlayer.
+   M should be 0.)
+4. Open the plugin's ribbon panel.
+   Check: only the title, "Show quest item markers" (ticked) and the shortcut field.
+5. Optional: allow the plugin's chat permission (chatAccess) in the Plugin Hub. Without
+   it, short messages ("Markers hidden") only go to the console.
+
+
+1. Icons and tooltips on the sample quests (CUJ 1)
+-------------------------------------------------
+Put items from the M1 sample quests in your backpack (from the bank, or with item
+cheats on the beta client), plus some junk. For each marked item, hover it.
+
+Check for every item:
+  - The blue quest-list icon (RS3_ICON_QUEST_LIST) in the top-right corner, only on
+    items an unfinished quest needs. Junk and empty slots have none.
+  - The tooltip appears only while the mouse is on the ICON, not the rest of the slot.
+    Clicking the icon still clicks the item.
+  - The tooltip: one line per quest, name in light grey and the hovered item's amount
+    in soft yellow ("+N more" in a darker grey), the amount only when it's 2 or more (never "x1"), quests in progress
+    first, at most 5 then "+N more". Other choices are never named. Items that must
+    come WITH the hovered one show on a second line ("+ Vial of water"). No header,
+    states or footer, no box characters.
+  - Each quest line starts with a small blue quest icon; a long quest name wraps
+    under it, and the next quest's icon still lines up with its own line. The
+    "+ Vial of water" and "+N more" lines have no icon.
+  - Quest box spot: with nothing saved, the quest list shows centred near the top of
+    the screen, wherever the item is. It disappears when the mouse leaves the icon.
+  - In the settings panel, press "Move quest box". A "Quest box" window opens at the
+    current spot. Drag it by its title somewhere else, close it, and hover a marker:
+    the list's top-left corner is where the window's was. Try it with the game's
+    interface lock on too. Reload the plugin: the spot is kept.
+  - Drop the window near the bottom-right corner and hover an item with a long list:
+    the list stays fully on screen (moved up and left as needed).
+  - Press "Move quest box" twice: still one window. Unload the plugin with it open:
+    it goes away.
+  - Left-click, right-click menus and the game's own hover text still work on marked
+    items.
+  - Compare the quest list with the quest's Wiki "Items required" (snapshot
+    2026-11-16). A quest you've finished must never appear.
+
+Sample quests and what to expect:
+  - Priest in Peril: rune essence and pure essence (also noted) show
+    "Priest in Peril x50" (rune essence) or "Priest in Peril x25" (pure), and never
+    name the other essence. Rune
+    essence also lists The Slug Menace and Garden of Tranquillity if unfinished.
+    Buckets, vials, jugs, bowls and empty pots are never marked (containers count as
+    common), with or without water in them.
+  - Cook's Assistant: nothing (every line is "obtained during the quest"). Its items
+    may still be marked for *other* quests; the tooltip must not name Cook's Assistant.
+  - Dimension of Disaster and every DoD subquest: never named in any tooltip (left out
+    on purpose). A staff of fire, for example, is only marked if another quest needs it.
+  - Glorious Memories: a staff of earth is marked, and its tooltip shows just the quest
+    name. Earth runes themselves: no icon, no tooltip.
+  - Doric's Task V (a miniquest): each bar shows "Doric's Task V (miniquest)" with its
+    own amount.
+  - Heroes' Quest, Throne of Miscellania (rings, logs, iron bar), The Fremennik Isles
+    (tin ore x8, coal x7, mithril ore x6), Curse of the Black Stone (rope; its law
+    rune has no icon), Murder on the Border (amounts like x24 and x144),
+    Goblin Diplomacy (a dye shows just the quest; onions show "Goblin Diplomacy x2"
+    and "+ Coins x5").
+  - Hunt for Red Raktuber: a plank shows "Hunt for Red Raktuber x5" (1 for the
+    clockwork suit plus 4), on one line.
+  - A Guild of Our Own (miniquest): a clean irit shows "A Guild of Our Own
+    (miniquest)" and "+ Vial of water"; an unfinished irit potion shows just the quest.
+
+Common items: coins, hammer, tinderbox and the standard runes.
+  Check: no icon, and hovering shows only the game's own hover text (no plugin
+  tooltip at all).
+
+
+2. Quest progress (CUJ 4) - the VarTransmit check for the design doc
+-------------------------------------------------------------------
+1. Hold an item for a quest you haven't started (Priest in Peril's essence is easy:
+   talk to King Roald in Varrock to start it).
+2. Do one quest step (starting the quest counts).
+   Check, within a few seconds:
+     [Quest Item Marker] quest variable <id> changed <a> -> <b> | re-reading <quest>
+     [Quest Item Marker] <quest> is now in_progress (was not_started)
+   and the quest moves to the top of the tooltip. "Quest reads since login" (logged on
+   the next toggle) went up by a small number (one per quest re-read), not by 227.
+3. Do a further step that doesn't change the state.
+   Check: the "quest variable ... changed" line appears again (no "is now" line).
+4. Finish a quest whose item you're holding, if you can (any short quest works).
+   Check: a "quest variable" line, "<quest> is now finished", and within a few
+   seconds the icon goes from that item if no other unfinished quest needs it, or the
+   quest leaves its tooltip.
+WRITE DOWN: did the variable line appear on each step, and on finishing? If a step
+gave no line, note the quest. That quest's progress isn't being watched.
+
+
+3. Show/hide (CUJ 5)
+--------------------
+1. In the ribbon panel, click the shortcut field and press a key (for example F9).
+2. Press the shortcut 10+ times quickly, ending with markers shown. Try it once while
+   typing in the chat box too.
+   Check: icons and any tooltip vanish and come back at once (no delay on turning on);
+   "Markers hidden" / "Markers shown" in chat (with chatAccess) or the console; the
+   checkbox follows; typing in chat doesn't toggle; every console line
+     markers on|off | quest reads since login: R
+   shows the SAME R.
+3. Untick the checkbox.
+   Check: no icons; hovering a quest item shows only the game's text; clicks work;
+   the console says "Backpack: off".
+4. Reload the plugin (prl quest-item-marker).
+   Check: markers are still off after the reload. Tick the box again.
+
+
+4. Screen changes
+-----------------
+1. Move a marked item to another slot, drop a marked item, pick it back up.
+   Check: the icon follows the item within a second; no icon left on an empty slot.
+   Picking up or dropping an item never makes the OTHER icons blink.
+2. Resize or move the backpack window (or switch interface layout if you use one).
+   Check: icons stay in the corner of their items.
+3. Close and reopen the backpack.
+   Check: icons back on reopen. (Opening is when unwatched quests are re-read: at most
+   once every ~30 seconds; R goes up by at most N per 30 seconds.)
+4. Teleport somewhere.
+   Check: icons are back within a second of arriving (they may blink).
+5. Log out to the lobby and back in.
+   Check: no icons until a moment after login; then the same icons as before.
+   The "quest status read" line appears again.
+
+
+5. Shutdown (zero leftovers)
+----------------------------
+1. With icons showing, hover one item so its tooltip is up, then turn the plugin off
+   in the Plugin Hub (or reload it with prl quest-item-marker).
+   Check: every icon and the tooltip disappear; the console shows "stopped".
+2. With the plugin off, hover and click the items that had icons.
+   Check: only the game's own hover text, clicks and menus work.
+3. Turn it on, off and on again three times, then look at the backpack.
+   Check: exactly one icon per marked item (no doubles), tooltips still right.
+
+
+Send back: N and M from step 0, the console lines from part 2, anything that looked
+wrong, and anything that felt slow.

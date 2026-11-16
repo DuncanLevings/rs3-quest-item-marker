@@ -1,0 +1,338 @@
+Quest Item Marker build report - 2026-11-16
+Result: OK
+Wiki quests: 395 rows in bucket('quest'); 395 built this run
+Quests written: 227; skipped: 44
+Requests: 72 sent, 60 from cache; 71 s
+
+Counts (requirement lines unless noted)
+  automatic:                  869
+  generic-expanded:           55
+  overridden:                 0 lines in 0 quests
+  non-item (no item links):   134
+  excluded (given/optional):  215
+  links ignored (not items):  327
+  links dropped (won't work): 98
+  unknown #version, all used: 4
+  unresolved:                 0
+  stale overrides:            0
+  manual fixes:               77 (0 overrides, 70 link_classes entries, 7 aliases and skips)
+  common items (unmarked):    27 ids from 26 pages
+  noted ids added:            947 (confirmed source: 9218 pairs)
+  client ObjType cross-check: 0 candidates
+
+Items needed by the most quests (candidates for common_items.json)
+   52 quests  item 54830 (common)
+   52 quests  item 995 (common)
+   25 quests  item 954
+   25 quests  item 955
+   16 quests  item 552
+   14 quests  item 4702
+   14 quests  item 960
+   14 quests  item 961
+   13 quests  item 52824
+   13 quests  item 4550
+   13 quests  item 9065
+   13 quests  item 1512
+   13 quests  item 1511
+   12 quests  item 5013
+   12 quests  item 52246
+   12 quests  item 52247
+   12 quests  item 32
+   12 quests  item 33
+   12 quests  item 14631
+   12 quests  item 4524
+   12 quests  item 4531
+   12 quests  item 19763
+   12 quests  item 4534
+   12 quests  item 4539
+   12 quests  item 14662
+
+Skipped quests
+  A Christmas Reunion: holiday event quest (event items aren't tracked)
+  A Stray in a Manger: removed from the game (Wiki: Removed content)
+  A Towering Feast: removed from the game (Wiki: Removed content)
+  A blast from the past (Part 1): removed from the game (Wiki: Removed content)
+  All Souls' Eve: holiday event quest (event items aren't tracked)
+  Black Knights' Fortress (quest): removed from the game (Wiki: Removed content)
+  Christmas never dies! (Part 2): removed from the game (Wiki: Removed content)
+  Cold Front: holiday event quest (event items aren't tracked)
+  Corporate Egg-spionage: holiday event quest (event items aren't tracked)
+  Death Plateau (historical): removed from the game (Wiki: Removed content)
+  Deathcon II: removed from the game (Wiki: Removed content)
+  Demon Slayer (historical): removed from the game (Wiki: Removed content)
+  Dimension of Disaster: author, 2026-11-16: Dimension of Disaster and its subquests mark nothing
+  Dimension of Disaster: Coin of the Realm: author, 2026-11-16: Dimension of Disaster subquest
+  Dimension of Disaster: Curse of Arrav: author, 2026-11-16: Dimension of Disaster subquest
+  Dimension of Disaster: Defender of Varrock: author, 2026-11-16: Dimension of Disaster subquest
+  Dimension of Disaster: Demon Slayer: author, 2026-11-16: Dimension of Disaster subquest
+  Dimension of Disaster: Shield of Arrav: author, 2026-11-16: Dimension of Disaster subquest
+  Doric's Quest: removed from the game (Wiki: Removed content)
+  Druidic Ritual (historical): removed from the game (Wiki: Removed content)
+  Episode 1: For Your Ice Only: removed from the game (Wiki: Removed content)
+  Episode 2: Live and Let Slide: removed from the game (Wiki: Removed content)
+  Episode 3: Licence to Chill: removed from the game (Wiki: Removed content)
+  Episode 4: Quantum of Solstice: removed from the game (Wiki: Removed content)
+  Field of Screams: holiday event quest (event items aren't tracked)
+  Ghost Stories of Gielinor: removed from the game (Wiki: Removed content)
+  Great Egg-spectations: holiday event quest (event items aren't tracked)
+  Guilded Eggstravaganza: removed from the game (Wiki: Removed content)
+  Guys and Dolls: holiday event quest (event items aren't tracked)
+  Hawthorn (holiday event): removed from the game (Wiki: Removed content)
+  Holly (2011 Easter event): removed from the game (Wiki: Removed content)
+  Imp Catcher (historical): removed from the game (Wiki: Removed content)
+  It's Snow Bother: holiday event quest (event items aren't tracked)
+  Learning the Ropes (historical): removed from the game (Wiki: Removed content)
+  O Little Town of Daemonheim: removed from the game (Wiki: Removed content)
+  Partying is Such Sweet Sorrow: removed from the game (Wiki: Removed content)
+  Prince Ali Rescue: removed from the game (Wiki: Removed content)
+  Romeo & Juliet: removed from the game (Wiki: Removed content)
+  Rune Mysteries (historical): removed from the game (Wiki: Removed content)
+  Shield of Arrav (historical): removed from the game (Wiki: Removed content)
+  The G-Nome Project: removed from the game (Wiki: Removed content)
+  Turkey Protest: removed from the game (Wiki: Removed content)
+  Unstable Foundations: removed from the game (Wiki: Removed content)
+  Wolf Whistle (historical): removed from the game (Wiki: Removed content)
+
+Disambiguation pages expanded automatically
+  Bullseye lantern -> Bullseye lantern (empty), Bullseye lantern (frame), Bullseye lantern (lit), Bullseye lantern (oil), Emerald lantern, Emerald lantern (lit), Sapphire lantern (empty), Sapphire lantern (lit), Sapphire lantern (oil)
+  Charge Orb -> 
+  Gloves -> Gloves (Fremennik), Gloves (grey), Gloves (purple), Gloves (red), Gloves (teal), Gloves (yellow)
+  H.A.M. Member -> Flame fragment (H.A.M. Member)
+  Kitten -> Cat
+  Pirate clothing -> Crabclaw and hook, Double eyepatches, Eye patch, Hat and eyepatch, Left eyepatch, Pirate's hat, Pirate boots, Pirate hat and eyepatch, Pirate hat and eyepatches
+  Pirate hook -> Double pirate hooks, Pirate hook (left), Pirate hook (right)
+  Radimus notes -> Radimus notes (complete), Radimus notes (partially complete)
+  Raw meat -> Fat snail, Lean snail, Raw arcane apoterrasaur meat, Raw asciatops meat, Raw bagrada rex meat, Raw bear meat, Raw beast meat, Raw beef, Raw bird meat, Raw chicken, Raw corbicula rex meat, Raw jubbly, Raw malletops meat, Raw oculi apoterrasaur meat, Raw oomlie, Raw pavosaurus rex meat, Raw pawya meat, Raw rabbit, Raw rat meat, Raw scimitops meat, Raw spicati apoterrasaur meat, Raw ugthanki meat, Raw wolf meat, Raw yak meat, Thin snail
+  Raw snail -> Fat snail, Lean snail, Thin snail
+  Snail meat -> Fat snail, Fat snail meat, Lean snail, Lean snail meat, Thin snail, Thin snail meat
+  Steel -> Steel bar, Steel girder, Steel nuggets
+  Sword -> 
+
+Quests written (client id, category, needs)
+     1 quest      1  Tower of Life
+     4 quest      6  Rocking Out
+    13 quest      2  Death to the Dorgeshuun
+    16 quest      7  Watchtower
+    18 quest      2  The Tale of the Muspah
+    21 quest     15  In Aid of the Myreque
+    23 quest      2  Catapult Construction
+    24 quest      6  Lunar Diplomacy
+    28 quest      1  Murder Mystery
+    29 quest      1  All Fired Up
+    30 quest      8  Recipe for Disaster
+    33 quest      3  Fur 'n Seek
+    37 quest      1  The Lost Tribe
+    39 quest      1  Sheep Herder
+    43 quest      8  Animal Magnetism
+    44 quest      1  Clock Tower
+    45 quest     10  A Tail of Two Cats
+    46 quest      5  Spirits of the Elid
+    56 quest      2  Defender of Varrock
+    58 quest      5  Plague City
+    60 quest      2  Pirate's Treasure
+    61 quest      4  King's Ransom
+    63 quest      1  Shield of Arrav
+    66 quest      8  Dragon Slayer
+    68 quest      4  Rag and Bone Man
+    70 quest      4  Shilo Village
+    71 quest      3  Shadow of the Storm
+    72 quest      1  Imp Catcher
+    75 quest      7  Eadgar's Ruse
+    76 quest      2  Fishing Contest
+    77 quest      6  Missing My Mummy
+    79 quest      3  Dream Mentor
+    81 quest      2  Tears of Guthix  [wiki: Tears of Guthix (quest)]
+    82 quest     12  Ghosts Ahoy
+    83 quest      1  A Void Dance
+    85 quest      1  Troll Stronghold
+    86 quest     10  While Guthix Sleeps
+    90 quest      7  Troll Romance
+    92 quest      6  Creature of Fenkenstrain
+    93 quest      3  Waterfall Quest
+    95 quest      5  Summer's End
+    97 quest     10  Enakhra's Lament
+   102 quest      1  Big Chompy Bird Hunting
+   108 quest      1  Merlin's Crystal
+   110 quest      2  Roving Elves
+   111 quest      1  Druidic Ritual
+   112 quest      1  Holy Grail
+   114 quest      2  The Chosen Commander
+   115 quest      4  Glorious Memories
+   116 quest      8  Family Crest
+   117 quest      4  The Curse of Arrav
+   121 quest      1  Sea Slug
+   123 quest      3  Devious Minds
+   124 quest      4  Making History
+   126 quest      2  Temple of Ikov
+   128 quest      1  Biohazard
+   130 quest      4  Monkey Madness
+   133 quest      2  Nature Spirit
+   135 quest     17  Desert Treasure
+   137 quest      5  Goblin Diplomacy
+   138 quest      4  Gertrude's Cat
+   142 quest      1  Meeting History
+   144 quest      3  What Lies Below
+   145 quest     11  Cold War
+   146 quest      7  One Small Favour
+   148 quest      3  The Fremennik Isles
+   149 quest      3  Eagles' Peak
+   151 quest      2  Mountain Daughter
+   155 quest      3  Another Slice of H.A.M.
+   167 quest      7  Within the Light
+   170 quest      1  Nomad's Requiem
+   171 quest      8  Rune Mechanics
+   178 miniquest  3  Witch's Potion (miniquest)
+   185 quest      2  King of the Dwarves
+   194 quest      3  Ritual of the Mahjarrat
+   204 quest      1  Some Like It Cold
+   222 quest      8  Plague's End
+   258 quest      1  Vampyre Slayer
+   261 quest      2  The Knight's Sword
+   264 quest      4  Heroes' Quest
+   266 quest      2  Monk's Friend
+   267 quest      1  Tree Gnome Village
+   268 quest      1  Fight Arena
+   270 quest      2  Underground Pass
+   271 quest      3  Observatory Quest
+   272 quest      4  The Tourist Trap
+   273 quest      3  The Dig Site
+   274 quest     13  Legends' Quest
+   275 quest      2  Elemental Workshop I
+   276 quest      2  Priest in Peril
+   277 quest      4  Tai Bwo Wannai Trio
+   278 quest      8  Regicide
+   279 quest      2  Shades of Mort'ton
+   280 quest      2  The Fremennik Trials
+   281 quest      7  Horror from the Deep
+   282 quest      5  Throne of Miscellania
+   283 quest      9  In Search of the Myreque
+   284 quest      2  Between a Rock...
+   285 quest      6  The Feud
+   286 quest      3  The Golem
+   287 quest      3  Icthlarin's Little Helper
+   288 quest     20  The Giant Dwarf
+   290 quest      6  Forgettable Tale of a Drunken Dwarf
+   291 quest      7  Garden of Tranquillity
+   292 quest      1  Wanted!
+   293 quest      3  Mourning's End Part II
+   294 quest     13  Rat Catchers
+   295 quest      7  The Hand in the Sand
+   297 quest      1  A Fairy Tale I - Growing Pains
+   298 quest      8  Recipe for Disaster: Another Cook's Quest
+   299 quest      7  Recipe for Disaster: Freeing the Mountain Dwarf
+   300 quest      7  Recipe for Disaster: Freeing the Goblin Generals
+   301 quest      5  Recipe for Disaster: Freeing Pirate Pete
+   302 quest      4  Recipe for Disaster: Freeing the Lumbridge Sage
+   303 quest      2  Recipe for Disaster: Freeing Evil Dave
+   304 quest      7  Recipe for Disaster: Freeing Skrach Uglogwee
+   305 quest      6  Recipe for Disaster: Freeing Sir Amik Varze
+   306 quest      8  Recipe for Disaster: Freeing King Awowogei
+   307 quest      2  Recipe for Disaster: Defeating the Culinaromancer
+   308 quest      4  Swan Song
+   309 quest      2  A Fairy Tale II - Cure a Queen
+   310 quest      4  The Eyes of Glouphrie
+   311 quest      2  The Darkness of Hallowvale
+   312 quest      6  The Slug Menace
+   313 quest      1  Elemental Workshop II
+   314 quest      4  My Arm's Big Adventure
+   315 quest      9  Enlightened Journey
+   316 quest      1  Contact!
+   317 quest      8  The Great Brain Robbery
+   319 quest      3  Grim Tales
+   320 quest      2  The Path of Glouphrie
+   321 quest      5  Back to my Roots
+   322 quest     11  Land of the Goblins
+   323 quest      4  Dealing with Scabaras
+   325 quest     17  As a First Resort
+   327 quest      3  Legacy of Seergaze
+   328 quest      4  Perils of Ice Mountain
+   329 quest      2  TokTz-Ket-Dill
+   330 quest      5  Smoking Kills
+   331 quest      4  Spirit of Summer
+   332 quest      5  Hunt for Red Raktuber
+   333 quest      1  The Temple at Senntisten
+   337 quest      3  A Fairy Tale III - Battle at Ork's Rift
+   338 quest      2  Elemental Workshop III
+   340 quest      3  Love Story
+   343 quest     15  Do No Evil
+   344 quest      2  Elemental Workshop IV
+   351 quest      1  The Elder Kiln
+   360 quest      1  The Brink of Extinction
+   365 quest      4  One of a Kind
+   368 quest      1  The Mighty Fall
+   370 quest      1  Dishonour among Thieves
+   377 quest      3  Hero's Welcome
+   378 quest      7  The Light Within
+   379 quest      2  The Lord of Vampyrium
+   383 quest      9  River of Blood
+   387 quest      1  Impressing the Locals
+   388 quest      1  Sliske's Endgame
+   389 quest      6  Back to the Freezer
+   391 quest      4  Crocodile Tears
+   397 quest      5  Pieces of Hate
+   398 quest      1  You Are It
+   401 quest      7  Chef's Assistant
+   402 quest      4  Curse of the Black Stone
+   403 miniquest  1  Bar Crawl (miniquest)
+   405 miniquest  2  Curse of the Empty Lord (miniquest)
+   407 miniquest  4  The General's Shadow (miniquest)
+   409 miniquest  1  One Foot in the Grave (miniquest)
+   410 miniquest  4  Hopespear's Will (miniquest)
+   411 miniquest  3  Desert Slayer Dungeon (miniquest)
+   412 miniquest  2  Purple Cat (miniquest)
+   415 miniquest  4  A Guild of Our Own (miniquest)
+   416 miniquest  1  Three's Company (saga)
+   417 miniquest  1  Vengeance (saga)
+   418 miniquest  1  Thok It To 'Em (saga)
+   419 miniquest  1  Nadir (saga)
+   420 miniquest  1  Thok Your Block Off (saga)
+   421 miniquest  1  Doric's Task I (miniquest)
+   422 miniquest  2  Doric's Task II (miniquest)
+   423 miniquest  1  Doric's Task III (miniquest)
+   424 miniquest  1  Doric's Task IV (miniquest)
+   425 miniquest  2  Doric's Task V (miniquest)
+   426 miniquest  1  Doric's Task VI (miniquest)
+   428 miniquest  1  Doric's Task VIII (miniquest)
+   429 miniquest  1  Boric's Task I (miniquest)
+   432 miniquest  2  Wandering Ga'al (miniquest)
+   433 miniquest  1  Koschei's Troubles (miniquest)
+   434 miniquest  3  Mahjarrat Memories (miniquest)
+   437 miniquest 12  In Memory of the Myreque (miniquest)
+   440 miniquest  1  Flag Fall (miniquest)
+   441 miniquest  3  Head of the Family (miniquest)
+   443 miniquest  6  Jed Hunter (miniquest)
+   444 miniquest  1  Eye for an Eye (miniquest)
+   446 miniquest  3  Tuai Leit's Own (miniquest)
+   448 miniquest  1  Damage Control (miniquest)
+   450 miniquest  8  Rebuilding Edgeville (miniquest)
+   460 quest      5  Desperate Times
+   461 miniquest  2  Helping Laniakea  [wiki: Helping Laniakea (miniquest)]
+   464 miniquest 10  Tortle Combat (miniquest)
+   469 quest      1  Azzanadra's Quest
+   470 quest      3  The Vault of Shadows
+   474 quest      3  City of Senntisten
+   480 quest      1  Extinction
+   489 quest      5  New Foundations
+   490 quest      4  Murder on the Border
+   491 quest      4  Unwelcome Guests
+   492 quest      4  Dead and Buried
+   495 quest      6  Vessel of the Harbinger
+   497 quest      4  Tomes of the Warlock
+   498 quest      1  Remains of the Necrolord
+   500 quest      2  Kili Row
+   501 quest      6  That Old Black Magic
+   504 quest      4  Skelly By Everlight  [wiki: That Old Black Magic: Skelly By Everlight]
+   505 quest      2  Flesh and Bone  [wiki: That Old Black Magic: Flesh and Bone]
+   509 quest      5  Housing of Parliament
+   511 quest      7  Requiem for a Dragon
+   512 quest      1  Osseous Rex
+   513 quest      5  Soul Searching
+   520 quest      2  Duck Quest
+   521 quest      6  Eclipse of the Heart
+   522 quest      3  Stellar Born
+   525 quest      9  Princess and the Pauper
+   527 quest      1  Hearts of Sanguine
+   528 quest      2  Hermit Permits
+   529 quest      5  Wiz Kid
+   531 quest      7  Secrets of Amberfell
+   533 quest      5  Heralds of Crimson

@@ -1,0 +1,16 @@
+{
+  "name": "Quest Item Marker",
+  "version": "0.1.0",
+  "contactEmailAddress": "tatsuya636@hotmail.com",
+  "hasSettingsIcon": false,
+  "hasRibbonIcon": true,
+  "requiredDependencies": {
+    "prettyui": "prettyui-dev"
+  },
+  "optionalDependencies": {},
+  "requiredPermissions": [],
+  "optionalPermissions": [
+    "chatAccess"
+  ],
+  "urls": {}
+}

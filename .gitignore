@@ -1,0 +1,18 @@
+/dist/
+/work/
+*.log
+.DS_Store
+Thumbs.db
+.vscode/*.local.json
+
+# notes, design docs and AI files stay on this machine.
+# only the README and CHANGELOG are public
+*.md
+!README.md
+!CHANGELOG.md
+/docs/
+/.claude/
+
+# python leftovers from running the offline tools
+__pycache__/
+*.pyc

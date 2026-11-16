@@ -1,0 +1,3757 @@
+{
+  "source": "Client quest list (config.Quest ids 0-535: configName, name, deprecated), read in game by the author with the skilling-coach-probe dump_quests scan on client 951-1, 2026-10-23, and copied from skill-tips/tools/verified_configs.json. type (0 quest / 1 holiday / 2 tutorial) is not in this dump yet; categories come from the Wiki until a dump with type is added. type added from quest-item-marker-probe on client RS3 beta client, 2026-11-16, imported 2026-11-16.",
+  "quests": [
+    {
+      "id": 0,
+      "config": "CABINFEVER",
+      "name": "Cabin Fever",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 1,
+      "config": "TOWER_OF_LIFE",
+      "name": "Tower of Life",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 2,
+      "config": "SCORPIONCATCHER",
+      "name": "Scorpion Catcher",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 3,
+      "config": "THEGOLEM_QUEST",
+      "name": "The Golem",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 4,
+      "config": "ROCKING_OUT",
+      "name": "Rocking Out",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 5,
+      "config": "THEPATHOFGLOUPHRIE",
+      "name": "The Path of Glouphrie",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 6,
+      "config": "COOK_QUEST",
+      "name": "Cook's Assistant",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 7,
+      "config": "WITCHES_HOUSE",
+      "name": "Witch's House",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 8,
+      "config": "RS_QUEST_ELEMENTAL_WORKSHOP_1",
+      "name": "Elemental Workshop I",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 9,
+      "config": "PRIESTPERIL",
+      "name": "Priest in Peril",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 10,
+      "config": "SHADESOFMORTTON",
+      "name": "Shades of Mort'ton",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 11,
+      "config": "LOVESTORY",
+      "name": "Love Story",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 12,
+      "config": "SEA_SLUG_2",
+      "name": "The Slug Menace",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 13,
+      "config": "DEATH_TO_THE_DORGESHUUN",
+      "name": "Death to the Dorgeshuun",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 14,
+      "config": "SPIRIT_SUMMER_1",
+      "name": "Spirit of Summer",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 15,
+      "config": "ERNEST_THE_CHICKEN",
+      "name": "Ernest the Chicken",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 16,
+      "config": "WATCHTOWER",
+      "name": "Watchtower",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 17,
+      "config": "ROMEO_AND_JULIET",
+      "name": "Romeo and Juliet",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 18,
+      "config": "TALE_OF_THE_MUSPAH",
+      "name": "The Tale of the Muspah",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 19,
+      "config": "SEARCHFORMYREQUE",
+      "name": "In Search of the Myreque",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 20,
+      "config": "SWEPT_AWAY",
+      "name": "Swept Away",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 21,
+      "config": "IN_AID_OF_THE_MYREQUE",
+      "name": "In Aid of the Myreque",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 22,
+      "config": "MY_ARM",
+      "name": "My Arm's Big Adventure",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 23,
+      "config": "CATAPULT_CONSTRUCTION",
+      "name": "Catapult Construction",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 24,
+      "config": "LUNAR_DIPLOMACY",
+      "name": "Lunar Diplomacy",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 25,
+      "config": "SCABARAS",
+      "name": "Dealing With Scabaras",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 26,
+      "config": "MYQ3_MAIN_QUEST",
+      "name": "The Darkness of Hallowvale",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 27,
+      "config": "RESTLESS_GHOST",
+      "name": "The Restless Ghost",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 28,
+      "config": "MURDER_MYSTERY",
+      "name": "Murder Mystery",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 29,
+      "config": "ALL_FIRED_UP",
+      "name": "All Fired Up",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 30,
+      "config": "RECIPE_FOR_DISASTER",
+      "name": "Recipe for Disaster",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 31,
+      "config": "UNDERGROUNDPASS",
+      "name": "Underground Pass",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 32,
+      "config": "GRIM_QUEST",
+      "name": "Grim Tales",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 33,
+      "config": "FUR_N_SEEK",
+      "name": "Fur 'n Seek",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 34,
+      "config": "DWARF_CANNON",
+      "name": "Dwarf Cannon",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 35,
+      "config": "FORGIVENESS",
+      "name": "Forgiveness of a Chaos Dwarf",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 36,
+      "config": "SOULS_BANE",
+      "name": "A Soul's Bane",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 37,
+      "config": "LOST_TRIBE",
+      "name": "The Lost Tribe",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 38,
+      "config": "HEROES_QUEST",
+      "name": "Heroes' Quest",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 39,
+      "config": "SHEEP_HERDER",
+      "name": "Sheep Herder",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 40,
+      "config": "TRIBAL_TOTEM",
+      "name": "Tribal Totem",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 41,
+      "config": "A_FIRST_RESORT",
+      "name": "As a First Resort",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 42,
+      "config": "LOSTCITY",
+      "name": "Lost City",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 43,
+      "config": "ANIMAL_MAGNETISM",
+      "name": "Animal Magnetism",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 44,
+      "config": "CLOCK_TOWER",
+      "name": "Clock Tower",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 45,
+      "config": "TAIL_OF_TWO_CATS",
+      "name": "A Tail of Two Cats",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 46,
+      "config": "SPIRITS_OF_THE_ELID",
+      "name": "Spirits of the Elid",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 47,
+      "config": "MYQ4",
+      "name": "Legacy of Seergaze",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 48,
+      "config": "SWANSONG1",
+      "name": "Swan Song",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 49,
+      "config": "B2MR",
+      "name": "Back to my Roots",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 50,
+      "config": "FREMENNIKTRIALS",
+      "name": "The Fremennik Trials",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 51,
+      "config": "DEMON_SLAYER",
+      "name": "Demon Slayer",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 52,
+      "config": "WOLFWHISTLE",
+      "name": "Wolf Whistle",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 53,
+      "config": "BLACK_KNIGHTS_FORTRESS",
+      "name": "Black Knights' Fortress",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 54,
+      "config": "OBSERVATORY_QUEST",
+      "name": "Observatory Quest",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 55,
+      "config": "RUNE_MYSTERIES",
+      "name": "Rune Mysteries",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 56,
+      "config": "DEFENDER_OF_VARROCK",
+      "name": "Defender of Varrock",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 57,
+      "config": "BETWEENAROCK",
+      "name": "Between a Rock...",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 58,
+      "config": "PLAGUE_CITY",
+      "name": "Plague City",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 59,
+      "config": "JUNGLE_POTION",
+      "name": "Jungle Potion",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 60,
+      "config": "PIRATES_TREASURE",
+      "name": "Pirate's Treasure",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 61,
+      "config": "KINGS_RANSOM",
+      "name": "King's Ransom",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 62,
+      "config": "RECRUITMENT_DRIVE",
+      "name": "Recruitment Drive",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 63,
+      "config": "SHIELD_OF_ARRAV",
+      "name": "Shield of Arrav",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 64,
+      "config": "PRINCEALI_RESCUE",
+      "name": "Prince Ali Rescue",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 65,
+      "config": "THEGRANDTREE",
+      "name": "The Grand Tree",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 66,
+      "config": "DRAGON_SLAYER",
+      "name": "Dragon Slayer",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 67,
+      "config": "RAT_CATCHERS",
+      "name": "Rat Catchers",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 68,
+      "config": "RAG_AND_BONE_MAN",
+      "name": "Rag and Bone Man",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 69,
+      "config": "DIGSITE_QUEST",
+      "name": "The Dig Site",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 70,
+      "config": "SHILO_VILLAGE",
+      "name": "Shilo Village",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 71,
+      "config": "SHADOW_OF_THE_STORM",
+      "name": "Shadow of the Storm",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 72,
+      "config": "IMP_CATCHER",
+      "name": "Imp Catcher",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 73,
+      "config": "FAIRY_TALE_PART_1",
+      "name": "A Fairy Tale I - Growing Pains",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 74,
+      "config": "MYTHS_OF_THE_WHITE_LANDS",
+      "name": "Myths of the White Lands",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 75,
+      "config": "EADGARS_RUSE",
+      "name": "Eadgar's Ruse",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 76,
+      "config": "FISHING_CONTEST",
+      "name": "Fishing Contest",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 77,
+      "config": "MISSING_MY_MUMMY",
+      "name": "Missing My Mummy",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 78,
+      "config": "TREEGNOMEVILLAGE",
+      "name": "Tree Gnome Village",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 79,
+      "config": "DREAM_MENTOR",
+      "name": "Dream Mentor",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 80,
+      "config": "SMOKING",
+      "name": "Smoking Kills",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 81,
+      "config": "TEARS_OF_GUTHIX",
+      "name": "Tears of Guthix",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 82,
+      "config": "GHOSTS_AHOY",
+      "name": "Ghosts Ahoy",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 83,
+      "config": "VKQ2",
+      "name": "A Void Dance",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 84,
+      "config": "RECIPE_FOR_DISASTER_SUB_0",
+      "name": "Recipe For Disaster: Another Cook's Quest",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 85,
+      "config": "TROLL_STRONGHOLD",
+      "name": "Troll Stronghold",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 86,
+      "config": "WHILE_GUTHIX_SLEEPS",
+      "name": "While Guthix Sleeps",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 87,
+      "config": "IN_PYRE_NEED",
+      "name": "In Pyre Need",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 88,
+      "config": "BRAIN_QUEST",
+      "name": "The Great Brain Roberry",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 89,
+      "config": "TBWT",
+      "name": "Tai Bwo Wannai Trio",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 90,
+      "config": "TROLL_ROMANCE",
+      "name": "Troll Romance",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 91,
+      "config": "LOTG",
+      "name": "Land of the Goblins",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 92,
+      "config": "CREATURE_OF_FENKENSTRAIN",
+      "name": "Creature of Fenkenstrain",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 93,
+      "config": "WATERFALL",
+      "name": "Waterfall Quest",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 94,
+      "config": "RS_QUEST_ELEMENTAL_WORKSHOP_2",
+      "name": "Elemental Workshop II",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 95,
+      "config": "SUMMERS_END",
+      "name": "Summer's End",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 96,
+      "config": "KENNITHSCONCERNS",
+      "name": "Kennith's Concerns",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 97,
+      "config": "ENAKHRAS_LAMENT",
+      "name": "Enakhra's Lament",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 98,
+      "config": "FORGETTABLE_TALE_OF_ADRUNKENDWARF",
+      "name": "Forgettable Tale of a Drunken Dwarf",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 99,
+      "config": "DORIC_QUEST",
+      "name": "Doric's Quest",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 100,
+      "config": "REGICIDE_QUEST",
+      "name": "Regicide",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 101,
+      "config": "RUM_DEAL",
+      "name": "Rum Deal",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 102,
+      "config": "BIG_CHOMPY_BIRD_HUNTING",
+      "name": "Big Chompy Bird Hunting",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 103,
+      "config": "WANTED_QUEST",
+      "name": "Wanted!",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 104,
+      "config": "ZOGRE_FLESH_EATERS",
+      "name": "Zogre Flesh Eaters",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 105,
+      "config": "HORROR_FROM_DEEP",
+      "name": "Horror from the Deep",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 106,
+      "config": "FIGHTARENA",
+      "name": "Fight Arena",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 107,
+      "config": "LED_ZEP",
+      "name": "Enlightened Journey",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 108,
+      "config": "MERLINS_CRYSTAL",
+      "name": "Merlin's Crystal",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 109,
+      "config": "PERILS",
+      "name": "Perils of Ice Mountain",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 110,
+      "config": "ROVING_ELVES",
+      "name": "Roving Elves",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 111,
+      "config": "DRUIDIC_RITUAL",
+      "name": "Druidic Ritual",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 112,
+      "config": "HOLY_GRAIL",
+      "name": "Holy Grail",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 113,
+      "config": "THE_TOURIST_TRAP",
+      "name": "The Tourist Trap",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 114,
+      "config": "CHOSEN_COMMANDER",
+      "name": "The Chosen Commander",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 115,
+      "config": "GLORIOUS_MEMORIES",
+      "name": "Glorious Memories",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 116,
+      "config": "FAMILY_CREST",
+      "name": "Family Crest",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 117,
+      "config": "CURSE_OF_ARRAV",
+      "name": "The Curse of Arrav",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 118,
+      "config": "GARDEN_OF_TRANQUILITY",
+      "name": "Garden of Tranquillity",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 119,
+      "config": "LEGENDS1",
+      "name": "Legends' Quest",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 120,
+      "config": "HAUNTED_MINE",
+      "name": "Haunted Mine",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 121,
+      "config": "SEA_SLUG",
+      "name": "Sea Slug",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 122,
+      "config": "RED_RAKTUBER",
+      "name": "Hunt for Red Raktuber",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 123,
+      "config": "DEVIOUS_MINDS",
+      "name": "Devious Minds",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 124,
+      "config": "MAKING_HISTORY",
+      "name": "Making History",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 125,
+      "config": "HAZEEL_CULT",
+      "name": "Hazeel Cult",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 126,
+      "config": "TEMPLE_OF_IKOV",
+      "name": "Temple of Ikov",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 127,
+      "config": "ROYAL_TROUBLE",
+      "name": "Royal Trouble",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 128,
+      "config": "BIOHAZARD",
+      "name": "Biohazard",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 129,
+      "config": "MOURNINGS_ENDS_PART2",
+      "name": "Mournings Ends Part II",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 130,
+      "config": "MONKEY_MADNESS",
+      "name": "Monkey Madness",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 131,
+      "config": "TUTORIAL_3",
+      "name": "Unstable Foundations",
+      "deprecated": false,
+      "type": 2
+    },
+    {
+      "id": 132,
+      "config": "VAMPIRE_SLAYER",
+      "name": "Vampyre Slayer",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 133,
+      "config": "NATURE_SPIRIT",
+      "name": "Nature Spirit",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 134,
+      "config": "THE_GIANT_DWARF",
+      "name": "The Giant Dwarf",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 135,
+      "config": "DESERT_TREASURE",
+      "name": "Desert Treasure",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 136,
+      "config": "THE_FEUD",
+      "name": "The Feud",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 137,
+      "config": "GOBLIN_DIPLOMACY",
+      "name": "Goblin Diplomacy",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 138,
+      "config": "GERTRUDES_CAT",
+      "name": "Gertrude's Cat",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 139,
+      "config": "DILLO",
+      "name": "TokTz-Ket-Dill",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 140,
+      "config": "DEATH_PLATEAU",
+      "name": "Death Plateau",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 141,
+      "config": "ICTHLARINS_LITTLE_HELPER",
+      "name": "Icthlarin's Little Helper",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 142,
+      "config": "MEETING_HISTORY",
+      "name": "Meeting History",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 143,
+      "config": "EYES_GLOUPHRIE",
+      "name": "The Eyes of Glouphrie",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 144,
+      "config": "WHAT_LIES_BELOW",
+      "name": "What Lies Below",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 145,
+      "config": "COLD_WAR",
+      "name": "Cold War",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 146,
+      "config": "ONE_SMALL_FAVOUR",
+      "name": "One Small Favour",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 147,
+      "config": "MONKSFRIEND",
+      "name": "Monk's Friend",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 148,
+      "config": "FREMENNIK_ISLES",
+      "name": "The Fremennik Isles",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 149,
+      "config": "EAGLES_PEAK",
+      "name": "Eagles' Peak",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 150,
+      "config": "HANDSAND_QUEST",
+      "name": "The Hand in the Sand",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 151,
+      "config": "MOUNTAIN_DAUGHTER",
+      "name": "Mountain Daughter",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 152,
+      "config": "SQUIRE_QUEST",
+      "name": "The Knight's Sword",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 153,
+      "config": "OLAF_QUEST",
+      "name": "Olaf's Quest",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 154,
+      "config": "FAIRYTALE_PART2",
+      "name": "A Fairy Tale II - Cure a Queen",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 155,
+      "config": "ANOTHER_SLICE_OF_HAM",
+      "name": "Another Slice of H.A.M.",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 156,
+      "config": "MOURNINGS_ENDS_PART1",
+      "name": "Mournings Ends Part 1",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 157,
+      "config": "TOMISC",
+      "name": "Throne of Miscellania",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 158,
+      "config": "CONTACT_QH",
+      "name": "Contact!",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 159,
+      "config": "RECIPE_FOR_DISASTER_SUB_6",
+      "name": "Recipe For Disaster: Freeing Skrach Uglogwee",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 160,
+      "config": "RECIPE_FOR_DISASTER_SUB_5",
+      "name": "Recipe For Disaster: Freeing Pirate Pete",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 161,
+      "config": "RECIPE_FOR_DISASTER_SUB_1",
+      "name": "Recipe For Disaster: Freeing the Goblin Generals",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 162,
+      "config": "RECIPE_FOR_DISASTER_SUB_8",
+      "name": "Recipe For Disaster: Freeing King Awowogei",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 163,
+      "config": "RECIPE_FOR_DISASTER_SUB_7",
+      "name": "Recipe For Disaster: Freeing Sir Amik Varze",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 164,
+      "config": "RECIPE_FOR_DISASTER_SUB_3",
+      "name": "Recipe For Disaster: Freeing Evil Dave",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 165,
+      "config": "RECIPE_FOR_DISASTER_SUB_2",
+      "name": "Recipe For Disaster: Freeing the Mountain Dwarf",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 166,
+      "config": "RECIPE_FOR_DISASTER_SUB_4",
+      "name": "Recipe For Disaster: Freeing the Lumbridge Sage",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 167,
+      "config": "WITHIN_THE_LIGHT",
+      "name": "Within the Light",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 168,
+      "config": "SENNTISTEN",
+      "name": "The Temple at Senntisten",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 169,
+      "config": "EPIC_VIKING",
+      "name": "Blood Runs Deep",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 170,
+      "config": "NOMADS_REQUIEM",
+      "name": "Nomad's Requiem",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 171,
+      "config": "RUNE_MECHANICS",
+      "name": "Rune Mechanics",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 172,
+      "config": "LUMBCAT_BLOOD_PACT",
+      "name": "The Blood Pact",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 173,
+      "config": "SHEEP_SHEARER",
+      "name": "Sheep Shearer (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 174,
+      "config": "THIGUI",
+      "name": "Buyers and Cellars",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 175,
+      "config": "FAIRY_TALE_PART_3",
+      "name": "A Fairy Tale III - Battle at Ork's Rift",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 176,
+      "config": "RS_QUEST_ELEMENTAL_WORKSHOP_3",
+      "name": "Elemental Workshop III",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 177,
+      "config": "VKQ1_QUIET_BEFORE_SWARM",
+      "name": "The Quiet Before the Swarm",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 178,
+      "config": "WITCHS_POTION",
+      "name": "Witch's Potion (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 179,
+      "config": "ROMCOM",
+      "name": "Gunnar's Ground",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 180,
+      "config": "VKQ3_LIE_IN_RUINS",
+      "name": "The Void Stares Back",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 181,
+      "config": "XMAS_2010",
+      "name": "O Little Town of Daemonheim",
+      "deprecated": false,
+      "type": 1
+    },
+    {
+      "id": 182,
+      "config": "TASKMASTER",
+      "name": "Achievement System",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 183,
+      "config": "APMEKEN_QUEST",
+      "name": "Do No Evil",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 184,
+      "config": "HALLOWEEN_2010",
+      "name": "Partying is Such Sweet Sorrow",
+      "deprecated": false,
+      "type": 1
+    },
+    {
+      "id": 185,
+      "config": "KING_OF_THE_DWARVES",
+      "name": "King of the Dwarves",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 186,
+      "config": "PRISONER_OF_GLOUPHRIE",
+      "name": "The Prisoner of Glouphrie",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 187,
+      "config": "RS_QUEST_ELEMENTAL_WORKSHOP_4",
+      "name": "Elemental Workshop IV",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 188,
+      "config": "CLOCKWORK_SYRINGE",
+      "name": "A Clockwork Syringe",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 189,
+      "config": "EASTER11_HOLLY",
+      "name": "Holly",
+      "deprecated": false,
+      "type": 1
+    },
+    {
+      "id": 190,
+      "config": "EASTER11_HAWTHORN",
+      "name": "Hawthorn",
+      "deprecated": false,
+      "type": 1
+    },
+    {
+      "id": 191,
+      "config": "DEADLIEST_CATCH_QUEST",
+      "name": "Deadliest Catch",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 192,
+      "config": "SLUG3_PLOG",
+      "name": "Salt in the Wound",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 193,
+      "config": "MYQ5_QUEST",
+      "name": "The Branches of Darkmeyer",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 194,
+      "config": "RITUAL_OF_THE_MAHJARRAT",
+      "name": "Ritual of the Mahjarrat",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 195,
+      "config": "HALLOWEEN_2011",
+      "name": "Deathcon II",
+      "deprecated": false,
+      "type": 1
+    },
+    {
+      "id": 196,
+      "config": "ONE_PIERCING_NOTE",
+      "name": "One Piercing Note",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 197,
+      "config": "THANKSGIVING_2011",
+      "name": "Turkey Protest",
+      "deprecated": false,
+      "type": 1
+    },
+    {
+      "id": 198,
+      "config": "XMAS11",
+      "name": "A Towering Feast",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 199,
+      "config": "FMC_QUEST",
+      "name": "The Firemaker's Curse",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 200,
+      "config": "LETTHEMEATPIE",
+      "name": "Let Them Eat Pie",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 201,
+      "config": "TZHAAR2_QUEST",
+      "name": "The Elder Kiln",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 202,
+      "config": "SONG_FROM_THE_DEPTHS",
+      "name": "Song from the Depths",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 203,
+      "config": "CARNILLEANRISING",
+      "name": "Carnillean Rising",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 204,
+      "config": "SOME_LIKE_IT_COLD",
+      "name": "Some Like It Cold",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 205,
+      "config": "OZAN2_QUEST",
+      "name": "Diamond in the Rough",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 206,
+      "config": "OZAN1_QUEST",
+      "name": "Stolen Hearts",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 207,
+      "config": "PNR_QUEST",
+      "name": "What's Mine is Yours",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 208,
+      "config": "ARIANE1_QUEST",
+      "name": "Rune Mysteries",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 209,
+      "config": "ARIANE2_QUEST",
+      "name": "Rune Memories",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 210,
+      "config": "TZHAAR3_QUEST",
+      "name": "The Brink of Extinction",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 211,
+      "config": "XMAS_2012",
+      "name": "A Stray in a Manger",
+      "deprecated": false,
+      "type": 1
+    },
+    {
+      "id": 212,
+      "config": "TSD_QUEST",
+      "name": "The World Wakes",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 213,
+      "config": "QUEST_BACON",
+      "name": "Bringing Home the Bacon",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 214,
+      "config": "OWEN1_QUEST",
+      "name": "The Death of Chivalry",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 215,
+      "config": "BIRTHRIGHT_OF_THE_DWARVES",
+      "name": "Birthright of the Dwarves",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 216,
+      "config": "SLISKE1_QUEST",
+      "name": "Missing, Presumed Death",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 217,
+      "config": "TUT5_QUEST",
+      "name": "Tutorial",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 218,
+      "config": "OOAK_QUEST",
+      "name": "One of a Kind",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 219,
+      "config": "PURPLE_ROSE_QUEST",
+      "name": "Fate of the Gods",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 220,
+      "config": "ASH1_QUEST",
+      "name": "A Shadow over Ashdale",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 221,
+      "config": "THE_MIGHTY_FALL",
+      "name": "The Mighty Fall",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 222,
+      "config": "PLAGUES_END",
+      "name": "Plague's End",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 223,
+      "config": "QUEST_HOUSE",
+      "name": "Broken Home",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 224,
+      "config": "HEART_OF_STONE",
+      "name": "Heart of Stone",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 225,
+      "config": "QUEST_SLISKE2",
+      "name": "Dishonour among Thieves",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 226,
+      "config": "QUEST_200",
+      "name": "Dimension of Disaster",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 227,
+      "config": "QUEST_200_INTRO",
+      "name": "Dimension of Disaster: Coin of the Realm",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 228,
+      "config": "QUEST_200_SOA",
+      "name": "Dimension of Disaster: Shield of Arrav",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 229,
+      "config": "QUEST_200_DS",
+      "name": "Dimension of Disaster: Demon Slayer",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 230,
+      "config": "QUEST_200_DOV",
+      "name": "Dimension of Disaster: Defender of Varrock",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 231,
+      "config": "QUEST_200_COA",
+      "name": "Dimension of Disaster: Curse of Arrav",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 232,
+      "config": "CRONDIS_QUEST",
+      "name": "Crocodile Tears",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 233,
+      "config": "QUEST_SEREN",
+      "name": "The Light Within",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 234,
+      "config": "MYQ6_QUEST",
+      "name": "The Lord of Vampyrium",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 235,
+      "config": "QUEST_GOEBIE1",
+      "name": "Call of the Ancestors",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 236,
+      "config": "QUEST_TUTISLAND",
+      "name": "Tutorial",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 237,
+      "config": "QUEST_NOMEL",
+      "name": "Nomad's Elegy",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 238,
+      "config": "MYQ7_QUEST",
+      "name": "River of Blood",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 239,
+      "config": "QUEST_SISTER",
+      "name": "Kindred Spirits",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 240,
+      "config": "QUEST_GOWER",
+      "name": "Gower Quest",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 241,
+      "config": "QUEST_FOTG2",
+      "name": "Children of Mah",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 242,
+      "config": "QUEST_ELR0",
+      "name": "Impressing the Locals",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 243,
+      "config": "QUEST_ENDGAME",
+      "name": "Sliske's Endgame",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 244,
+      "config": "QUEST_PENG_BTTF",
+      "name": "Back to the Freezer",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 245,
+      "config": "QUEST_HEROS_WELCOME",
+      "name": "Hero's Welcome",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 246,
+      "config": "HET_QUEST",
+      "name": "Our Man in the North",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 247,
+      "config": "OZAN3_QUEST",
+      "name": "The Jack of Spades",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 248,
+      "config": "PHARAOH_QUEST",
+      "name": "'Phite Club",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 249,
+      "config": "HW17_QUEST",
+      "name": "",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 250,
+      "config": "DAVE_QUEST",
+      "name": "Evil Dave's Big Day Out",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 251,
+      "config": "XMAS17_QUEST",
+      "name": "Ghost Stories of Gielinor",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 252,
+      "config": "QUEST_PIRATEFINALE",
+      "name": "Pieces of Hate",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 253,
+      "config": "TRAIL_QUEST",
+      "name": "You Are It",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 254,
+      "config": "QUEST_TNS",
+      "name": "The Needle Skips",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 255,
+      "config": "XMAS18_QUEST",
+      "name": "Violet is Blue",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 256,
+      "config": "TUT5",
+      "name": "Tutorial",
+      "deprecated": true,
+      "type": 2
+    },
+    {
+      "id": 257,
+      "config": "COOKS_ASSISTANT",
+      "name": "Cook's Assistant",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 258,
+      "config": "VAMPYRE_SLAYER",
+      "name": "Vampyre Slayer",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 259,
+      "config": "PRINCE_ALI_RESCUE",
+      "name": "Prince Ali Rescue",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 260,
+      "config": "DORICS",
+      "name": "Doric's Quest",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 261,
+      "config": "KNIGHTS_SWORD",
+      "name": "The Knight's Sword",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 262,
+      "config": "LOST_CITY",
+      "name": "Lost City",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 263,
+      "config": "WITCHS_HOUSE",
+      "name": "Witch's House",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 264,
+      "config": "HEROES",
+      "name": "Heroes' Quest",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 265,
+      "config": "SCORPION_CATCHER",
+      "name": "Scorpion Catcher",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 266,
+      "config": "MONKS_FRIEND",
+      "name": "Monk's Friend",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 267,
+      "config": "TREE_GNOME_VILLAGE",
+      "name": "Tree Gnome Village",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 268,
+      "config": "FIGHT_ARENA",
+      "name": "Fight Arena",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 269,
+      "config": "GRAND_TREE",
+      "name": "The Grand Tree",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 270,
+      "config": "UNDERGROUND_PASS",
+      "name": "Underground Pass",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 271,
+      "config": "OBSERVATORY",
+      "name": "Observatory Quest",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 272,
+      "config": "TOURIST_TRAP",
+      "name": "The Tourist Trap",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 273,
+      "config": "DIG_SITE",
+      "name": "The Dig Site",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 274,
+      "config": "LEGENDS",
+      "name": "Legends' Quest",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 275,
+      "config": "ELEMENTAL_WORKSHOP_I",
+      "name": "Elemental Workshop I",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 276,
+      "config": "PRIEST_IN_PERIL",
+      "name": "Priest in Peril",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 277,
+      "config": "TAI_BWO_WANNAI_TRIO",
+      "name": "Tai Bwo Wannai Trio",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 278,
+      "config": "REGICIDE",
+      "name": "Regicide",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 279,
+      "config": "SHADES_OF_MORTTON",
+      "name": "Shades of Mort'ton",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 280,
+      "config": "FREMENNIK_TRIALS",
+      "name": "The Fremennik Trials",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 281,
+      "config": "HORROR_FROM_THE_DEEP",
+      "name": "Horror from the Deep",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 282,
+      "config": "THRONE_OF_MISCELLANIA",
+      "name": "Throne of Miscellania",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 283,
+      "config": "IN_SEARCH_OF_THE_MYREQUE",
+      "name": "In Search of the Myreque",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 284,
+      "config": "BETWEEN_A_ROCK",
+      "name": "Between a Rock...",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 285,
+      "config": "FEUD",
+      "name": "The Feud",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 286,
+      "config": "GOLEM",
+      "name": "The Golem",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 287,
+      "config": "ICS_LITTLE_HELPER",
+      "name": "Icthlarin's Little Helper",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 288,
+      "config": "GIANT_DWARF",
+      "name": "The Giant Dwarf",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 289,
+      "config": "MOURNINGS_END",
+      "name": "Mourning's End Part I",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 290,
+      "config": "FORGETTABLE_TALE",
+      "name": "Forgettable Tale of a Drunken Dwarf",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 291,
+      "config": "GARDEN_OF_TRANQUILLITY",
+      "name": "Garden of Tranquillity",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 292,
+      "config": "WANTED",
+      "name": "Wanted!",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 293,
+      "config": "MOURNINGS_END_PART_2",
+      "name": "Mourning's End Part II",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 294,
+      "config": "RATCATCHERS",
+      "name": "Rat Catchers",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 295,
+      "config": "HAND_IN_THE_SAND",
+      "name": "The Hand in the Sand",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 296,
+      "config": "CABIN_FEVER",
+      "name": "Cabin Fever",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 297,
+      "config": "FAIRY_TALE_I",
+      "name": "A Fairy Tale I - Growing Pains",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 298,
+      "config": "RECIPE_FOR_DISASTER_INTRO",
+      "name": "Recipe for Disaster: Another Cook's Quest",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 299,
+      "config": "RECIPE_FOR_DISASTER_DWARF",
+      "name": "Recipe for Disaster: Freeing the Mountain Dwarf",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 300,
+      "config": "RECIPE_FOR_DISASTER_GOBLIN",
+      "name": "Recipe for Disaster: Freeing the Goblin Generals",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 301,
+      "config": "RECIPE_FOR_DISASTER_PIRATE",
+      "name": "Recipe for Disaster: Freeing Pirate Pete",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 302,
+      "config": "RECIPE_FOR_DISASTER_GUIDE",
+      "name": "Recipe for Disaster: Freeing the Lumbridge Sage",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 303,
+      "config": "RECIPE_FOR_DISASTER_DAVE",
+      "name": "Recipe for Disaster: Freeing Evil Dave",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 304,
+      "config": "RECIPE_FOR_DISASTER_OGRE",
+      "name": "Recipe for Disaster: Freeing Skrach Uglogwee",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 305,
+      "config": "RECIPE_FOR_DISASTER_VARZE",
+      "name": "Recipe for Disaster: Freeing Sir Amik Varze",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 306,
+      "config": "RECIPE_FOR_DISASTER_MONKEY",
+      "name": "Recipe for Disaster: Freeing King Awowogei",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 307,
+      "config": "RECIPE_FOR_DISASTER_BOSS",
+      "name": "Recipe for Disaster: Defeating the Culinaromancer",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 308,
+      "config": "SWAN_SONG",
+      "name": "Swan Song",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 309,
+      "config": "FAIRY_TALE_II",
+      "name": "A Fairy Tale II - Cure a Queen",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 310,
+      "config": "EYES_OF_GLOUPHRIE",
+      "name": "The Eyes of Glouphrie",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 311,
+      "config": "DARKNESS_OF_HALLOWVALE",
+      "name": "The Darkness of Hallowvale",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 312,
+      "config": "SLUG_MENACE",
+      "name": "The Slug Menace",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 313,
+      "config": "ELEMENTAL_WORKSHOP_II",
+      "name": "Elemental Workshop II",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 314,
+      "config": "MY_ARMS_BIG_ADVENTURE",
+      "name": "My Arm's Big Adventure",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 315,
+      "config": "ENLIGHTENED_JOURNEY",
+      "name": "Enlightened Journey",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 316,
+      "config": "CONTACT",
+      "name": "Contact!",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 317,
+      "config": "GREAT_BRAIN_ROBBERY",
+      "name": "The Great Brain Robbery",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 318,
+      "config": "OLAFS",
+      "name": "Olaf's Quest",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 319,
+      "config": "GRIM_TALES",
+      "name": "Grim Tales",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 320,
+      "config": "PATH_OF_GLOUPHRIE",
+      "name": "The Path of Glouphrie",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 321,
+      "config": "BACK_TO_MY_ROOTS",
+      "name": "Back to my Roots",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 322,
+      "config": "LAND_OF_THE_GOBLINS",
+      "name": "Land of the Goblins",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 323,
+      "config": "DEALING_WITH_SCABARAS",
+      "name": "Dealing with Scabaras",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 324,
+      "config": "WOLF_WHISTLE",
+      "name": "Wolf Whistle",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 325,
+      "config": "AS_A_FIRST_RESORT",
+      "name": "As a First Resort",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 326,
+      "config": "KENNITHS_CONCERNS",
+      "name": "Kennith's Concerns",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 327,
+      "config": "LEGACY_OF_SEERGAZE",
+      "name": "Legacy of Seergaze",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 328,
+      "config": "PERILS_OF_ICE_MOUNTAIN",
+      "name": "Perils of Ice Mountain",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 329,
+      "config": "TZHAAR1",
+      "name": "TokTz-Ket-Dill",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 330,
+      "config": "SMOKING_KILLS",
+      "name": "Smoking Kills",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 331,
+      "config": "SPIRIT_OF_SUMMER",
+      "name": "Spirit of Summer",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 332,
+      "config": "HUNT_FOR_RED_RAKTUBER",
+      "name": "Hunt for Red Raktuber",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 333,
+      "config": "TEMPLE_AT_SENNTISTEN",
+      "name": "The Temple at Senntisten",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 334,
+      "config": "BLOOD_RUNS_DEEP",
+      "name": "Blood Runs Deep",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 335,
+      "config": "BLOOD_PACT",
+      "name": "The Blood Pact",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 336,
+      "config": "BUYERS_AND_CELLARS",
+      "name": "Buyers and Cellars",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 337,
+      "config": "FAIRY_TALE_III",
+      "name": "A Fairy Tale III - Battle at Ork's Rift",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 338,
+      "config": "ELEMENTAL_WORKSHOP_III",
+      "name": "Elemental Workshop III",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 339,
+      "config": "VKQ1",
+      "name": "Quiet Before the Swarm",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 340,
+      "config": "LOVE_STORY",
+      "name": "Love Story",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 341,
+      "config": "GUNNARS_GROUND",
+      "name": "Gunnar's Ground",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 342,
+      "config": "VKQ3",
+      "name": "The Void Stares Back",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 343,
+      "config": "DO_NO_EVIL",
+      "name": "Do No Evil",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 344,
+      "config": "ELEMENTAL_WORKSHOP_IV",
+      "name": "Elemental Workshop IV",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 345,
+      "config": "DEADLIEST_CATCH",
+      "name": "Deadliest Catch",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 346,
+      "config": "SALT_IN_THE_WOUND",
+      "name": "Salt in the Wound",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 347,
+      "config": "BRANCHES_OF_DARKMEYER",
+      "name": "The Branches of Darkmeyer",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 348,
+      "config": "XMAS_2011",
+      "name": "A Towering Feast",
+      "deprecated": false,
+      "type": 1
+    },
+    {
+      "id": 349,
+      "config": "FIREMAKERS_CURSE",
+      "name": "The Firemaker's Curse",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 350,
+      "config": "LET_THEM_EAT_PIE",
+      "name": "Let Them Eat Pie",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 351,
+      "config": "TZHAAR2",
+      "name": "The Elder Kiln",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 352,
+      "config": "QBD1",
+      "name": "Song from the Depths",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 353,
+      "config": "CARNILLEAN_RISING",
+      "name": "Carnillean Rising",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 354,
+      "config": "CARNI_FAKEQUEST",
+      "name": "Philipe's Big Adventure",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 355,
+      "config": "OZAN1",
+      "name": "Stolen Hearts",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 356,
+      "config": "OZAN2",
+      "name": "Diamond in the Rough",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 357,
+      "config": "WHATS_MINE_IS_YOURS",
+      "name": "What's Mine is Yours",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 358,
+      "config": "ARIANE1",
+      "name": "Rune Mysteries",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 359,
+      "config": "ARIANE2",
+      "name": "Rune Memories",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 360,
+      "config": "TZHAAR3",
+      "name": "The Brink of Extinction",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 361,
+      "config": "WORLD_WAKES",
+      "name": "The World Wakes",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 362,
+      "config": "BACON",
+      "name": "Bringing Home the Bacon",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 363,
+      "config": "OWEN1",
+      "name": "The Death of Chivalry",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 364,
+      "config": "SLISKE1",
+      "name": "Missing, Presumed Death",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 365,
+      "config": "ONE_OF_A_KIND",
+      "name": "One of a Kind",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 366,
+      "config": "FOTG",
+      "name": "Fate of the Gods",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 367,
+      "config": "ASH1",
+      "name": "A Shadow over Ashdale",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 368,
+      "config": "MIGHTY_FALL",
+      "name": "The Mighty Fall",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 369,
+      "config": "BROKEN_HOME",
+      "name": "Broken Home",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 370,
+      "config": "SLISKE2",
+      "name": "Dishonour among Thieves",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 371,
+      "config": "Q200",
+      "name": "Dimension of Disaster",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 372,
+      "config": "Q200_INTRO",
+      "name": "Dimension of Disaster: Coin of the Realm",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 373,
+      "config": "Q200_SOA",
+      "name": "Dimension of Disaster: Shield of Arrav",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 374,
+      "config": "Q200_DS",
+      "name": "Dimension of Disaster: Demon Slayer",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 375,
+      "config": "Q200_DOV",
+      "name": "Dimension of Disaster: Defender of Varrock",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 376,
+      "config": "Q200_COA",
+      "name": "Dimension of Disaster: Curse of Arrav",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 377,
+      "config": "HEROS_WELCOME",
+      "name": "Hero's Welcome",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 378,
+      "config": "SEREN",
+      "name": "The Light Within",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 379,
+      "config": "LORD_OF_VAMPYRIUM",
+      "name": "The Lord of Vampyrium",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 380,
+      "config": "GOEBIE1",
+      "name": "Call of the Ancestors",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 381,
+      "config": "BENEATH_CURSED_TIDES",
+      "name": "Beneath Cursed Tides",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 382,
+      "config": "NOMADS_ELEGY",
+      "name": "Nomad's Elegy",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 383,
+      "config": "RIVER_OF_BLOOD",
+      "name": "River of Blood",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 384,
+      "config": "KINDRED_SPIRITS",
+      "name": "Kindred Spirits",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 385,
+      "config": "GOWER",
+      "name": "Gower Quest",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 386,
+      "config": "FOTG2",
+      "name": "Children of Mah",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 387,
+      "config": "ELR0",
+      "name": "Impressing the Locals",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 388,
+      "config": "SLISKES_ENDGAME",
+      "name": "Sliske's Endgame",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 389,
+      "config": "PENG_BTTF",
+      "name": "Back to the Freezer",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 390,
+      "config": "OZAN3",
+      "name": "The Jack of Spades",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 391,
+      "config": "CROCODILE_TEARS",
+      "name": "Crocodile Tears",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 392,
+      "config": "OUR_MAN_IN_THE_NORTH",
+      "name": "Our Man in the North",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 393,
+      "config": "PHITE_CLUB",
+      "name": "'Phite Club",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 394,
+      "config": "HALLOWEEN_2017",
+      "name": "Ghost Stories of Gielinor",
+      "deprecated": false,
+      "type": 1
+    },
+    {
+      "id": 395,
+      "config": "DAVE",
+      "name": "Evil Dave's Big Day Out",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 396,
+      "config": "XMAS_2017",
+      "name": "The G-Nome Project",
+      "deprecated": false,
+      "type": 1
+    },
+    {
+      "id": 397,
+      "config": "PIRATEFINALE",
+      "name": "Pieces of Hate",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 398,
+      "config": "TRAIL",
+      "name": "You Are It",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 399,
+      "config": "TNS",
+      "name": "The Needle Skips",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 400,
+      "config": "XMAS18",
+      "name": "Violet is Blue",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 401,
+      "config": "CHEESECAKE",
+      "name": "Chef's Assistant",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 402,
+      "config": "ELITEDUNGEONS",
+      "name": "Curse of the Black Stone",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 403,
+      "config": "BARCRAWL",
+      "name": "Bar Crawl (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 404,
+      "config": "ABYSS",
+      "name": "Enter the Abyss (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 405,
+      "config": "CURSE_OF_ZAROS",
+      "name": "Curse of the Empty Lord (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 406,
+      "config": "LAIR_OF_TARN_RAZORLOR",
+      "name": "Lair of Tarn Razorlor (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 407,
+      "config": "GENERALS_SHADOW",
+      "name": "The General's Shadow (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 408,
+      "config": "HUNT_FOR_SUROK",
+      "name": "The Hunt for Surok (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 409,
+      "config": "HANDSAND2",
+      "name": "One Foot in the Grave (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 410,
+      "config": "HOPESPEARS_WILL",
+      "name": "Hopespear's Will (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 411,
+      "config": "SMOKING_KILLS_DUNGEON",
+      "name": "Desert Slayer Dungeon (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 412,
+      "config": "PURPLE_CAT",
+      "name": "Purple Cat (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 413,
+      "config": "CAPER_ACORNS",
+      "name": "From Tiny Acorns (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 414,
+      "config": "CAPER_MARBLES",
+      "name": "Lost Her Marbles (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 415,
+      "config": "CAPER_OUROWN",
+      "name": "A Guild of Our Own (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 416,
+      "config": "FREMSAGA_SIGNATURE",
+      "name": "Three's Company (saga)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 417,
+      "config": "FREMSAGA_VENGEANCE",
+      "name": "Vengeance (saga)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 418,
+      "config": "FREMSAGA_THOK",
+      "name": "Thok It To 'Em (saga)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 419,
+      "config": "FREMSAGA_BILRACH",
+      "name": "Nadir (saga)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 420,
+      "config": "FREMSAGA_THOK2",
+      "name": "Thok Your Block Off (saga)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 421,
+      "config": "WHATS_MINE_IS_YOURS_DORIC_TASK1",
+      "name": "Doric's Task I (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 422,
+      "config": "WHATS_MINE_IS_YOURS_DORIC_TASK2",
+      "name": "Doric's Task II (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 423,
+      "config": "WHATS_MINE_IS_YOURS_DORIC_TASK3",
+      "name": "Doric's Task III (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 424,
+      "config": "WHATS_MINE_IS_YOURS_DORIC_TASK4",
+      "name": "Doric's Task IV (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 425,
+      "config": "WHATS_MINE_IS_YOURS_DORIC_TASK5",
+      "name": "Doric's Task V (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 426,
+      "config": "WHATS_MINE_IS_YOURS_DORIC_TASK6",
+      "name": "Doric's Task VI (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 427,
+      "config": "WHATS_MINE_IS_YOURS_DORIC_TASK7",
+      "name": "Doric's Task VII (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 428,
+      "config": "WHATS_MINE_IS_YOURS_DORIC_TASK8",
+      "name": "Doric's Task VIII (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 429,
+      "config": "WHATS_MINE_IS_YOURS_BORIC_TASK1",
+      "name": "Boric's Task I (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 430,
+      "config": "WHATS_MINE_IS_YOURS_BORIC_TASK2",
+      "name": "Boric's Task II (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 431,
+      "config": "WHATS_MINE_IS_YOURS_BORIC_TASK3",
+      "name": "Boric's Task III (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 432,
+      "config": "TZHAAR3_GAAL",
+      "name": "Wandering Ga'al (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 433,
+      "config": "KHARSHAI",
+      "name": "Koschei's Troubles (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 434,
+      "config": "MAHMEM",
+      "name": "Mahjarrat Memories (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 435,
+      "config": "TALES_OF_THE_GOD_WARS",
+      "name": "Tales of the God Wars (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 436,
+      "config": "BENEDICT_WORLD_TOUR",
+      "name": "Benedict's World Tour (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 437,
+      "config": "MYQ7_MEMORIAL",
+      "name": "In Memory of the Myreque (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 438,
+      "config": "MYQ7_LOST_TOYS",
+      "name": "The Lost Toys (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 439,
+      "config": "TALES_OF_NOMAD",
+      "name": "Tales of Nomad (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 440,
+      "config": "ELR_FLAG",
+      "name": "Flag Fall (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 441,
+      "config": "ELR_HEAD",
+      "name": "Head of the Family (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 442,
+      "config": "ELR_SLAYER",
+      "name": "Spiritual Enlightenment (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 443,
+      "config": "ELR_JED",
+      "name": "Jed Hunter (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 444,
+      "config": "ELR_CYCLOSIS",
+      "name": "Eye for an Eye (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 445,
+      "config": "ELR_HARBINGER",
+      "name": "Harbinger (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 446,
+      "config": "ELR_TUAILEIT",
+      "name": "Tuai Leit's Own (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 447,
+      "config": "ELR_EXTURTLES",
+      "name": "Ghosts from the Past (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 448,
+      "config": "ELR_GOSHIMA",
+      "name": "Damage Control (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 449,
+      "config": "ELR_FINALE",
+      "name": "Final Destination (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 450,
+      "config": "MAH5_EDGE",
+      "name": "Rebuilding Edgeville (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 451,
+      "config": "EASTER2019",
+      "name": "Guilded Eggstravaganza",
+      "deprecated": false,
+      "type": 1
+    },
+    {
+      "id": 452,
+      "config": "MINIQUEST_DINO_BOSS",
+      "name": "Raksha, the Shadow Colossus",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 453,
+      "config": "VIB2",
+      "name": "Violet is Blue Too",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 454,
+      "config": "MINIQUEST_TRINDINE",
+      "name": "The Vault of Shadows",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 455,
+      "config": "ONCE_UPON_A_SLIME",
+      "name": "Once Upon a Slime",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 456,
+      "config": "ARCH_MONOLITH",
+      "name": "",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 457,
+      "config": "ARCH_MYSTERY",
+      "name": "",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 458,
+      "config": "QUEST_DM",
+      "name": "Desperate Measures",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 459,
+      "config": "MINIQUEST_KERAPAC_DND",
+      "name": "Sins of the Father",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 460,
+      "config": "CHAROS",
+      "name": "Desperate Times",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 461,
+      "config": "LANIAKEA_FETCH",
+      "name": "Helping Laniakea",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 462,
+      "config": "FATHER_SON",
+      "name": "Father and Son",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 463,
+      "config": "MINIQUEST_OUT1",
+      "name": "Foreshadowing",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 464,
+      "config": "TORTLE_COMBAT",
+      "name": "Tortle Combat (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 465,
+      "config": "DM",
+      "name": "Desperate Measures",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 466,
+      "config": "KERAPAC_DND",
+      "name": "Sins of the Father",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 467,
+      "config": "DINO_BOSS",
+      "name": "Raksha, the Shadow Colossus",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 468,
+      "config": "HEARTSTEALER",
+      "name": "Heartstealer",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 469,
+      "config": "AZZANADRA",
+      "name": "Azzanadra's Quest",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 470,
+      "config": "TRINDINE",
+      "name": "The Vault of Shadows",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 471,
+      "config": "OUT1",
+      "name": "Foreshadowing",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 472,
+      "config": "OUT2",
+      "name": "Flashback",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 473,
+      "config": "EGWD_PRERELEASE",
+      "name": "Battle of the Monolith",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 474,
+      "config": "QUEST_SENNTISTEN",
+      "name": "City of Senntisten",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 475,
+      "config": "OUT3",
+      "name": "Fortunes",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 476,
+      "config": "OUT4",
+      "name": "Finale",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 477,
+      "config": "QUEST_OUT0",
+      "name": "Once Upon a Time in Gielinor",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 478,
+      "config": "DUEL_ARENA_REMOVAL_PART1",
+      "name": "Eye of Het I",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 479,
+      "config": "DUEL_ARENA_REMOVAL_PART2",
+      "name": "Eye of Het II",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 480,
+      "config": "EGW_FINALE",
+      "name": "Extinction",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 481,
+      "config": "ZAMORAK",
+      "name": "Twilight of the Gods",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 482,
+      "config": "AFTERMATH",
+      "name": "Aftermath",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 483,
+      "config": "QUEST_DAUGHTER",
+      "name": "Daughter of Chaos",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 484,
+      "config": "ZAMORAK_CIVIL_WAR_1",
+      "name": "Civil War I (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 485,
+      "config": "ZAMORAK_CIVIL_WAR_2",
+      "name": "Civil War II (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 486,
+      "config": "ZAMORAK_CIVIL_WAR_3",
+      "name": "Civil War III (miniquest)",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 487,
+      "config": "QUEST_DAUGHTER2",
+      "name": "Succession",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 488,
+      "config": "QUEST_RUNEPASS_3",
+      "name": "Desperate Creatures",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 489,
+      "config": "QUEST_FORT_INTRO",
+      "name": "New Foundations",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 490,
+      "config": "QUEST_FORT",
+      "name": "Murder on the Border",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 491,
+      "config": "QUEST_FORT_SLAYER",
+      "name": "Unwelcome Guests",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 492,
+      "config": "QUEST_FORT_RAPTOR",
+      "name": "Dead and Buried",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 493,
+      "config": "QUEST_NECROMANCY_TUTORIAL",
+      "name": "Necromancy!",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 494,
+      "config": "QUEST_NECROMANCY_ORIGINS",
+      "name": "Rune Mythos",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 495,
+      "config": "QUEST_NECROMANCY_HARBINGER",
+      "name": "Vessel of the Harbinger",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 496,
+      "config": "QUEST_NECROMANCY_HERMOD",
+      "name": "The Spirit of War",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 497,
+      "config": "QUEST_NECROMANCY_WARLOCK",
+      "name": "Tomes of the Warlock",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 498,
+      "config": "QUEST_NECROMANCY_NECROLORD",
+      "name": "Remains of the Necrolord",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 499,
+      "config": "QUEST_NECROMANCY_FINALE",
+      "name": "Alpha vs Omega",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 500,
+      "config": "NECROMANCY_CITY_SMITH",
+      "name": "Kili Row",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 501,
+      "config": "NECROMANCY_CITY_BAND",
+      "name": "That Old Black Magic",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 502,
+      "config": "QUEST_FORT_ZEMO",
+      "name": "Ancient Awakening",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 503,
+      "config": "NECROMANCY_CITY_BAND_GUITAR",
+      "name": "My One and Only Lute",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 504,
+      "config": "NECROMANCY_CITY_BAND_TRUMPET",
+      "name": "Skelly By Everlight",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 505,
+      "config": "NECROMANCY_CITY_BAND_PIANO",
+      "name": "Flesh and Bone",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 506,
+      "config": "NECROMANCY_CITY_BAND_DRUMS",
+      "name": "Hermy and Bass",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 507,
+      "config": "QUEST_FORT_EPILOGUE",
+      "name": "Battle of Forinthry",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 508,
+      "config": "QUEST_XMAS23",
+      "name": "It's Snow Bother",
+      "deprecated": false,
+      "type": 1
+    },
+    {
+      "id": 509,
+      "config": "NECROMANCY_CITY_OWLERY",
+      "name": "Housing of Parliament",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 510,
+      "config": "QUEST_EASTER24",
+      "name": "Great Egg-spectations",
+      "deprecated": false,
+      "type": 1
+    },
+    {
+      "id": 511,
+      "config": "QUEST_VORKATH",
+      "name": "Requiem for a Dragon",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 512,
+      "config": "QUEST_OSSEOUS",
+      "name": "Osseous Rex",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 513,
+      "config": "QUEST_REBIRTH_SANCTUM",
+      "name": "Soul Searching",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 514,
+      "config": "QUEST_AMASCUT",
+      "name": "Ode of the Devourer",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 515,
+      "config": "QUEST_HALLOWEEN24",
+      "name": "Field of Screams",
+      "deprecated": false,
+      "type": 1
+    },
+    {
+      "id": 516,
+      "config": "QUEST_XMAS24",
+      "name": "A Christmas Reunion",
+      "deprecated": false,
+      "type": 1
+    },
+    {
+      "id": 517,
+      "config": "QUEST_DESERT_SCABARAS",
+      "name": "Beneath Scabaras' Sands",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 518,
+      "config": "COMBAT_MASTERY",
+      "name": "Achievement System",
+      "deprecated": true,
+      "type": 0
+    },
+    {
+      "id": 519,
+      "config": "QUEST_DESERT_LEELA",
+      "name": "Pharaoh's Folly",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 520,
+      "config": "QUEST_DUCK",
+      "name": "Duck Quest",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 521,
+      "config": "QUEST_DESERT_FINALE",
+      "name": "Eclipse of the Heart",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 522,
+      "config": "QUEST_STAR",
+      "name": "Stellar Born",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 523,
+      "config": "QUEST_HALLOWEEN25",
+      "name": "Guys and Dolls",
+      "deprecated": false,
+      "type": 1
+    },
+    {
+      "id": 524,
+      "config": "QUEST_XMAS25",
+      "name": "Cold Front",
+      "deprecated": false,
+      "type": 1
+    },
+    {
+      "id": 525,
+      "config": "QUEST_PRINCESS",
+      "name": "Princess and the Pauper",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 526,
+      "config": "QUEST_WENDLE_CONNECTIONS",
+      "name": "Visions of Havenhythe",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 527,
+      "config": "QUEST_WENDLE_SANGUINE",
+      "name": "Hearts of Sanguine",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 528,
+      "config": "QUEST_CRAB",
+      "name": "Hermit Permits",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 529,
+      "config": "QUEST_WIZARD_CHILD",
+      "name": "Wiz Kid",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 530,
+      "config": "QUEST_EASTER26",
+      "name": "Corporate Egg-spionage",
+      "deprecated": false,
+      "type": 1
+    },
+    {
+      "id": 531,
+      "config": "QUEST_WENDLE_SECRETS",
+      "name": "Secrets of Amberfell",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 532,
+      "config": "QUEST_CONSTRUCTION_TUTORIAL",
+      "name": "There's No Place Like Home...",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 533,
+      "config": "QUEST_WENDLE_HERALDS",
+      "name": "Heralds of Crimson",
+      "deprecated": false,
+      "type": 0
+    },
+    {
+      "id": 534,
+      "config": "QUEST_HALLOWEEN26",
+      "name": "All Souls' Eve",
+      "deprecated": false,
+      "type": 1
+    },
+    {
+      "id": 535,
+      "config": "QUEST_TUT6",
+      "name": "Learning the Ropes",
+      "deprecated": false,
+      "type": 0
+    }
+  ]
+}

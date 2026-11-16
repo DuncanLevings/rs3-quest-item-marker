@@ -1,0 +1,31 @@
+{
+  "about": "Items so many quests need that an icon would be everywhere. They stay in the data, but the plugin never marks them (no icon, no tooltip). Every addition removes marks, so add only on purpose and say why. Keys are Wiki page names (all versions are included).",
+  "items": {
+    "Coins": "needed or spent by dozens of quests",
+    "Hammer": "tool; most players keep one on the tool belt",
+    "Tinderbox": "tool; most players keep one on the tool belt",
+    "Air rune": "rune; dozens of quests ask for a few elemental runes",
+    "Water rune": "rune",
+    "Earth rune": "rune",
+    "Fire rune": "rune",
+    "Mind rune": "rune",
+    "Body rune": "rune",
+    "Cosmic rune": "rune",
+    "Chaos rune": "rune",
+    "Nature rune": "rune",
+    "Law rune": "rune",
+    "Death rune": "rune",
+    "Blood rune": "rune",
+    "Astral rune": "rune",
+    "Soul rune": "rune",
+    "Vial": "empty container; cheap and everywhere (author, 2026-11-16)",
+    "Vial of water": "container of water; filled at any water source (author, 2026-11-16)",
+    "Bucket": "empty container (author, 2026-11-16)",
+    "Bucket of water": "container of water (author, 2026-11-16)",
+    "Jug": "empty container (author, 2026-11-16)",
+    "Jug of water": "container of water (author, 2026-11-16)",
+    "Bowl": "empty container (author, 2026-11-16)",
+    "Bowl of water": "container of water (author, 2026-11-16)",
+    "Empty pot": "empty container (author, 2026-11-16)"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "about": "Wiki quest titles the automatic name match can't pair with a live client quest. 'aliases' maps a Wiki title to a client quest id (number) or client name (text). 'skip' leaves a Wiki quest out on purpose, with the reason.",
+  "aliases": {
+    "Helping Laniakea (miniquest)": "Helping Laniakea"
+  },
+  "skip": {
+    "Dimension of Disaster": "author, 2026-11-16: Dimension of Disaster and its subquests mark nothing",
+    "Dimension of Disaster: Coin of the Realm": "author, 2026-11-16: Dimension of Disaster subquest",
+    "Dimension of Disaster: Curse of Arrav": "author, 2026-11-16: Dimension of Disaster subquest",
+    "Dimension of Disaster: Defender of Varrock": "author, 2026-11-16: Dimension of Disaster subquest",
+    "Dimension of Disaster: Demon Slayer": "author, 2026-11-16: Dimension of Disaster subquest",
+    "Dimension of Disaster: Shield of Arrav": "author, 2026-11-16: Dimension of Disaster subquest"
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "Light sources": {
+    "note": "'A light source': lit, portable light sources. Unlit and empty forms left out.",
+    "expand": ["Lit torch", "Bullseye lantern (lit)", "Candle lantern (lit white)", "Candle lantern (lit black)",
+               "Emerald lantern (lit)", "Sapphire lantern (lit)", "Mining helmet (lit)", "Oil lamp", "Oil lantern",
+               "White candle (lit)", "Black candle (lit)", "Seer's headband 1", "Seer's headband 2",
+               "Seer's headband 3", "Seer's headband 4", "Sana's fyrtorch"]
+  },
+  "Hatchets": {
+    "note": "'Any hatchet': the main metal and special hatchets. Dungeoneering and minigame-only ones left out.",
+    "expand": ["Bronze hatchet", "Iron hatchet", "Steel hatchet", "Black hatchet", "Mithril hatchet", "Adamant hatchet",
+               "Rune hatchet", "Orikalkum hatchet", "Necronium hatchet", "Bane hatchet", "Elder rune hatchet",
+               "Dragon hatchet", "Crystal hatchet", "Imcando hatchet", "Inferno adze", "Augmented dragon hatchet",
+               "Augmented crystal hatchet", "Augmented imcando hatchet", "Augmented inferno adze"]
+  },
+  "Pickaxes": {
+    "note": "'Any pickaxe': the main metal and special pickaxes. Dungeoneering, gilded and +1 versions left out.",
+    "expand": ["Bronze pickaxe", "Iron pickaxe", "Steel pickaxe", "Mithril pickaxe", "Adamant pickaxe", "Rune pickaxe",
+               "Orikalkum pickaxe", "Necronium pickaxe", "Bane pickaxe", "Elder rune pickaxe", "Dragon pickaxe",
+               "Crystal pickaxe", "Imcando pickaxe", "Inferno adze", "Augmented dragon pickaxe",
+               "Augmented crystal pickaxe", "Augmented Imcando pickaxe", "Augmented inferno adze"]
+  },
+  "Nails": {
+    "note": "'Nails of any metal'. A line's own 'except rune nails' clause still drops rune nails there.",
+    "expand": ["Bronze nails", "Iron nails", "Steel nails", "Black nails", "Mithril nails", "Adamant nails", "Rune nails"]
+  },
+  "Logs (type)": {
+    "note": "'Core logs of any type'.",
+    "expand": ["Logs", "Oak logs", "Willow logs", "Teak logs", "Maple logs", "Acadia logs", "Mahogany logs",
+               "Arctic pine logs", "Eucalyptus logs", "Yew logs", "Magic logs", "Elder logs"]
+  },
+  "Seer's headband": {
+    "note": "The four tiers.",
+    "expand": ["Seer's headband 1", "Seer's headband 2", "Seer's headband 3", "Seer's headband 4"]
+  },
+  "Sunglasses": {
+    "note": "Fur 'n Seek: any colour works as an alternative.",
+    "expand": ["Sunglasses (blue)", "Sunglasses (clear)", "Sunglasses (dark)", "Sunglasses (green)",
+               "Sunglasses (pink)", "Sunglasses (white)", "Sunglasses (yellow)"]
+  },
+  "Sandstone": {
+    "note": "Enakhra's Lament: any combination of sandstone sizes.",
+    "expand": ["Sandstone (1kg)", "Sandstone (2kg)", "Sandstone (5kg)", "Sandstone (10kg)", "Sandstone (20kg)", "Sandstone (32kg)"]
+  },
+  "Granite": {
+    "note": "King's Ransom: granite of any size.",
+    "expand": ["Granite (500g)", "Granite (2kg)", "Granite (5kg)"]
+  },
+  "Pizza": {
+    "note": "Enakhra's Lament: any whole cooked pizza (partial pizzas don't work).",
+    "expand": ["Plain pizza", "Meat pizza", "Anchovy pizza", "Pineapple pizza", "Banana pizza"]
+  },
+  "Pie": {
+    "note": "Enakhra's Lament: any whole cooked pie; mince pie and partial pies don't work.",
+    "expand": ["Redberry pie", "Meat pie", "Apple pie", "Garden pie", "Fish pie", "Admiral pie", "Wild pie",
+               "Summer pie", "Mud pie", "Blueberry pie", "Lemon pie", "Pork pie", "Wilder pie"]
+  },
+  "Flowers": {
+    "note": "Throne of Miscellania: a bunch of flowers from the Flower Girl, any colour.",
+    "expand": ["Flowers (mixed)", "Flowers (pastel)", "Red flowers", "Blue flowers", "Yellow flowers",
+               "Purple flowers", "Orange flowers", "Black flowers", "White flowers"]
+  },
+  "Blackjacks": {
+    "note": "A Guild of Our Own: any blackjack except the rubber one.",
+    "expand": ["Oak-blackjack", "Oak blackjack (d)", "Oak blackjack (o)", "Willow-blackjack", "Willow blackjack",
+               "Willow blackjack (d)", "Willow blackjack (o)", "Maple blackjack", "Maple blackjack (d)", "Maple blackjack (o)"]
+  },
+  "Brutal arrows": {
+    "note": "Ogre brutal arrows, every metal.",
+    "expand": ["Bronze brutal", "Iron brutal", "Steel brutal", "Black brutal", "Mithril brutal", "Adamant brutal", "Rune brutal"]
+  },
+  "Blisterwood": {
+    "note": "'Blisterwood weaponry': the blisterwood weapons.",
+    "expand": ["Blisterwood polearm", "Blisterwood sickle", "Off-hand blisterwood sickle", "Blisterwood staff",
+               "Blisterwood wand", "Blisterwood orb", "Blisterwood stake-thrower crossbow"]
+  },
+  "Mourner outfit": {
+    "note": "The full set.",
+    "expand": ["Gas mask", "Mourner top", "Mourner trousers", "Mourner gloves", "Mourner boots", "Mourner cloak"]
+  },
+  "Ghostly robe outfit": {
+    "note": "The full set (both page names for the robe exist on the Wiki).",
+    "expand": ["Ghostly hood", "Ghostly robe (top)", "Ghostly robe (bottom)", "Ghostly robe top", "Ghostly robe bottom",
+               "Ghostly gloves", "Ghostly boots", "Ghostly cloak"]
+  },
+  "Druid's robe outfit": {"note": "The set.", "expand": ["Druid's robe (top)", "Druid's robe (bottom)"]},
+  "Desert robe outfit (white)": {"note": "The set.", "expand": ["Desert shirt", "Desert robe", "Desert boots"]},
+  "H.A.M. robe outfit": {
+    "note": "The set.",
+    "expand": ["H.A.M. hood", "H.A.M. shirt", "H.A.M. robe", "H.A.M. gloves", "H.A.M. boots", "H.A.M. cloak", "H.A.M. logo"]
+  },
+  "Darkmeyer outfit": {"note": "The disguise.", "expand": ["Darkmeyer hood", "Darkmeyer torso", "Darkmeyer trousers", "Darkmeyer boots"]},
+  "Trahaearn exoskeleton set": {
+    "note": "The set.",
+    "expand": ["Exoskeleton headband", "Exoskeleton torso", "Exoskeleton legs", "Exoskeleton bracers"]
+  },
+
+  "Armour": {"ignore": "any armour: combat gear, too broad to mark"},
+  "Weapons": {"ignore": "any weapon: combat gear, too broad to mark"},
+  "Bows": {"ignore": "any bow: combat gear, too broad to mark"},
+  "Shortbow (bow type)": {"ignore": "any shortbow: combat gear, too broad to mark"},
+  "Longbow (bow type)": {"ignore": "any longbow: combat gear, too broad to mark"},
+  "Chargebow (bow type)": {"ignore": "bow type, mentioned as not working"},
+  "Arrows": {"ignore": "any arrow: ammunition, too broad to mark"},
+  "Maces": {"ignore": "any mace: combat gear, too broad to mark"},
+  "Scimitars": {"ignore": "any scimitar: combat gear, too broad to mark"},
+  "Sword": {"ignore": "any sword: combat gear, too broad to mark"},
+  "Spears": {"ignore": "any spear: combat gear; the specific spears are linked on the same lines"},
+  "Wand": {"ignore": "any wand: combat gear, too broad to mark"},
+  "Staff (weapon type)": {"ignore": "any staff: combat gear, too broad to mark"},
+  "Magic weapons": {"ignore": "any magic weapon: combat gear, too broad to mark"},
+  "Ranged weapons": {"ignore": "any ranged weapon: combat gear, too broad to mark"},
+  "Silver weapons": {"ignore": "any silver weapon: combat gear, too broad to mark"},
+  "Conduit": {"ignore": "Necromancy weapon type: combat gear, too broad to mark"},
+  "Food": {"ignore": "any food: too broad to mark"},
+  "Fish": {"ignore": "any raw fish: too broad to mark"},
+  "Runes": {"ignore": "runes for a spell; the specific runes are linked where the Wiki names them"},
+  "Ring": {"ignore": "any metal ring; the working rings are linked on the same line"},
+  "Dyes": {"ignore": "'standard dyes'; the three dyes are listed under it"},
+  "Summoning pouches": {"ignore": "any pouch made with a blue charm; examples are linked on the next line"},
+  "Memory": {"ignore": "Divination memories of a tier or better; the tier is linked on the same line"},
+  "Ore boxes": {"ignore": "mentioned as where the items must not be"},
+  "Metal bank": {"ignore": "a storage, not an item"},
+  "Pizazz points": {"ignore": "Mage Training Arena points, not an item"},
+  "Remote view": {"ignore": "a familiar ability, not an item"},
+  "Charge Orb": {"ignore": "spell; runes for it are counted where linked"},
+  "Fire spells": {"ignore": "a spell group, not an item"},
+  "Water spells": {"ignore": "a spell group, not an item"},
+  "Glyphs": {"ignore": "Necromancy ritual glyphs (drawn, not items); the inks are linked"},
+  "Empower vessel": {"ignore": "a ritual, not an item; its inks and candles are listed"},
+  "Ensoul trumpet": {"ignore": "a ritual, not an item; its inks are listed"},
+
+  "Croc ice": {"ignore": "bought during Crocodile Tears with the coins the line asks for; the client ties it to the quest"},
+  "Zemomark": {"ignore": "Dimension of Disaster's own currency, earned inside the quest series"},
+  "Cabbage (New Varrock)": {"ignore": "bought or found inside Dimension of Disaster's New Varrock; the client ties it to the quest (ObjType.quests)"},
+  "Rotten tomato (New Varrock)": {"ignore": "bought or found inside Dimension of Disaster's New Varrock; the client ties it to the quest (ObjType.quests)"},
+  "Dog hair": {"ignore": "bought or found inside Dimension of Disaster's New Varrock; the client ties it to the quest (ObjType.quests)"},
+  "Black robe outfit": {"ignore": "bought or found inside Dimension of Disaster's New Varrock; the client ties it to the quest (ObjType.quests)"},
+  "Black hood": {"ignore": "bought or found inside Dimension of Disaster's New Varrock; the client ties it to the quest (ObjType.quests)"},
+  "Black robe (top)": {"ignore": "bought or found inside Dimension of Disaster's New Varrock; the client ties it to the quest (ObjType.quests)"},
+  "Black robe (bottom)": {"ignore": "bought or found inside Dimension of Disaster's New Varrock; the client ties it to the quest (ObjType.quests)"},
+  "Zombie mask (New Varrock)": {"ignore": "bought or found inside Dimension of Disaster's New Varrock; the client ties it to the quest (ObjType.quests)"},
+  "Zombie shirt (New Varrock)": {"ignore": "bought or found inside Dimension of Disaster's New Varrock; the client ties it to the quest (ObjType.quests)"},
+  "Zombie trousers (New Varrock)": {"ignore": "bought or found inside Dimension of Disaster's New Varrock; the client ties it to the quest (ObjType.quests)"},
+  "Zombie gloves (New Varrock)": {"ignore": "bought or found inside Dimension of Disaster's New Varrock; the client ties it to the quest (ObjType.quests)"},
+  "Zombie boots (New Varrock)": {"ignore": "bought or found inside Dimension of Disaster's New Varrock; the client ties it to the quest (ObjType.quests)"}
+}

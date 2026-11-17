@@ -158,4 +158,20 @@ spec["quests in progress are listed first, and long lists are cut"] = function()
     check.contains(text, "more</col>", "long list is cut")
 end
 
+spec["an item from an 'any of a kind' page names the group"] = function()
+    local required = build({})
+
+    -- Lit torch (594) counts as a light source; a bronze hatchet (1351) and its noted
+    -- form (1352) as any hatchet.
+    local torch, kinds = required:tooltipText(594, nameOf)
+
+    check.contains(torch, "<br><col=ebd38a>Any light source</col>")
+    check.equal(kinds[2], "detail", "the group line gets no quest sprite")
+    check.contains(required:tooltipText(1351, nameOf), "<col=ebd38a>Any hatchet</col>")
+    check.contains(required:tooltipText(1352, nameOf), "<col=ebd38a>Any hatchet</col>")
+
+    -- A plainly named item doesn't.
+    check.falsy(required:tooltipText(1436, nameOf):find("Any ", 1, true))
+end
+
 return spec

@@ -77,4 +77,27 @@ spec["sets are kept when they fit the need, and dropped (not the need) when they
     check.truthy(data.byItem[4], "the need itself survives")
 end
 
+spec["group labels are kept when they fit the need, and dropped (not the need) when they don't"] = function()
+    local data = load().build({
+        schema = 1,
+        categories = { "quest" },
+        common = {},
+        quests = {
+            { id = 5, name = "Good", category = "quest", needs = {
+                { items = { 1, 2 }, anyOf = true, groups = { [1] = "Any hatchet", [2] = "Any hatchet" } },
+            } },
+            { id = 6, name = "Bad", category = "quest", needs = {
+                { items = { 4 }, groups = { [99] = "Any hatchet" } },
+                { items = { 7 }, groups = { [7] = 3 } },
+            } },
+        },
+    })
+
+    check.equal(data.counts.badNeeds, 0)
+    check.equal(data.questById[5].needs[1].groups[2], "Any hatchet")
+    check.equal(data.questById[6].needs[1].groups, nil, "a label for an item the need lacks")
+    check.equal(data.questById[6].needs[2].groups, nil, "a label that isn't text")
+    check.truthy(data.byItem[4], "the need itself survives")
+end
+
 return spec

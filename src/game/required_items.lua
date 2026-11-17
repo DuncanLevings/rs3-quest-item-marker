@@ -110,7 +110,8 @@ function RequiredItems.new(questData, getState, filter)
     -- The tooltip text for one item, or nil if it isn't marked. Kept minimal (author,
     -- 2026-11-16): one line per quest, with how many of THIS item it needs. Other
     -- choices for the same need aren't named (hovering rune essence doesn't mention
-    -- pure essence). Only items that must come together with this one are, on a second
+    -- pure essence). A group the item counts for is named on a second line ("Any light
+    -- source"). Only items that must come together with this one are, on a second
     -- line ("+ Vial of water" under a clean irit). No header, states or footer: the
     -- icon already says "an unfinished quest needs this". Lines are joined with <br>.
     -- nameOf(itemId) gives an item's name (the caller reads and caches it).
@@ -137,12 +138,22 @@ function RequiredItems.new(questData, getState, filter)
                 local entry = byQuest[quest]
 
                 if entry == nil then
-                    entry = { amounts = {}, partners = {}, seenPartner = {} }
+                    entry = { amounts = {}, partners = {}, seenPartner = {}, groups = {}, seenGroup = {} }
                     byQuest[quest] = entry
                     order[#order + 1] = quest
                 end
 
                 entry.amounts[#entry.amounts + 1] = need.amounts[itemId] or 1
+
+                -- The item came from an "any of a kind" page: say so ("Any light
+                -- source"), so a bronze hatchet doesn't read as "this exact hatchet"
+                -- (author, 2026-11-16).
+                local group = need.groups and need.groups[itemId]
+
+                if group and not entry.seenGroup[group] then
+                    entry.seenGroup[group] = true
+                    entry.groups[#entry.groups + 1] = group
+                end
 
                 for _, partner in ipairs(partnersOf(itemId, need, nameOf)) do
                     if not entry.seenPartner[partner] then
@@ -155,7 +166,7 @@ function RequiredItems.new(questData, getState, filter)
 
         local entries = {}
 
-        local function add(quest, amount, partners)
+        local function add(quest, amount, partners, groups)
             local text = colour(QUEST_COLOUR, quest.name)
             local shown = amountText(amount)
             local kinds = { "quest" }
@@ -164,9 +175,14 @@ function RequiredItems.new(questData, getState, filter)
                 text = text .. colour(ITEM_COLOUR, shown)
             end
 
+            if #groups > 0 then
+                text = text .. RequiredItems.LINE_BREAK .. colour(ITEM_COLOUR, table.concat(groups, ", "))
+                kinds[#kinds + 1] = "detail"
+            end
+
             if #partners > 0 then
                 text = text .. RequiredItems.LINE_BREAK .. colour(ITEM_COLOUR, "+ " .. table.concat(partners, " + "))
-                kinds[2] = "detail"
+                kinds[#kinds + 1] = "detail"
             end
 
             entries[#entries + 1] = {
@@ -186,7 +202,7 @@ function RequiredItems.new(questData, getState, filter)
             end
 
             if total then
-                add(quest, total, entry.partners)
+                add(quest, total, entry.partners, entry.groups)
             else
                 -- A text amount ("4-6") can't be added: one line per distinct amount.
                 local shown = {}
@@ -194,7 +210,7 @@ function RequiredItems.new(questData, getState, filter)
                 for _, amount in ipairs(entry.amounts) do
                     if not shown[amount] then
                         shown[amount] = true
-                        add(quest, amount, entry.partners)
+                        add(quest, amount, entry.partners, entry.groups)
                     end
                 end
             end

@@ -287,6 +287,14 @@ class Resolver:
         return any(row["version"].casefold().strip() == version.casefold().strip()
                    for row in self.items.get(title, []))
 
+    def group_label(self, target):
+        """The tooltip text for an "any of a kind" page ("Any light source"), or None.
+        Only reviewed link_classes.json expansions carry one; outfits and sets don't."""
+        info = self.info.get(target)
+        title = info["title"] if info and info["title"] else target
+        entry = self.classes.get(title) or self.classes.get(target) or {}
+        return entry.get("label")
+
     def resolve(self, target, fragment=None):
         """Returns (kind, ids, detail). kind: item | generic | ignored | unresolved."""
         if target.startswith("#"):
@@ -395,12 +403,16 @@ def build_needs(lines, resolver, stats, problems, quest):
 
         owner = line.merge_into if line.merge_into is not None else index
         need = groups.setdefault(owner, {"ids": [], "amounts": {}, "anyOf": False, "how": set(),
-                                         "lines": [], "sets": {}})
+                                         "lines": [], "sets": {}, "groups": {},
+                                         "group_members": {}, "item_links": []})
         need["lines"].append(line.number)
 
         # A sub-bullet merged into its parent is an alternative, so the need is "any one of".
         if line.merge_into is not None or line.any_of:
             need["anyOf"] = True
+
+        # The first labelled group named on this line; example links after it share it.
+        line_label = None
 
         for link_index, link in enumerate(line.links):
             if link.negated:
@@ -440,6 +452,29 @@ def build_needs(lines, resolver, stats, problems, quest):
             alternative["parts"].append(list(ids))
             alternative["generic"] = alternative["generic"] or kind == "generic"
 
+            # "Any light source": the tooltip names the group, not every member.
+            label_of = getattr(resolver, "group_label", None)
+            label = label_of(link.target) if kind == "generic" and label_of else None
+
+            if label:
+                for number in ids:
+                    need["groups"].setdefault(number, label)
+
+                need["group_members"].setdefault(label, set()).update(ids)
+
+                # The first group named heads the examples: in "a [[light source]] (such
+                # as a [[Seer's headband]] or [[bullseye lantern]])" the headband is a
+                # group too, but the lantern is still a light source (The Lost Tribe).
+                line_label = line_label or label
+            elif link.example and line_label:
+                # "a [[light source]] (such as a [[mining helmet]])": the unlit helmet
+                # page shares no ID with the group, but the Wiki names it as one.
+                for number in ids:
+                    need["groups"].setdefault(number, line_label)
+            else:
+                # An item page, or an unlabelled disambiguation page ([[mining helmet]]).
+                need["item_links"].append(list(ids))
+
             for number in ids:
                 if number not in need["ids"]:
                     need["ids"].append(number)
@@ -455,6 +490,17 @@ def build_needs(lines, resolver, stats, problems, quest):
 
     for owner in sorted(groups):
         need = groups[owner]
+
+        # "A [[light source]] (such as a [[torch]], [[mining helmet]])": an item link
+        # that shares an ID with a labelled group in the same need is one of its
+        # examples, so every version of it (the unlit helmet too) gets the label. A
+        # link sharing nothing ("any hatchet or a saw") keeps none.
+        for ids in need["item_links"]:
+            for label, members in need["group_members"].items():
+                if members.intersection(ids):
+                    for number in ids:
+                        need["groups"].setdefault(number, label)
+                    break
 
         if not need["ids"]:
             # A required line that only mentions people, places or free space.
@@ -496,6 +542,9 @@ def build_needs(lines, resolver, stats, problems, quest):
         if sets:
             entry["sets"] = sets
 
+        if need["groups"]:
+            entry["groups"] = need["groups"]
+
         needs.append(entry)
 
     return dedupe(needs)
@@ -534,7 +583,8 @@ def dedupe(needs):
 
     for need in needs:
         key = (tuple(need["items"]), tuple(sorted(need["amounts"].items(), key=str)), need["anyOf"],
-               tuple(tuple(ids) for ids in need.get("sets") or ()))
+               tuple(tuple(ids) for ids in need.get("sets") or ()),
+               tuple(sorted((need.get("groups") or {}).items())))
 
         if key not in seen:
             seen.add(key)
@@ -706,6 +756,11 @@ def write_lua(path, snapshot, quests, common, coverage):
                                  for ids in need["sets"])
                 parts.append("sets = { " + sets + " }")
 
+            if need.get("groups"):
+                groups = ", ".join(f"[{number}] = {lua_string(label)}"
+                                   for number, label in sorted(need["groups"].items()))
+                parts.append("groups = { " + groups + " }")
+
             out.append("                { " + ", ".join(parts) + " },")
 
         out.append("            },")
@@ -848,6 +903,9 @@ def main(argv=None):
 
                     if number in need["amounts"]:
                         need["amounts"][note] = need["amounts"][number]
+
+                    if number in need.get("groups", {}):
+                        need["groups"][note] = need["groups"][number]
 
     # --- 7. Match quests to the client, pick categories ------------------------------------
     with_items = sorted(title for title, needs in built.items() if needs)

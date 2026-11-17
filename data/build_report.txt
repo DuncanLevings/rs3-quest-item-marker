@@ -2,7 +2,7 @@ Quest Item Marker build report - 2026-11-16
 Result: OK
 Wiki quests: 395 rows in bucket('quest'); 395 built this run
 Quests written: 227; skipped: 44
-Requests: 72 sent, 60 from cache; 71 s
+Requests: 0 sent, 132 from cache; 0 s
 
 Counts (requirement lines unless noted)
   automatic:                  869

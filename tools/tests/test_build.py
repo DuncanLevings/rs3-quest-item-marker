@@ -142,6 +142,67 @@ class Combinations(unittest.TestCase):
         self.assertNotIn("sets", needs[0])
         self.assertTrue(needs[0]["anyOf"])
 
+    def test_a_labelled_generic_link_names_its_group(self):
+        class Labelled(FakeResolver):
+            def resolve(self, target, fragment=None):
+                if target.lower() == "hatchets":
+                    return "generic", [1351, 1349], ""
+                return super().resolve(target, fragment)
+
+            def group_label(self, target):
+                return "Any hatchet" if target.lower() == "hatchets" else None
+
+        from collections import Counter
+
+        needs = build_needs(parse_items("* [[Hatchets|Any hatchet]] or a [[saw]]"),
+                            Labelled({"saw": [8794]}), Counter(), [], "Test")
+
+        self.assertEqual(needs[0]["groups"], {1351: "Any hatchet", 1349: "Any hatchet"})
+
+    def test_named_examples_of_a_group_share_its_label(self):
+        # Spirits of the Elid: the mining helmet page holds the lit helmet (a light
+        # source) and the unlit one, which the player more likely carries.
+        class Labelled(FakeResolver):
+            def resolve(self, target, fragment=None):
+                if target.lower() == "light source":
+                    return "generic", [5013, 594], ""
+                return super().resolve(target, fragment)
+
+            def group_label(self, target):
+                return "Any light source" if target.lower() == "light source" else None
+
+        from collections import Counter
+
+        needs = build_needs(parse_items("* A [[light source]] (such as a [[mining helmet]]) or a [[saw]]"),
+                            Labelled({"mining helmet": [5013, 5014], "saw": [8794]}), Counter(), [], "Test")
+
+        self.assertEqual(needs[0]["groups"], {5013: "Any light source", 594: "Any light source",
+                                              5014: "Any light source"})
+
+    def test_such_as_examples_share_the_label_without_a_shared_id(self):
+        # Spirits of the Elid's real line: [[mining helmet]] and [[torch]] are the unlit
+        # pages, which share no ID with the light source group.
+        class Labelled(FakeResolver):
+            def resolve(self, target, fragment=None):
+                if target.lower() == "light source":
+                    return "generic", [5013, 594], ""
+                return super().resolve(target, fragment)
+
+            def group_label(self, target):
+                return "Any light source" if target.lower() == "light source" else None
+
+        from collections import Counter
+
+        text = "* A [[light source]] (such as a [[torch]], [[mining helmet]] or [[Seer's headband]])\n* [[Saw]]"
+        needs = build_needs(parse_items(text),
+                            Labelled({"torch": [596], "mining helmet": [5014], "seer's headband": [14631],
+                                      "saw": [8794]}),
+                            Counter(), [], "Test")
+
+        self.assertEqual(needs[0]["groups"][5014], "Any light source")
+        self.assertEqual(needs[0]["groups"][596], "Any light source")
+        self.assertNotIn("groups", needs[1])
+
     def test_plain_choices_keep_the_old_shape(self):
         needs = self.needs("* [[Lockpick]] (or [[hair clip]])", {"lockpick": [1523], "hair clip": [11682]})
 

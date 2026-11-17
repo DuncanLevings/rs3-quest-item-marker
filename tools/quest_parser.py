@@ -113,6 +113,9 @@ class Link:
     label: str               # what the reader sees
     amount: int | str | None = None   # 25, or "4-6" / "38+" when the Wiki gives a range
     negated: bool = False    # its clause says this one doesn't work
+    # Its clause names it as an example ("a [[light source]] (such as a [[torch]])"), so
+    # it counts as one of the kind named before it on the line.
+    example: bool = False
 
 
 @dataclass
@@ -204,6 +207,8 @@ def parse_amount(value):
 SEPARATOR_OR = re.compile(r"\bor\b|/|\beither\b|\balternatively\b|\binstead\b|\bsuch as\b"
                           r"|\be\.g\.|\bfor example\b|\blike\b", re.IGNORECASE)
 SEPARATOR_AND = re.compile(r"\band\b|\+|&", re.IGNORECASE)
+# The words that make a link an example of the kind named before it (Link.example).
+EXAMPLE = re.compile(r"\bsuch as\b|\be\.g\.|\bfor example\b|\blike\b", re.IGNORECASE)
 OPENS_ALTERNATIVE = re.compile(r"\(\s*or\b", re.IGNORECASE)
 
 
@@ -396,6 +401,9 @@ def read_line(number, raw):
 
         if NEGATED.search(line.text[start:end]):
             link.negated = True
+
+        if EXAMPLE.search(line.text[start:position[0]]):
+            link.example = True
 
     if BACKPACK_SPACE.search(line.text.strip()):
         line.status, line.reason = "excluded", "backpack space, not an item: " + line.text.strip()

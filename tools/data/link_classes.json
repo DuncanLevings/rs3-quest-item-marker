@@ -1,6 +1,7 @@
 {
   "Light sources": {
     "note": "'A light source': lit, portable light sources. Unlit and empty forms left out.",
+    "label": "Any light source",
     "expand": ["Lit torch", "Bullseye lantern (lit)", "Candle lantern (lit white)", "Candle lantern (lit black)",
                "Emerald lantern (lit)", "Sapphire lantern (lit)", "Mining helmet (lit)", "Oil lamp", "Oil lantern",
                "White candle (lit)", "Black candle (lit)", "Seer's headband 1", "Seer's headband 2",
@@ -8,6 +9,7 @@
   },
   "Hatchets": {
     "note": "'Any hatchet': the main metal and special hatchets. Dungeoneering and minigame-only ones left out.",
+    "label": "Any hatchet",
     "expand": ["Bronze hatchet", "Iron hatchet", "Steel hatchet", "Black hatchet", "Mithril hatchet", "Adamant hatchet",
                "Rune hatchet", "Orikalkum hatchet", "Necronium hatchet", "Bane hatchet", "Elder rune hatchet",
                "Dragon hatchet", "Crystal hatchet", "Imcando hatchet", "Inferno adze", "Augmented dragon hatchet",
@@ -15,6 +17,7 @@
   },
   "Pickaxes": {
     "note": "'Any pickaxe': the main metal and special pickaxes. Dungeoneering, gilded and +1 versions left out.",
+    "label": "Any pickaxe",
     "expand": ["Bronze pickaxe", "Iron pickaxe", "Steel pickaxe", "Mithril pickaxe", "Adamant pickaxe", "Rune pickaxe",
                "Orikalkum pickaxe", "Necronium pickaxe", "Bane pickaxe", "Elder rune pickaxe", "Dragon pickaxe",
                "Crystal pickaxe", "Imcando pickaxe", "Inferno adze", "Augmented dragon pickaxe",
@@ -22,55 +25,67 @@
   },
   "Nails": {
     "note": "'Nails of any metal'. A line's own 'except rune nails' clause still drops rune nails there.",
+    "label": "Nails of any metal",
     "expand": ["Bronze nails", "Iron nails", "Steel nails", "Black nails", "Mithril nails", "Adamant nails", "Rune nails"]
   },
   "Logs (type)": {
     "note": "'Core logs of any type'.",
+    "label": "Any logs",
     "expand": ["Logs", "Oak logs", "Willow logs", "Teak logs", "Maple logs", "Acadia logs", "Mahogany logs",
                "Arctic pine logs", "Eucalyptus logs", "Yew logs", "Magic logs", "Elder logs"]
   },
   "Seer's headband": {
     "note": "The four tiers.",
+    "label": "Any seer's headband",
     "expand": ["Seer's headband 1", "Seer's headband 2", "Seer's headband 3", "Seer's headband 4"]
   },
   "Sunglasses": {
     "note": "Fur 'n Seek: any colour works as an alternative.",
+    "label": "Any sunglasses",
     "expand": ["Sunglasses (blue)", "Sunglasses (clear)", "Sunglasses (dark)", "Sunglasses (green)",
                "Sunglasses (pink)", "Sunglasses (white)", "Sunglasses (yellow)"]
   },
   "Sandstone": {
     "note": "Enakhra's Lament: any combination of sandstone sizes.",
+    "label": "Any sandstone",
     "expand": ["Sandstone (1kg)", "Sandstone (2kg)", "Sandstone (5kg)", "Sandstone (10kg)", "Sandstone (20kg)", "Sandstone (32kg)"]
   },
   "Granite": {
     "note": "King's Ransom: granite of any size.",
+    "label": "Any granite",
     "expand": ["Granite (500g)", "Granite (2kg)", "Granite (5kg)"]
   },
   "Pizza": {
     "note": "Enakhra's Lament: any whole cooked pizza (partial pizzas don't work).",
+    "label": "Any whole pizza",
     "expand": ["Plain pizza", "Meat pizza", "Anchovy pizza", "Pineapple pizza", "Banana pizza"]
   },
   "Pie": {
     "note": "Enakhra's Lament: any whole cooked pie; mince pie and partial pies don't work.",
+    "label": "Any whole pie",
     "expand": ["Redberry pie", "Meat pie", "Apple pie", "Garden pie", "Fish pie", "Admiral pie", "Wild pie",
                "Summer pie", "Mud pie", "Blueberry pie", "Lemon pie", "Pork pie", "Wilder pie"]
   },
   "Flowers": {
     "note": "Throne of Miscellania: a bunch of flowers from the Flower Girl, any colour.",
+    "label": "Any flowers",
     "expand": ["Flowers (mixed)", "Flowers (pastel)", "Red flowers", "Blue flowers", "Yellow flowers",
                "Purple flowers", "Orange flowers", "Black flowers", "White flowers"]
   },
   "Blackjacks": {
     "note": "A Guild of Our Own: any blackjack except the rubber one.",
+    "label": "Any blackjack",
     "expand": ["Oak-blackjack", "Oak blackjack (d)", "Oak blackjack (o)", "Willow-blackjack", "Willow blackjack",
                "Willow blackjack (d)", "Willow blackjack (o)", "Maple blackjack", "Maple blackjack (d)", "Maple blackjack (o)"]
   },
   "Brutal arrows": {
     "note": "Ogre brutal arrows, every metal.",
+    "label": "Any brutal arrows",
     "expand": ["Bronze brutal", "Iron brutal", "Steel brutal", "Black brutal", "Mithril brutal", "Adamant brutal", "Rune brutal"]
   },
   "Blisterwood": {
     "note": "'Blisterwood weaponry': the blisterwood weapons.",
+    "label": "Any blisterwood weapon",
     "expand": ["Blisterwood polearm", "Blisterwood sickle", "Off-hand blisterwood sickle", "Blisterwood staff",
                "Blisterwood wand", "Blisterwood orb", "Blisterwood stake-thrower crossbow"]
   },

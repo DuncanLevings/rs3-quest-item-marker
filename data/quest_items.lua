@@ -71,7 +71,7 @@ return {
             revision = 37274779,
             needs = {
                 { items = { 4298, 4300, 4302, 4304, 4306, 4308, 4310, 4299, 4301, 4303, 4305, 4307, 4309, 4311 }, amounts = { [4298] = 2, [4299] = 2, [4300] = 2, [4301] = 2, [4302] = 2, [4303] = 2, [4304] = 2, [4305] = 2, [4306] = 2, [4307] = 2, [4308] = 2, [4309] = 2, [4310] = 2, [4311] = 2 } },
-                { items = { 32, 33, 594, 4524, 4531, 4534, 4539, 4550, 4702, 5013, 9065, 14631, 14662, 14663, 19763, 52246, 4544, 4546, 4548, 4700, 4701, 9064, 52247, 4545, 4547, 4549 } },
+                { items = { 32, 33, 594, 4524, 4531, 4534, 4539, 4550, 4702, 5013, 9065, 14631, 14662, 14663, 19763, 52246, 4544, 4546, 4548, 4700, 4701, 9064, 52247, 4545, 4547, 4549 }, groups = { [32] = "Any light source", [33] = "Any light source", [594] = "Any light source", [4524] = "Any light source", [4531] = "Any light source", [4534] = "Any light source", [4539] = "Any light source", [4544] = "Any light source", [4545] = "Any light source", [4546] = "Any light source", [4547] = "Any light source", [4548] = "Any light source", [4549] = "Any light source", [4550] = "Any light source", [4700] = "Any light source", [4701] = "Any light source", [4702] = "Any light source", [5013] = "Any light source", [9064] = "Any light source", [9065] = "Any light source", [14631] = "Any light source", [14662] = "Any light source", [14663] = "Any light source", [19763] = "Any light source", [52246] = "Any light source", [52247] = "Any light source" } },
             },
         },
         {
@@ -108,7 +108,7 @@ return {
                 { items = { 1925, 1926 }, amounts = { [1925] = "1-5", [1926] = "1-5" } },
                 { items = { 960, 961 }, amounts = { [960] = 11, [961] = 11 } },
                 { items = { 1941 } },
-                { items = { 1539, 4819, 4820, 4821, 4822, 4823, 4824 }, amounts = { [1539] = "36-45", [4819] = "36-45", [4820] = "36-45", [4821] = "36-45", [4822] = "36-45", [4823] = "36-45", [4824] = "36-45" } },
+                { items = { 1539, 4819, 4820, 4821, 4822, 4823, 4824 }, amounts = { [1539] = "36-45", [4819] = "36-45", [4820] = "36-45", [4821] = "36-45", [4822] = "36-45", [4823] = "36-45", [4824] = "36-45" }, groups = { [1539] = "Nails of any metal", [4819] = "Nails of any metal", [4820] = "Nails of any metal", [4821] = "Nails of any metal", [4822] = "Nails of any metal", [4823] = "Nails of any metal", [4824] = "Nails of any metal" } },
                 { items = { 1351, 1352 }, amounts = { [1351] = 10, [1352] = 10 } },
                 { items = { 353, 3363, 3365, 3367, 305, 354, 3364, 3366, 3368, 306 }, amounts = { [353] = 10, [354] = 10, [3363] = 10, [3364] = 10, [3365] = 10, [3366] = 10, [3367] = 10, [3368] = 10 }, anyOf = true },
                 { items = { 590, 591 }, amounts = { [590] = 3, [591] = 3 } },
@@ -188,7 +188,7 @@ return {
             needs = {
                 { items = { 4161, 4689 }, amounts = { [4161] = 9 } },
                 { items = { 1511, 1512 }, amounts = { [1511] = 8, [1512] = 8 } },
-                { items = { 4156, 27618, 27619, 34030, 34031, 34032, 34033, 34034, 34035, 34036, 4157 }, anyOf = true },
+                { items = { 4156, 27618, 27619, 34030, 34031, 34032, 34033, 34034, 34035, 34036, 4157 }, anyOf = true, groups = { [34030] = "Any sunglasses", [34031] = "Any sunglasses", [34032] = "Any sunglasses", [34033] = "Any sunglasses", [34034] = "Any sunglasses", [34035] = "Any sunglasses", [34036] = "Any sunglasses" } },
             },
         },
         {
@@ -197,7 +197,7 @@ return {
             category = "quest",
             revision = 37274847,
             needs = {
-                { items = { 32, 33, 594, 4524, 4531, 4534, 4539, 4550, 4702, 5013, 9065, 14631, 14662, 14663, 19763, 52246, 4544, 4546, 4548, 4700, 4701, 9064, 52247, 4545, 4547, 4549 }, anyOf = true },
+                { items = { 32, 33, 594, 4524, 4531, 4534, 4539, 4550, 4702, 5013, 9065, 14631, 14662, 14663, 19763, 52246, 4544, 4546, 4548, 4700, 4701, 9064, 52247, 4545, 4547, 4549 }, anyOf = true, groups = { [32] = "Any light source", [33] = "Any light source", [594] = "Any light source", [4524] = "Any light source", [4531] = "Any light source", [4534] = "Any light source", [4539] = "Any light source", [4544] = "Any light source", [4545] = "Any light source", [4546] = "Any light source", [4547] = "Any light source", [4548] = "Any light source", [4549] = "Any light source", [4550] = "Any light source", [4700] = "Any light source", [4701] = "Any light source", [4702] = "Any light source", [5013] = "Any light source", [9064] = "Any light source", [9065] = "Any light source", [14631] = "Any light source", [14662] = "Any light source", [14663] = "Any light source", [19763] = "Any light source", [52246] = "Any light source", [52247] = "Any light source" } },
             },
         },
         {
@@ -259,7 +259,7 @@ return {
             revision = 37274858,
             needs = {
                 { items = { 563, 556 }, amounts = { [556] = 1, [563] = 1 } },
-                { items = { 32, 33, 594, 4524, 4531, 4534, 4539, 4550, 4702, 5013, 9065, 14631, 14662, 14663, 19763, 52246, 596, 5014, 4544, 4546, 4548, 4700, 4701, 9064, 52247, 597, 5015, 4545, 4547, 4549 }, anyOf = true },
+                { items = { 32, 33, 594, 4524, 4531, 4534, 4539, 4550, 4702, 5013, 9065, 14631, 14662, 14663, 19763, 52246, 596, 5014, 4544, 4546, 4548, 4700, 4701, 9064, 52247, 597, 5015, 4545, 4547, 4549 }, anyOf = true, groups = { [32] = "Any light source", [33] = "Any light source", [594] = "Any light source", [596] = "Any light source", [597] = "Any light source", [4524] = "Any light source", [4531] = "Any light source", [4534] = "Any light source", [4539] = "Any light source", [4544] = "Any light source", [4545] = "Any light source", [4546] = "Any light source", [4547] = "Any light source", [4548] = "Any light source", [4549] = "Any light source", [4550] = "Any light source", [4700] = "Any light source", [4701] = "Any light source", [4702] = "Any light source", [5013] = "Any light source", [5014] = "Any light source", [5015] = "Any light source", [9064] = "Any light source", [9065] = "Any light source", [14631] = "Any light source", [14662] = "Any light source", [14663] = "Any light source", [19763] = "Any light source", [52246] = "Any light source", [52247] = "Any light source" } },
                 { items = { 954, 955 } },
                 { items = { 1734 }, amounts = { [1734] = 2 } },
                 { items = { 837, 841, 882, 838, 842 }, anyOf = true, sets = { { 837 }, { 841, 882 } } },
@@ -271,7 +271,7 @@ return {
             category = "quest",
             revision = 37274889,
             needs = {
-                { items = { 32, 33, 594, 4524, 4531, 4534, 4539, 4550, 4702, 5013, 9065, 14631, 14662, 14663, 19763, 52246, 52247 } },
+                { items = { 32, 33, 594, 4524, 4531, 4534, 4539, 4550, 4702, 5013, 9065, 14631, 14662, 14663, 19763, 52246, 52247 }, groups = { [32] = "Any light source", [33] = "Any light source", [594] = "Any light source", [4524] = "Any light source", [4531] = "Any light source", [4534] = "Any light source", [4539] = "Any light source", [4550] = "Any light source", [4702] = "Any light source", [5013] = "Any light source", [9065] = "Any light source", [14631] = "Any light source", [14662] = "Any light source", [14663] = "Any light source", [19763] = "Any light source", [52246] = "Any light source", [52247] = "Any light source" } },
                 { items = { 952, 953 } },
             },
         },
@@ -304,7 +304,7 @@ return {
             category = "quest",
             revision = 37274871,
             needs = {
-                { items = { 6979, 6981, 6983, 6583, 6980, 6982, 6984, 6584 }, anyOf = true },
+                { items = { 6979, 6981, 6983, 6583, 6980, 6982, 6984, 6584 }, anyOf = true, groups = { [6979] = "Any granite", [6980] = "Any granite", [6981] = "Any granite", [6982] = "Any granite", [6983] = "Any granite", [6984] = "Any granite" } },
                 { items = { 4428 } },
                 { items = { 1101, 1102 } },
                 { items = { 1139, 1140 } },
@@ -343,7 +343,7 @@ return {
             needs = {
                 { items = { 995, 54830 }, amounts = { [995] = 40, [54830] = 40 } },
                 { items = { 1931, 1932 }, amounts = { [1931] = 8, [1932] = 8 } },
-                { items = { 32, 33, 594, 4524, 4531, 4534, 4539, 4550, 4702, 5013, 9065, 14631, 14662, 14663, 19763, 52246, 52247 } },
+                { items = { 32, 33, 594, 4524, 4531, 4534, 4539, 4550, 4702, 5013, 9065, 14631, 14662, 14663, 19763, 52246, 52247 }, groups = { [32] = "Any light source", [33] = "Any light source", [594] = "Any light source", [4524] = "Any light source", [4531] = "Any light source", [4534] = "Any light source", [4539] = "Any light source", [4550] = "Any light source", [4702] = "Any light source", [5013] = "Any light source", [9065] = "Any light source", [14631] = "Any light source", [14662] = "Any light source", [14663] = "Any light source", [19763] = "Any light source", [52246] = "Any light source", [52247] = "Any light source" } },
                 { items = { 954, 955 } },
             },
         },
@@ -356,7 +356,7 @@ return {
                 { items = { 1794, 1795 } },
                 { items = { 954, 955 } },
                 { items = { 1755, 1756 } },
-                { items = { 594, 32, 33, 4524, 4531, 4534, 4539, 4550, 4702, 5013, 9065, 14631, 14662, 14663, 19763, 52246, 52247 }, anyOf = true },
+                { items = { 594, 32, 33, 4524, 4531, 4534, 4539, 4550, 4702, 5013, 9065, 14631, 14662, 14663, 19763, 52246, 52247 }, anyOf = true, groups = { [32] = "Any light source", [33] = "Any light source", [594] = "Any light source", [4524] = "Any light source", [4531] = "Any light source", [4534] = "Any light source", [4539] = "Any light source", [4550] = "Any light source", [4702] = "Any light source", [5013] = "Any light source", [9065] = "Any light source", [14631] = "Any light source", [14662] = "Any light source", [14663] = "Any light source", [19763] = "Any light source", [52246] = "Any light source", [52247] = "Any light source" } },
             },
         },
         {
@@ -485,7 +485,7 @@ return {
             needs = {
                 { items = { 4702 } },
                 { items = { 556, 557, 554, 555, 558, 563, 560 }, amounts = { [556] = 3 } },
-                { items = { 1511, 1513, 1515, 1517, 1519, 1521, 6332, 6333, 10810, 12581, 29556, 40285, 1512, 1514, 1516, 1518, 1520, 1522, 6334, 10811, 12582, 29557, 40286 } },
+                { items = { 1511, 1513, 1515, 1517, 1519, 1521, 6332, 6333, 10810, 12581, 29556, 40285, 1512, 1514, 1516, 1518, 1520, 1522, 6334, 10811, 12582, 29557, 40286 }, groups = { [1511] = "Any logs", [1512] = "Any logs", [1513] = "Any logs", [1514] = "Any logs", [1515] = "Any logs", [1516] = "Any logs", [1517] = "Any logs", [1518] = "Any logs", [1519] = "Any logs", [1520] = "Any logs", [1521] = "Any logs", [1522] = "Any logs", [6332] = "Any logs", [6333] = "Any logs", [6334] = "Any logs", [10810] = "Any logs", [10811] = "Any logs", [12581] = "Any logs", [12582] = "Any logs", [29556] = "Any logs", [29557] = "Any logs", [40285] = "Any logs", [40286] = "Any logs" } },
                 { items = { 973, 970, 974, 971 } },
                 { items = { 4542, 4543 } },
                 { items = { 567, 568 } },
@@ -554,8 +554,8 @@ return {
             category = "quest",
             revision = 37274833,
             needs = {
-                { items = { 6971, 6973, 6975, 6977, 6985, 6986, 6972, 6974, 6976, 6978 } },
-                { items = { 2309, 2323, 2325, 2327, 2331, 2333, 2335, 7170, 7178, 7180, 7188, 7190, 7198, 7200, 7208, 7210, 7218, 7220, 28656, 39889, 39891, 47761, 55579, 1891, 1893, 1895, 2289, 2291, 2293, 2295, 2297, 2299, 2301, 2303, 44446, 44447, 6701, 2310, 2324, 2326, 2328, 2332, 2334, 2336, 7171, 7179, 7181, 7189, 7191, 7199, 7201, 7209, 7211, 7219, 7221, 28657, 39890, 39892, 1892, 1894, 1896, 2290, 2292, 2294, 2296, 2298, 2300, 2302, 2304, 6702 }, anyOf = true },
+                { items = { 6971, 6973, 6975, 6977, 6985, 6986, 6972, 6974, 6976, 6978 }, groups = { [6971] = "Any sandstone", [6972] = "Any sandstone", [6973] = "Any sandstone", [6974] = "Any sandstone", [6975] = "Any sandstone", [6976] = "Any sandstone", [6977] = "Any sandstone", [6978] = "Any sandstone", [6985] = "Any sandstone", [6986] = "Any sandstone" } },
+                { items = { 2309, 2323, 2325, 2327, 2331, 2333, 2335, 7170, 7178, 7180, 7188, 7190, 7198, 7200, 7208, 7210, 7218, 7220, 28656, 39889, 39891, 47761, 55579, 1891, 1893, 1895, 2289, 2291, 2293, 2295, 2297, 2299, 2301, 2303, 44446, 44447, 6701, 2310, 2324, 2326, 2328, 2332, 2334, 2336, 7171, 7179, 7181, 7189, 7191, 7199, 7201, 7209, 7211, 7219, 7221, 28657, 39890, 39892, 1892, 1894, 1896, 2290, 2292, 2294, 2296, 2298, 2300, 2302, 2304, 6702 }, anyOf = true, groups = { [2289] = "Any whole pizza", [2290] = "Any whole pizza", [2291] = "Any whole pizza", [2292] = "Any whole pizza", [2293] = "Any whole pizza", [2294] = "Any whole pizza", [2295] = "Any whole pizza", [2296] = "Any whole pizza", [2297] = "Any whole pizza", [2298] = "Any whole pizza", [2299] = "Any whole pizza", [2300] = "Any whole pizza", [2301] = "Any whole pizza", [2302] = "Any whole pizza", [2303] = "Any whole pizza", [2304] = "Any whole pizza", [2323] = "Any whole pie", [2324] = "Any whole pie", [2325] = "Any whole pie", [2326] = "Any whole pie", [2327] = "Any whole pie", [2328] = "Any whole pie", [2331] = "Any whole pie", [2332] = "Any whole pie", [2333] = "Any whole pie", [2334] = "Any whole pie", [2335] = "Any whole pie", [2336] = "Any whole pie", [7170] = "Any whole pie", [7171] = "Any whole pie", [7178] = "Any whole pie", [7179] = "Any whole pie", [7180] = "Any whole pie", [7181] = "Any whole pie", [7188] = "Any whole pie", [7189] = "Any whole pie", [7190] = "Any whole pie", [7191] = "Any whole pie", [7198] = "Any whole pie", [7199] = "Any whole pie", [7200] = "Any whole pie", [7201] = "Any whole pie", [7208] = "Any whole pie", [7209] = "Any whole pie", [7210] = "Any whole pie", [7211] = "Any whole pie", [7218] = "Any whole pie", [7219] = "Any whole pie", [7220] = "Any whole pie", [7221] = "Any whole pie", [28656] = "Any whole pie", [28657] = "Any whole pie", [39889] = "Any whole pie", [39890] = "Any whole pie", [39891] = "Any whole pie", [39892] = "Any whole pie", [44446] = "Any whole pizza", [44447] = "Any whole pizza", [47761] = "Any whole pie", [55579] = "Any whole pie" } },
                 { items = { 556, 554 } },
                 { items = { 36, 37 } },
                 { items = { 1511, 1512 } },
@@ -618,7 +618,7 @@ return {
             category = "quest",
             revision = 37274894,
             needs = {
-                { items = { 32, 33, 594, 4524, 4531, 4534, 4539, 4550, 4702, 5013, 9065, 14631, 14662, 14663, 19763, 52246, 52247 } },
+                { items = { 32, 33, 594, 4524, 4531, 4534, 4539, 4550, 4702, 5013, 9065, 14631, 14662, 14663, 19763, 52246, 52247 }, groups = { [32] = "Any light source", [33] = "Any light source", [594] = "Any light source", [4524] = "Any light source", [4531] = "Any light source", [4534] = "Any light source", [4539] = "Any light source", [4550] = "Any light source", [4702] = "Any light source", [5013] = "Any light source", [9065] = "Any light source", [14631] = "Any light source", [14662] = "Any light source", [14663] = "Any light source", [19763] = "Any light source", [52246] = "Any light source", [52247] = "Any light source" } },
                 { items = { 995, 54830 }, amounts = { [995] = 5000, [54830] = 5000 } },
             },
         },
@@ -700,7 +700,7 @@ return {
             category = "quest",
             revision = 37274783,
             needs = {
-                { items = { 32, 33, 594, 4524, 4531, 4534, 4539, 4550, 4702, 5013, 9065, 14631, 14662, 14663, 19763, 52246, 88, 89, 52247 }, anyOf = true },
+                { items = { 32, 33, 594, 4524, 4531, 4534, 4539, 4550, 4702, 5013, 9065, 14631, 14662, 14663, 19763, 52246, 88, 89, 52247 }, anyOf = true, groups = { [32] = "Any light source", [33] = "Any light source", [594] = "Any light source", [4524] = "Any light source", [4531] = "Any light source", [4534] = "Any light source", [4539] = "Any light source", [4550] = "Any light source", [4702] = "Any light source", [5013] = "Any light source", [9065] = "Any light source", [14631] = "Any light source", [14662] = "Any light source", [14663] = "Any light source", [19763] = "Any light source", [52246] = "Any light source", [52247] = "Any light source" } },
                 { items = { 225, 226 }, amounts = { [225] = 20, [226] = 20 } },
             },
         },
@@ -878,7 +878,7 @@ return {
             revision = 37274868,
             needs = {
                 { items = { 837, 877, 838 }, amounts = { [877] = 50 } },
-                { items = { 32, 33, 594, 4524, 4531, 4534, 4539, 4550, 4702, 5013, 9065, 14631, 14662, 14663, 19763, 52246, 52247 } },
+                { items = { 32, 33, 594, 4524, 4531, 4534, 4539, 4550, 4702, 5013, 9065, 14631, 14662, 14663, 19763, 52246, 52247 }, groups = { [32] = "Any light source", [33] = "Any light source", [594] = "Any light source", [4524] = "Any light source", [4531] = "Any light source", [4534] = "Any light source", [4539] = "Any light source", [4550] = "Any light source", [4702] = "Any light source", [5013] = "Any light source", [9065] = "Any light source", [14631] = "Any light source", [14662] = "Any light source", [14663] = "Any light source", [19763] = "Any light source", [52246] = "Any light source", [52247] = "Any light source" } },
                 { items = { 954, 955 } },
             },
         },
@@ -1194,7 +1194,7 @@ return {
             needs = {
                 { items = { 2351, 2352 } },
                 { items = { 1511, 1512 } },
-                { items = { 2460, 2462, 2464, 2466, 2468, 2470, 2472, 2474, 2476, 995, 54830, 2461, 2463, 2465, 2467, 2469, 2471, 2473, 2475, 2477 }, amounts = { [995] = 15, [54830] = 15 } },
+                { items = { 2460, 2462, 2464, 2466, 2468, 2470, 2472, 2474, 2476, 995, 54830, 2461, 2463, 2465, 2467, 2469, 2471, 2473, 2475, 2477 }, amounts = { [995] = 15, [54830] = 15 }, groups = { [2460] = "Any flowers", [2461] = "Any flowers", [2462] = "Any flowers", [2463] = "Any flowers", [2464] = "Any flowers", [2465] = "Any flowers", [2466] = "Any flowers", [2467] = "Any flowers", [2468] = "Any flowers", [2469] = "Any flowers", [2470] = "Any flowers", [2471] = "Any flowers", [2472] = "Any flowers", [2473] = "Any flowers", [2474] = "Any flowers", [2475] = "Any flowers", [2476] = "Any flowers", [2477] = "Any flowers" } },
                 { items = { 1891, 1893, 1895, 1892, 1894, 1896 } },
                 { items = { 1635, 1637, 1639, 1641, 1643, 1645, 2570, 1636, 1638, 1640, 1642, 1644, 1646, 2571 } },
             },
@@ -1477,7 +1477,7 @@ return {
                 { items = { 1511, 1512 } },
                 { items = { 2871, 2872, 2873, 2874 } },
                 { items = { 2883, 4827, 4828 }, anyOf = true },
-                { items = { 2866, 4773, 4778, 4783, 4788, 4793, 4798, 4803 }, anyOf = true },
+                { items = { 2866, 4773, 4778, 4783, 4788, 4793, 4798, 4803 }, anyOf = true, groups = { [4773] = "Any brutal arrows", [4778] = "Any brutal arrows", [4783] = "Any brutal arrows", [4788] = "Any brutal arrows", [4793] = "Any brutal arrows", [4798] = "Any brutal arrows", [4803] = "Any brutal arrows" } },
             },
         },
         {
@@ -1560,7 +1560,7 @@ return {
             category = "quest",
             revision = 37274791,
             needs = {
-                { items = { 1539, 4819, 4820, 4821, 4822, 4823, 4824 }, amounts = { [1539] = 8, [4819] = 8, [4820] = 8, [4821] = 8, [4822] = 8, [4823] = 8, [4824] = 8 } },
+                { items = { 1539, 4819, 4820, 4821, 4822, 4823, 4824 }, amounts = { [1539] = 8, [4819] = 8, [4820] = 8, [4821] = 8, [4822] = 8, [4823] = 8, [4824] = 8 }, groups = { [1539] = "Nails of any metal", [4819] = "Nails of any metal", [4820] = "Nails of any metal", [4821] = "Nails of any metal", [4822] = "Nails of any metal", [4823] = "Nails of any metal", [4824] = "Nails of any metal" } },
                 { items = { 960, 8778, 8780, 8782, 961, 8779, 8781, 8783 }, anyOf = true },
             },
         },
@@ -1622,7 +1622,7 @@ return {
             category = "quest",
             revision = 37280999,
             needs = {
-                { items = { 32, 33, 594, 4524, 4531, 4534, 4539, 4550, 4702, 5013, 9065, 14631, 14662, 14663, 19763, 52246, 4544, 4546, 4548, 4700, 4701, 9064, 52247, 4545, 4547, 4549 }, anyOf = true },
+                { items = { 32, 33, 594, 4524, 4531, 4534, 4539, 4550, 4702, 5013, 9065, 14631, 14662, 14663, 19763, 52246, 4544, 4546, 4548, 4700, 4701, 9064, 52247, 4545, 4547, 4549 }, anyOf = true, groups = { [32] = "Any light source", [33] = "Any light source", [594] = "Any light source", [4524] = "Any light source", [4531] = "Any light source", [4534] = "Any light source", [4539] = "Any light source", [4544] = "Any light source", [4545] = "Any light source", [4546] = "Any light source", [4547] = "Any light source", [4548] = "Any light source", [4549] = "Any light source", [4550] = "Any light source", [4700] = "Any light source", [4701] = "Any light source", [4702] = "Any light source", [5013] = "Any light source", [9064] = "Any light source", [9065] = "Any light source", [14631] = "Any light source", [14662] = "Any light source", [14663] = "Any light source", [19763] = "Any light source", [52246] = "Any light source", [52247] = "Any light source" } },
             },
         },
         {
@@ -1634,7 +1634,7 @@ return {
                 { items = { 7534, 7535 } },
                 { items = { 1718, 1719 } },
                 { items = { 4202 } },
-                { items = { 1539, 4819, 4820, 4821, 4822, 4823, 4824 }, amounts = { [1539] = "38+", [4819] = "38+", [4820] = "38+", [4821] = "38+", [4822] = "38+", [4823] = "38+", [4824] = "38+" } },
+                { items = { 1539, 4819, 4820, 4821, 4822, 4823, 4824 }, amounts = { [1539] = "38+", [4819] = "38+", [4820] = "38+", [4821] = "38+", [4822] = "38+", [4823] = "38+", [4824] = "38+" }, groups = { [1539] = "Nails of any metal", [4819] = "Nails of any metal", [4820] = "Nails of any metal", [4821] = "Nails of any metal", [4822] = "Nails of any metal", [4823] = "Nails of any metal", [4824] = "Nails of any metal" } },
                 { items = { 10891, 10892 }, amounts = { [10891] = 10, [10892] = 10 } },
                 { items = { 948, 960, 949, 961 }, amounts = { [948] = 10, [949] = 10, [960] = 10, [961] = 10 } },
                 { items = { 960, 961 }, amounts = { [960] = 8, [961] = 8 } },
@@ -1668,11 +1668,11 @@ return {
             category = "quest",
             revision = 37274873,
             needs = {
-                { items = { 1349, 1351, 1353, 1355, 1357, 1359, 1361, 6739, 13661, 32645, 36543, 36544, 36545, 36546, 36547, 36548, 36955, 36956, 36957, 36958, 54890, 54891, 54892, 54893, 54894, 58073, 58075, 58077, 58079, 1350, 1352, 1354, 1356, 1358, 1360, 1362, 6740, 58074, 58076, 58078, 58080 }, anyOf = true },
+                { items = { 1349, 1351, 1353, 1355, 1357, 1359, 1361, 6739, 13661, 32645, 36543, 36544, 36545, 36546, 36547, 36548, 36955, 36956, 36957, 36958, 54890, 54891, 54892, 54893, 54894, 58073, 58075, 58077, 58079, 1350, 1352, 1354, 1356, 1358, 1360, 1362, 6740, 58074, 58076, 58078, 58080 }, anyOf = true, groups = { [1349] = "Any hatchet", [1350] = "Any hatchet", [1351] = "Any hatchet", [1352] = "Any hatchet", [1353] = "Any hatchet", [1354] = "Any hatchet", [1355] = "Any hatchet", [1356] = "Any hatchet", [1357] = "Any hatchet", [1358] = "Any hatchet", [1359] = "Any hatchet", [1360] = "Any hatchet", [1361] = "Any hatchet", [1362] = "Any hatchet", [6739] = "Any hatchet", [6740] = "Any hatchet", [13661] = "Any hatchet", [32645] = "Any hatchet", [36543] = "Any hatchet", [36544] = "Any hatchet", [36545] = "Any hatchet", [36546] = "Any hatchet", [36547] = "Any hatchet", [36548] = "Any hatchet", [36955] = "Any hatchet", [36956] = "Any hatchet", [36957] = "Any hatchet", [36958] = "Any hatchet", [54890] = "Any hatchet", [54891] = "Any hatchet", [54892] = "Any hatchet", [54893] = "Any hatchet", [54894] = "Any hatchet", [58073] = "Any hatchet", [58074] = "Any hatchet", [58075] = "Any hatchet", [58076] = "Any hatchet", [58077] = "Any hatchet", [58078] = "Any hatchet", [58079] = "Any hatchet", [58080] = "Any hatchet" } },
                 { items = { 5354, 5355 } },
                 { items = { 1761, 1762 } },
                 { items = { 1931, 1932 } },
-                { items = { 1349, 1351, 1353, 1355, 1357, 1359, 1361, 6739, 13661, 32645, 36543, 36544, 36545, 36546, 36547, 36548, 36955, 36956, 36957, 36958, 54890, 54891, 54892, 54893, 54894, 58073, 58075, 58077, 58079, 1350, 1352, 1354, 1356, 1358, 1360, 1362, 6740, 58074, 58076, 58078, 58080 } },
+                { items = { 1349, 1351, 1353, 1355, 1357, 1359, 1361, 6739, 13661, 32645, 36543, 36544, 36545, 36546, 36547, 36548, 36955, 36956, 36957, 36958, 54890, 54891, 54892, 54893, 54894, 58073, 58075, 58077, 58079, 1350, 1352, 1354, 1356, 1358, 1360, 1362, 6740, 58074, 58076, 58078, 58080 }, groups = { [1349] = "Any hatchet", [1350] = "Any hatchet", [1351] = "Any hatchet", [1352] = "Any hatchet", [1353] = "Any hatchet", [1354] = "Any hatchet", [1355] = "Any hatchet", [1356] = "Any hatchet", [1357] = "Any hatchet", [1358] = "Any hatchet", [1359] = "Any hatchet", [1360] = "Any hatchet", [1361] = "Any hatchet", [1362] = "Any hatchet", [6739] = "Any hatchet", [6740] = "Any hatchet", [13661] = "Any hatchet", [32645] = "Any hatchet", [36543] = "Any hatchet", [36544] = "Any hatchet", [36545] = "Any hatchet", [36546] = "Any hatchet", [36547] = "Any hatchet", [36548] = "Any hatchet", [36955] = "Any hatchet", [36956] = "Any hatchet", [36957] = "Any hatchet", [36958] = "Any hatchet", [54890] = "Any hatchet", [54891] = "Any hatchet", [54892] = "Any hatchet", [54893] = "Any hatchet", [54894] = "Any hatchet", [58073] = "Any hatchet", [58074] = "Any hatchet", [58075] = "Any hatchet", [58076] = "Any hatchet", [58077] = "Any hatchet", [58078] = "Any hatchet", [58079] = "Any hatchet", [58080] = "Any hatchet" } },
             },
         },
         {
@@ -1691,7 +1691,7 @@ return {
                 { items = { 229, 230 } },
                 { items = { 995, 54830 }, amounts = { [995] = 5, [54830] = 5 } },
                 { items = { 3379, 3380 } },
-                { items = { 32, 33, 594, 4524, 4531, 4534, 4539, 4550, 4702, 5013, 9065, 14631, 14662, 14663, 19763, 52246, 52247 } },
+                { items = { 32, 33, 594, 4524, 4531, 4534, 4539, 4550, 4702, 5013, 9065, 14631, 14662, 14663, 19763, 52246, 52247 }, groups = { [32] = "Any light source", [33] = "Any light source", [594] = "Any light source", [4524] = "Any light source", [4531] = "Any light source", [4534] = "Any light source", [4539] = "Any light source", [4550] = "Any light source", [4702] = "Any light source", [5013] = "Any light source", [9065] = "Any light source", [14631] = "Any light source", [14662] = "Any light source", [14663] = "Any light source", [19763] = "Any light source", [52246] = "Any light source", [52247] = "Any light source" } },
             },
         },
         {
@@ -1751,7 +1751,7 @@ return {
                 { items = { 5331, 5333, 5334, 5335, 5336, 5337, 5338, 5339, 5340, 18682, 5332 }, amounts = { [5331] = 1, [5332] = 1, [5333] = 1, [5334] = 1, [5335] = 1, [5336] = 1, [5337] = 1, [5338] = 1, [5339] = 1, [5340] = 1 } },
                 { items = { 6032, 6034, 6033, 6035 }, amounts = { [6032] = 1, [6033] = 1 }, anyOf = true },
                 { items = { 960, 8778, 8780, 8782, 961, 8779, 8781, 8783 }, amounts = { [960] = 2, [961] = 2 }, anyOf = true },
-                { items = { 1539, 4819, 4820, 4821, 4822, 4823, 4824 }, amounts = { [1539] = 2, [4819] = 2, [4820] = 2, [4821] = 2, [4822] = 2, [4823] = 2, [4824] = 2 } },
+                { items = { 1539, 4819, 4820, 4821, 4822, 4823, 4824 }, amounts = { [1539] = 2, [4819] = 2, [4820] = 2, [4821] = 2, [4822] = 2, [4823] = 2, [4824] = 2 }, groups = { [1539] = "Nails of any metal", [4819] = "Nails of any metal", [4820] = "Nails of any metal", [4821] = "Nails of any metal", [4822] = "Nails of any metal", [4823] = "Nails of any metal", [4824] = "Nails of any metal" } },
             },
         },
         {
@@ -1891,7 +1891,7 @@ return {
             category = "quest",
             revision = 37274950,
             needs = {
-                { items = { 1265, 1267, 13661, 15259, 29522, 32646, 36537, 36538, 36539, 36540, 36541, 36542, 36547, 36548, 38164, 38165, 38166, 38167, 45154, 45467, 45494, 45521, 45548, 45642, 46372, 46578, 1266, 1268, 15260, 45155, 45643, 46373, 46579 } },
+                { items = { 1265, 1267, 13661, 15259, 29522, 32646, 36537, 36538, 36539, 36540, 36541, 36542, 36547, 36548, 38164, 38165, 38166, 38167, 45154, 45467, 45494, 45521, 45548, 45642, 46372, 46578, 1266, 1268, 15260, 45155, 45643, 46373, 46579 }, groups = { [1265] = "Any pickaxe", [1266] = "Any pickaxe", [1267] = "Any pickaxe", [1268] = "Any pickaxe", [13661] = "Any pickaxe", [15259] = "Any pickaxe", [15260] = "Any pickaxe", [29522] = "Any pickaxe", [32646] = "Any pickaxe", [36537] = "Any pickaxe", [36538] = "Any pickaxe", [36539] = "Any pickaxe", [36540] = "Any pickaxe", [36541] = "Any pickaxe", [36542] = "Any pickaxe", [36547] = "Any pickaxe", [36548] = "Any pickaxe", [38164] = "Any pickaxe", [38165] = "Any pickaxe", [38166] = "Any pickaxe", [38167] = "Any pickaxe", [45154] = "Any pickaxe", [45155] = "Any pickaxe", [45467] = "Any pickaxe", [45494] = "Any pickaxe", [45521] = "Any pickaxe", [45548] = "Any pickaxe", [45642] = "Any pickaxe", [45643] = "Any pickaxe", [46372] = "Any pickaxe", [46373] = "Any pickaxe", [46578] = "Any pickaxe", [46579] = "Any pickaxe" } },
             },
         },
         {
@@ -1912,7 +1912,7 @@ return {
             category = "quest",
             revision = 37274962,
             needs = {
-                { items = { 32, 33, 594, 4524, 4531, 4534, 4539, 4550, 4702, 5013, 9065, 14631, 14662, 14663, 19763, 52246, 52247 } },
+                { items = { 32, 33, 594, 4524, 4531, 4534, 4539, 4550, 4702, 5013, 9065, 14631, 14662, 14663, 19763, 52246, 52247 }, groups = { [32] = "Any light source", [33] = "Any light source", [594] = "Any light source", [4524] = "Any light source", [4531] = "Any light source", [4534] = "Any light source", [4539] = "Any light source", [4550] = "Any light source", [4702] = "Any light source", [5013] = "Any light source", [9065] = "Any light source", [14631] = "Any light source", [14662] = "Any light source", [14663] = "Any light source", [19763] = "Any light source", [52246] = "Any light source", [52247] = "Any light source" } },
             },
         },
         {
@@ -1957,7 +1957,7 @@ return {
             revision = 37274967,
             needs = {
                 { items = { 21596, 21597, 21598, 21599 } },
-                { items = { 21580, 21582, 35691, 35693, 35695, 35697, 35703, 13117, 13118, 13119, 13120, 13121, 13122, 13123, 13124, 13125, 13126, 13127, 13128, 13129, 13130, 13131, 13132, 13133, 13134, 13135, 13136, 13137, 13138, 13139, 13140, 13141, 13142, 13143, 13144, 13145, 13146, 35692, 35694, 35696, 35698, 35704 }, anyOf = true },
+                { items = { 21580, 21582, 35691, 35693, 35695, 35697, 35703, 13117, 13118, 13119, 13120, 13121, 13122, 13123, 13124, 13125, 13126, 13127, 13128, 13129, 13130, 13131, 13132, 13133, 13134, 13135, 13136, 13137, 13138, 13139, 13140, 13141, 13142, 13143, 13144, 13145, 13146, 35692, 35694, 35696, 35698, 35704 }, anyOf = true, groups = { [21580] = "Any blisterwood weapon", [21582] = "Any blisterwood weapon", [35691] = "Any blisterwood weapon", [35692] = "Any blisterwood weapon", [35693] = "Any blisterwood weapon", [35694] = "Any blisterwood weapon", [35695] = "Any blisterwood weapon", [35696] = "Any blisterwood weapon", [35697] = "Any blisterwood weapon", [35698] = "Any blisterwood weapon", [35703] = "Any blisterwood weapon", [35704] = "Any blisterwood weapon" } },
             },
         },
         {
@@ -1968,7 +1968,7 @@ return {
             needs = {
                 { items = { 7660, 7662, 7664, 7666, 7661, 7663, 7665, 7667 } },
                 { items = { 3026, 3027 } },
-                { items = { 21580, 21582, 35691, 35693, 35695, 35697, 35703, 35692, 35694, 35696, 35698, 35704 } },
+                { items = { 21580, 21582, 35691, 35693, 35695, 35697, 35703, 35692, 35694, 35696, 35698, 35704 }, groups = { [21580] = "Any blisterwood weapon", [21582] = "Any blisterwood weapon", [35691] = "Any blisterwood weapon", [35692] = "Any blisterwood weapon", [35693] = "Any blisterwood weapon", [35694] = "Any blisterwood weapon", [35695] = "Any blisterwood weapon", [35696] = "Any blisterwood weapon", [35697] = "Any blisterwood weapon", [35698] = "Any blisterwood weapon", [35703] = "Any blisterwood weapon", [35704] = "Any blisterwood weapon" } },
                 { items = { 45459 }, amounts = { [45459] = 3 } },
                 { items = { 45462 }, amounts = { [45462] = 3 } },
                 { items = { 45460 }, amounts = { [45460] = 3 } },
@@ -2149,7 +2149,7 @@ return {
             category = "miniquest",
             revision = 37153127,
             needs = {
-                { items = { 4599, 4600, 6408, 6410, 6412, 6414, 6416, 6418, 6420, 6409, 6411, 6413, 6415, 6417, 6419, 6421 } },
+                { items = { 4599, 4600, 6408, 6410, 6412, 6414, 6416, 6418, 6420, 6409, 6411, 6413, 6415, 6417, 6419, 6421 }, groups = { [4599] = "Any blackjack", [4600] = "Any blackjack", [6408] = "Any blackjack", [6409] = "Any blackjack", [6410] = "Any blackjack", [6411] = "Any blackjack", [6412] = "Any blackjack", [6413] = "Any blackjack", [6414] = "Any blackjack", [6415] = "Any blackjack", [6416] = "Any blackjack", [6417] = "Any blackjack", [6418] = "Any blackjack", [6419] = "Any blackjack", [6420] = "Any blackjack", [6421] = "Any blackjack" } },
                 { items = { 1523, 11682, 1524 }, anyOf = true },
                 { items = { 101, 259, 227, 102, 260, 228 }, anyOf = true, sets = { { 101 }, { 259, 227 } } },
                 { items = { 1871, 1923, 1957, 1872, 1924, 1958 }, anyOf = true, sets = { { 1871 }, { 1923, 1957 } } },
@@ -2760,8 +2760,8 @@ return {
             revision = 37281604,
             needs = {
                 { items = { 954, 955 }, amounts = { [954] = 2, [955] = 2 } },
-                { items = { 1511, 1513, 1515, 1517, 1519, 1521, 6332, 6333, 10810, 12581, 29556, 40285, 1512, 1514, 1516, 1518, 1520, 1522, 6334, 10811, 12582, 29557, 40286 }, amounts = { [1511] = 10, [1512] = 10, [1513] = 10, [1514] = 10, [1515] = 10, [1516] = 10, [1517] = 10, [1518] = 10, [1519] = 10, [1520] = 10, [1521] = 10, [1522] = 10, [6332] = 10, [6333] = 10, [6334] = 10, [10810] = 10, [10811] = 10, [12581] = 10, [12582] = 10, [29556] = 10, [29557] = 10, [40285] = 10, [40286] = 10 } },
-                { items = { 1539, 4819, 4820, 4821, 4822, 4823, 4824 }, amounts = { [1539] = 20, [4819] = 20, [4820] = 20, [4821] = 20, [4822] = 20, [4823] = 20, [4824] = 20 } },
+                { items = { 1511, 1513, 1515, 1517, 1519, 1521, 6332, 6333, 10810, 12581, 29556, 40285, 1512, 1514, 1516, 1518, 1520, 1522, 6334, 10811, 12582, 29557, 40286 }, amounts = { [1511] = 10, [1512] = 10, [1513] = 10, [1514] = 10, [1515] = 10, [1516] = 10, [1517] = 10, [1518] = 10, [1519] = 10, [1520] = 10, [1521] = 10, [1522] = 10, [6332] = 10, [6333] = 10, [6334] = 10, [10810] = 10, [10811] = 10, [12581] = 10, [12582] = 10, [29556] = 10, [29557] = 10, [40285] = 10, [40286] = 10 }, groups = { [1511] = "Any logs", [1512] = "Any logs", [1513] = "Any logs", [1514] = "Any logs", [1515] = "Any logs", [1516] = "Any logs", [1517] = "Any logs", [1518] = "Any logs", [1519] = "Any logs", [1520] = "Any logs", [1521] = "Any logs", [1522] = "Any logs", [6332] = "Any logs", [6333] = "Any logs", [6334] = "Any logs", [10810] = "Any logs", [10811] = "Any logs", [12581] = "Any logs", [12582] = "Any logs", [29556] = "Any logs", [29557] = "Any logs", [40285] = "Any logs", [40286] = "Any logs" } },
+                { items = { 1539, 4819, 4820, 4821, 4822, 4823, 4824 }, amounts = { [1539] = 20, [4819] = 20, [4820] = 20, [4821] = 20, [4822] = 20, [4823] = 20, [4824] = 20 }, groups = { [1539] = "Nails of any metal", [4819] = "Nails of any metal", [4820] = "Nails of any metal", [4821] = "Nails of any metal", [4822] = "Nails of any metal", [4823] = "Nails of any metal", [4824] = "Nails of any metal" } },
                 { items = { 10010, 11259, 60698, 10011 }, anyOf = true },
                 { items = { 10029, 10092, 10030 }, anyOf = true },
                 { items = { 229, 230 } },

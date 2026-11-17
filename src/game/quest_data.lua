@@ -51,8 +51,32 @@ local function checkSets(sets, items)
     return sets
 end
 
+-- `groups` on a need: { [itemId] = "Any light source" } for items that came from an
+-- "any of a kind" Wiki page. Only used for tooltip wording, so a broken value is
+-- dropped (the tooltip just doesn't name the group) rather than the need.
+local function checkGroups(groups, items)
+    if type(groups) ~= "table" then
+        return nil
+    end
+
+    local known = {}
+
+    for _, itemId in ipairs(items) do
+        known[itemId] = true
+    end
+
+    for itemId, label in pairs(groups) do
+        if not known[itemId] or type(label) ~= "string" or label == "" then
+            return nil
+        end
+    end
+
+    return groups
+end
+
 -- One `needs` entry: { items = { ids }, amounts = { [id] = n or "4-6" }?, anyOf = true?,
--- sets = { { ids }, ... }? }. Returns the cleaned entry, or nil if it's broken.
+-- sets = { { ids }, ... }?, groups = { [id] = "Any ..." }? }. Returns the cleaned
+-- entry, or nil if it's broken.
 local function checkNeed(need)
     if type(need) ~= "table" or type(need.items) ~= "table" or #need.items == 0 then
         return nil
@@ -73,6 +97,7 @@ local function checkNeed(need)
         amounts = need.amounts or {},
         anyOf = need.anyOf == true,
         sets = need.anyOf == true and need.sets ~= nil and checkSets(need.sets, need.items) or nil,
+        groups = need.groups ~= nil and checkGroups(need.groups, need.items) or nil,
     }
 end
 

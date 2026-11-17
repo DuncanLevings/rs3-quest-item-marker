@@ -127,7 +127,13 @@ The rule leans towards marking: a missing icon is worse than an extra one.
 
 6. Resolving a link to item IDs, in this order:
      a. tools/data/link_classes.json: "expand" to listed item pages, or "ignore" with a
-        reason. A reviewed decision always wins.
+        reason. A reviewed decision always wins. An "expand" entry for an "any of a
+        kind" page (light sources, hatchets) also has a "label" ("Any light source"):
+        the need then carries groups = { [id] = label }, noted ids included, and the
+        tooltip shows the label under the quest. Outfits and sets have no label.
+        Items the line names as examples of the first such group ("a [[light source]]
+        (such as a [[torch]], [[mining helmet]])"), or whose page shares an ID with it,
+        get the same label, so the unlit helmet reads "Any light source" too.
      b. Redirects are followed first (MediaWiki query API).
      c. An item page in bucket('infobox_item'): every ID of every version. A
         [[Page#Version]] link keeps only that version_anchor; if no version matches, all

@@ -1,5 +1,5 @@
 -- The player's settings, saved in PersistentDB under one key. Settings are global:
--- the same for every character on this computer (design doc, Goal 6).
+-- the same for every character on this computer.
 --
 -- Saved shape (a storage contract; change it only with a migration):
 --   quest-item-marker.settings.v1 = {
@@ -21,11 +21,11 @@ local Preferences = {}
 
 Preferences.STORAGE_KEY = "quest-item-marker.settings.v1"
 
--- Defaults for the categories we know (design doc, Goal 6).
+-- Defaults for the categories we know: everything is marked until the player opts out.
 local FILTER_DEFAULTS = { quest = true, miniquest = true }
 
 -- A category added to the data later starts included: an extra icon is safer than
--- a missing one (brief r5).
+-- a missing one.
 local NEW_CATEGORY_DEFAULT = true
 
 -- A keybind is up to two distinct key codes (PrettyUI KeybindField's own limit).
@@ -131,7 +131,7 @@ function Preferences.new(db, categories)
     end)
 
     if not ok then
-        Log.write("couldn't read saved settings, using defaults:", saved)
+        Log.error("couldn't read saved settings, using defaults:", saved)
         saved = nil
     end
 
@@ -149,7 +149,7 @@ function Preferences.new(db, categories)
         end)
 
         if not written or result ~= true then
-            Log.write("couldn't save settings for next time:", tostring(result))
+            Log.error("couldn't save settings for next time:", tostring(result))
             return false
         end
 
@@ -220,7 +220,8 @@ function Preferences.new(db, categories)
         return copy
     end
 
-    -- Turns one quest type on or off (M5). Only types the plugin offers are kept.
+    -- Turns one quest type on or off. Unknown types are refused, so a stale caller
+    -- can't sneak an extra key into the saved record.
     -- Returns true if the value changed (and was saved).
     function self:setFilter(category, included)
         if values.filter[category] == nil or type(included) ~= "boolean" then

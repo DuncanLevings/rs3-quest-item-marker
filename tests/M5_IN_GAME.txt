@@ -13,8 +13,8 @@ Automated checks (no client): from the plugin folder run
 It should end with "83 passed, 0 failed". Those tests use a fake client, so they
 don't prove anything about the real one. That's what the steps below are for.
 
-Write down what you see at each "Check", and copy the [Quest Item Marker] lines from
-the console (Alt + `) into your notes.
+Write down what you see at each "Check". The plugin prints nothing to chat or the
+console (caught errors only with Log.DEV = true in src/log.lua).
 
 
 0. Set up
@@ -27,8 +27,10 @@ the console (Alt + `) into your notes.
      Peril),
    - an item needed by both kinds, if you have one.
 3. Open the plugin's ribbon panel.
-   Check: under "Show quest item markers" there is "Mark items needed for" with
-   "Quests" and "Miniquests", both ticked.
+   Check: under the title there is "Mark items needed for" with "Quests" and
+   "Miniquests", both ticked. There is no "Show quest item markers" checkbox.
+4. With markers hidden by the shortcut, clear the shortcut field.
+   Check: the markers come back (with no shortcut, nothing else could show them).
 
 
 1. Turning a type off and on (CUJ 6)
@@ -36,8 +38,7 @@ the console (Alt + `) into your notes.
 1. Open the bank too, so two screens are open. Untick "Miniquests".
    Check: at once (no half-second wait), the miniquest-only item loses its icon in the
    backpack AND the bank; the quest item keeps its icon. An item needed by both
-   keeps its icon, and its tooltip no longer lists the miniquest. The console shows
-   "filter: miniquest off".
+   keeps its icon, and its tooltip no longer lists the miniquest.
 2. Tick "Miniquests" again.
    Check: the icons and tooltip lines come back at once.
 3. Untick "Quests" (keep Miniquests on).
@@ -61,9 +62,9 @@ the console (Alt + `) into your notes.
 ----------------
 1. Untick and tick "Miniquests" ten times quickly, then press the shortcut to hide
    and show markers once.
-   Check: the console's "markers on | quest reads since login: R" line shows the same
-   R as before you started (the filter never reads quest status).
+   Check: no stutter, and icons are right after each change (the filter never reads
+   quest status; the unit tests count the reads).
 
 
-Send back: anything that didn't update at once, anything that wasn't kept after the
-reload or restart, and the console lines from part 3.
+Send back: anything that didn't update at once, and anything that wasn't kept after
+the reload or restart.

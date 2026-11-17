@@ -1,6 +1,10 @@
 Quest Item Marker - M2 (backpack) in-game test
 ==============================================
 
+Note (after M5): the plugin no longer writes chat messages or status lines to the
+console, so steps below that look for those lines no longer apply. Check what you
+see on screen instead. Caught errors print only with Log.DEV = true in src/log.lua.
+
 What M2 covers: quest status (read once at login, then kept fresh by quest
 variable events), icons and hover tooltips on the backpack, the ribbon settings
 panel, and the on/off checkbox plus shortcut. Bank and shops come in M3 and M4.

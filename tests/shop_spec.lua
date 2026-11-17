@@ -96,7 +96,6 @@ spec["slots that match no known list are unreliable"] = function()
     local result = shop.read()
 
     check.equal(result.state, "unreliable")
-    check.contains(result.reason, "reopen the shop")
 
     -- A list that holds the shown items plus one more doesn't count: both ways.
     shop.noteInventory(24)
@@ -105,7 +104,6 @@ spec["slots that match no known list are unreliable"] = function()
     result = shop.read()
 
     check.equal(result.state, "unreliable")
-    check.contains(result.reason, "slot 3")
 end
 
 spec["the bank is never taken for shop stock"] = function()
@@ -133,13 +131,8 @@ local function setup()
     local markers = require("src/ui/markers").new({
         screens = { (require("src/screens/backpack")), require("src/screens/shop").new() },
         questStatus = { ready = true, refreshUnwatched = function() end },
-        iconSprite = function()
-            return 17130
-        end,
-        requiredItems = function()
-            return required
-        end,
-        messages = require("src/messages").new(),
+        iconSprite = 17130,
+        requiredItems = required,
     })
 
     stockShop(client)
@@ -172,17 +165,6 @@ spec["shop icons follow a stock tab switch within a tick and go on close"] = fun
 
     check.equal(#icons, 1)
     check.equal(icons[1].y, client.shopSlots[3].y)
-
-    -- The status line says what the shop slots held.
-    local statusLine
-
-    for _, line in ipairs(client.logs) do
-        if line:find("Shop: OK", 1, true) then
-            statusLine = line
-        end
-    end
-
-    check.contains(statusLine, "Shop: OK, 1 marked (1265:24, 40 children, 2 showing an item, inv 24, seen invs 24 25)")
 
     -- Tab switch: no inventory event, the next tick re-reads anyway.
     client.showShopList(25)
@@ -221,7 +203,6 @@ spec["icons the game deletes when it rebuilds the shop (a purchase) come back ne
 
     check.equal(#icons, 2, "drawn again")
     check.equal(#client.liveTooltips(), 2, "the old tooltips went with them")
-    check.contains(client.logs[#client.logs - 1] .. client.logs[#client.logs], "the game removed 2 icons")
 
     -- The new icons follow the new slot components.
     client.shopSlots[3].x = 300
@@ -410,7 +391,7 @@ spec["the full-name display mode is found and marked, and switching back moves i
     markers:stop()
 end
 
-spec["an unmatched shop shows no icons and says 'Couldn't read Shop' once"] = function()
+spec["an unmatched shop shows no icons"] = function()
     local client, markers = setup()
 
     -- Opened with no inventory event heard.
@@ -420,8 +401,6 @@ spec["an unmatched shop shows no icons and says 'Couldn't read Shop' once"] = fu
     client.fire("ServerLogic")
 
     check.equal(#shopIcons(client), 0)
-    check.equal(#client.chat, 1)
-    check.contains(client.chat[1], "Couldn't read Shop")
 
     -- A stock update tells it which inventory to use.
     client.fire("InventoryUpdated", { inv = { id = 24 } })

@@ -9,8 +9,6 @@
   },
   "optionalDependencies": {},
   "requiredPermissions": [],
-  "optionalPermissions": [
-    "chatAccess"
-  ],
+  "optionalPermissions": [],
   "urls": {}
 }

@@ -10,13 +10,12 @@ local QuestState = require("src/game/quest_state")
 
 local RequiredItems = {}
 
--- Long lists get cut here and end with "+N more" (author, 2026-11-16: 5).
+-- Longer quest lists end with "+N more".
 local MAX_QUESTS = 5
 
 -- Native text markup: <br> is a line break ("\n" draws as a box), <col> a colour.
--- Quest names are a light grey, close to white; the item part (amounts, "+ partner"
--- lines) is a soft RS3-style yellow, so what to bring stands out; "+N more" is a darker
--- grey so it never reads as another quest (author, 2026-11-16).
+-- Quest names light grey, the item part (amounts, groups, partners) yellow so what to
+-- bring stands out, "+N more" darker grey so it never reads as another quest.
 RequiredItems.LINE_BREAK = "<br>"
 local QUEST_COLOUR = "c8c8c8"
 local ITEM_COLOUR = "ebd38a"
@@ -31,8 +30,8 @@ end
 function RequiredItems.new(questData, getState, filter)
     local self = {}
 
-    -- Uses a new filter from now on (the player changed it in settings, M5). Copied,
-    -- so the caller's table can't change it later.
+    -- Swaps in a new filter after the player changes it. We keep our own copy so the
+    -- caller can't change it behind our back later.
     function self:setFilter(newFilter)
         local copy = {}
 
@@ -68,8 +67,8 @@ function RequiredItems.new(questData, getState, filter)
         return false
     end
 
-    -- " x50", or "" for one (or no amount on the Wiki): an amount is only worth showing
-    -- from two up (author, 2026-11-16). Text amounts ("4-6") always show.
+    -- " x50", or "" for a single item (or no amount given): "x1" is just noise. Text
+    -- amounts like "4-6" always show.
     local function amountText(amount)
         if amount == nil or amount == 1 then
             return ""
@@ -119,16 +118,13 @@ function RequiredItems.new(questData, getState, filter)
         return partners
     end
 
-    -- The tooltip text for one item, or nil if it isn't marked. Kept minimal (author,
-    -- 2026-11-16): one line per quest, with how many of THIS item it needs. Other
-    -- choices for the same need aren't named (hovering rune essence doesn't mention
-    -- pure essence). A group the item counts for is named on a second line ("Any light
-    -- source"). Only items that must come together with this one are, on a second
-    -- line ("+ Vial of water" under a clean irit). No header, states or footer: the
-    -- icon already says "an unfinished quest needs this". Lines are joined with <br>.
-    -- nameOf(itemId) gives an item's name (the caller reads and caches it).
-    -- Returns the text and what each line is: { "quest", "detail", ..., "more" }, so
-    -- the tooltip can put a quest sprite in front of each quest line.
+    -- The tooltip text for one item, or nil if it isn't marked. One line per quest
+    -- with how many of THIS item it needs, plus optional detail lines: the group it
+    -- counts for ("Any light source") and items that must come with it ("+ Vial of
+    -- water"). Other alternatives aren't listed, so hovering rune essence doesn't
+    -- mention pure essence. nameOf(itemId) names an item (the caller caches it).
+    -- Returns the text and what each line is ({ "quest", "detail", ..., "more" }) so
+    -- the tooltip knows which lines get a quest sprite.
     function self:tooltipText(itemId, nameOf)
         local lines = questData.byItem[itemId]
 
@@ -136,11 +132,10 @@ function RequiredItems.new(questData, getState, filter)
             return nil
         end
 
-        -- Per quest: the amounts of this item across its needs, and the partner items.
-        -- A quest that needs the item in several lines gets one added-up amount: Hunt
-        -- for Red Raktuber's "1 plank to make the clockwork suit" and "4 planks" read
-        -- "x5" (author, 2026-11-16: one total is what the player needs to bring). No
-        -- amount counts as one.
+        -- Gather per quest: the amounts of this item across its needs, its groups and
+        -- its partner items. A quest that lists the item more than once gets one
+        -- total, since that's how many the player has to bring (1 plank + 4 planks
+        -- reads "x5"). A missing amount counts as one.
         local byQuest, order = {}, {}
 
         for _, line in ipairs(lines) do
@@ -157,9 +152,8 @@ function RequiredItems.new(questData, getState, filter)
 
                 entry.amounts[#entry.amounts + 1] = need.amounts[itemId] or 1
 
-                -- The item came from an "any of a kind" page: say so ("Any light
-                -- source"), so a bronze hatchet doesn't read as "this exact hatchet"
-                -- (author, 2026-11-16).
+                -- The item is one of an "any of a kind" group: name the group so a
+                -- bronze hatchet doesn't read as "this exact hatchet".
                 local group = need.groups and need.groups[itemId]
 
                 if group and not entry.seenGroup[group] then

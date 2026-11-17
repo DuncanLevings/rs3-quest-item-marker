@@ -1,30 +1,18 @@
--- Builds a screen adapter for one grid of item slots: which item each slot component
--- shows, cross-checked against the inventory behind it. Every adapter is stateless:
--- each call reads fresh and owns nothing.
+-- Builds a screen adapter for a grid of item slots backed by one inventory (the
+-- backpack, the bank, the bank's backpack panel). Slot N is dynamic child N - 1 of the
+-- container, and its associatedObjectID is the item it shows.
 --
--- The backpack, the bank and the backpack panel inside the bank all work the same way
--- (design doc, Technical Plan §0 and §4); only these facts differ:
---   * the inventory (config.Inv name),
---   * the interface and static component holding the slots,
---   * one dynamic child per slot with dynamicID = slot - 1,
---   * each slot component's associatedObjectID is the item it shows.
--- An empty inventory slot comes back from GetSlots() as object id -1. A bank
--- placeholder is the real item id with count 0, in both the inventory and the
--- component, so it reads (and is marked) like the item it holds a place for.
---
--- Matching is by identity, never by counting (design §4): every filled inventory slot
--- must have a component showing that same item, and the inventory must not change
--- while we read it. Anything else is "unreliable", and the marker code then draws no
--- new icons on this screen rather than risk one on the wrong item.
---
--- The helpers below are also used by shop.lua, whose inventory isn't fixed.
+-- A read only succeeds if every filled slot shows exactly the inventory's item;
+-- otherwise it's "unreliable" and markers draw nothing new, since an icon on the
+-- wrong item is worse than a missing one. Adapters are stateless. The helpers are
+-- shared with shop.lua.
 
 local Log = require("src/log")
 
 local SlotScreen = {}
 
--- The item id in every slot of an inventory, as { [slot] = id or false }, plus how
--- many slots there are. Returns nil if the read failed.
+-- The item id in every slot of an inventory, as { [slot] = id or false }, plus the
+-- slot count. nil if the read failed.
 function SlotScreen.fingerprint(inv)
     local ok, slots = pcall(function()
         return inv:GetSlots()
@@ -38,8 +26,7 @@ function SlotScreen.fingerprint(inv)
     local items = {}
 
     for index = 1, count do
-        local slot = slots[index]
-        local itemId = Log.field(Log.field(slot, "obj"), "id")
+        local itemId = Log.field(Log.field(slots[index], "obj"), "id")
 
         if type(itemId) == "number" and itemId >= 0 then
             items[index] = itemId
@@ -61,7 +48,7 @@ function SlotScreen.sameFingerprint(a, b, count)
     return true
 end
 
--- The key markers use to find one of its icons among a container's children.
+-- Identifies a component among its siblings: "categoryID:dynamicID".
 function SlotScreen.childKey(component)
     local categoryId = Log.field(component, "categoryID")
     local dynamicId = Log.field(component, "dynamicID")
@@ -73,9 +60,9 @@ function SlotScreen.childKey(component)
     return nil
 end
 
--- Every slot component under a container, by dynamicID, plus the set of every
--- child's childKey (our own icons are children of the same container; markers uses
--- this to notice the game deleting them). nil if listing failed.
+-- Every slot component under a container by dynamicID, plus the set of every
+-- child's childKey (our icons are children too; markers use it to spot the game
+-- deleting them). nil if listing failed.
 function SlotScreen.componentsByDynamicId(container)
     local byDynamic = {}
     local present = {}
@@ -93,7 +80,7 @@ function SlotScreen.componentsByDynamicId(container)
                 byDynamic[dynamicId] = child
             end
 
-            -- false = keep going through the children.
+            -- false = keep iterating.
             return false
         end)
     end)
@@ -118,8 +105,7 @@ function SlotScreen.findContainer(interfaceId, staticId)
     return nil
 end
 
--- The live inventory for a config.Inv entry or an inventory id, or nil while the
--- server hasn't sent it.
+-- The live inventory for a config.Inv entry or id, or nil until the server sends it.
 function SlotScreen.findInventory(invConfigOrId)
     if invConfigOrId == nil then
         return nil
@@ -137,8 +123,8 @@ function SlotScreen.findInventory(invConfigOrId)
 end
 
 -- spec:
---   name         shown to the player ("Couldn't read <name>") and in the log
---   label        lower-case word for read problems ("bank slot 3 ...")
+--   name         adapter name, used in error logs
+--   label        lower-case word used in read reasons ("bank slot 3 ...")
 --   inventory    config.Inv field name ("INV", "BANK")
 --   interfaceId  interface holding the slot container
 --   staticId     static id of the slot container
@@ -147,12 +133,9 @@ function SlotScreen.new(spec)
 
     Screen.NAME = spec.name
 
-    -- The interface the icons live in. Markers use it to notice the interface unloading.
+    -- Markers watch this interface to notice it unloading under the icons.
     Screen.INTERFACE_ID = spec.interfaceId
 
-    local containerName = spec.interfaceId .. ":" .. spec.staticId
-
-    -- The inventory config, or nil if the client doesn't have it.
     local function inventoryConfig()
         return Log.field(config.Inv, spec.inventory)
     end
@@ -177,9 +160,8 @@ function SlotScreen.new(spec)
         return SlotScreen.findContainer(spec.interfaceId, spec.staticId)
     end
 
-    -- Cheap check run every server tick: is the screen showing? "Open" needs both the
-    -- inventory and a visible slot container (M0: the bank interface can stay loaded
-    -- after the bank closes, so loaded alone doesn't mean open).
+    -- Cheap check run every server tick. Needs the container visible, not just
+    -- loaded: interface 517 stays loaded after the bank closes.
     function Screen.isOpen()
         if findInventory() == nil then
             return false
@@ -190,29 +172,21 @@ function SlotScreen.new(spec)
         return container ~= nil and Log.field(container, "visibleGlobal") == true
     end
 
-    -- Reads the screen. Returns one of:
-    --   { state = "ok", open = false, reason = "..." }          screen closed: no icons
-    --   { state = "ok", open = true, slots = { { slot, itemId, component }, ... } }
-    --   { state = "unreliable", reason = "..." }               draw nothing new here
-    -- `slots` only lists filled slots (placeholders included).
+    -- Returns one of:
+    --   { state = "ok", open = false, reason }                screen closed: no icons
+    --   { state = "ok", open = true, slots = { { slot, itemId, component }, ... }, present }
+    --   { state = "unreliable", reason }                      draw nothing new here
+    -- `slots` lists filled slots only (placeholders included).
     function Screen.read()
         local inv = findInventory()
         local container = findContainer()
 
-        -- Closed. The reason only goes into the status line and log, to tell "not
-        -- sent" apart from "not loaded" and "hidden" when something looks wrong.
         if inv == nil then
             return { state = "ok", open = false, reason = "inventory not sent" }
         end
 
-        if container == nil then
-            return { state = "ok", open = false, reason = "slot container " .. containerName .. " not loaded" }
-        end
-
-        local visible = Log.field(container, "visibleGlobal")
-
-        if visible ~= true then
-            return { state = "ok", open = false, reason = "slot container hidden (visibleGlobal " .. tostring(visible) .. ")" }
+        if container == nil or Log.field(container, "visibleGlobal") ~= true then
+            return { state = "ok", open = false, reason = "slot container not showing" }
         end
 
         local before, count = SlotScreen.fingerprint(inv)
@@ -227,11 +201,10 @@ function SlotScreen.new(spec)
             return { state = "unreliable", reason = "couldn't list the " .. spec.label .. " slots" }
         end
 
-        -- Seen in game (2026-11-16): at a shop, with the bank closed, 517:15 read as
-        -- visible but had no slot components. A container with no slots isn't showing
-        -- this screen, so it counts as closed rather than unreadable.
+        -- At a shop with the bank closed, 517:15 reads as visible with no children:
+        -- that's closed, not unreadable.
         if next(byDynamic) == nil then
-            return { state = "ok", open = false, reason = "slot container " .. containerName .. " has no slots" }
+            return { state = "ok", open = false, reason = "slot container has no slots" }
         end
 
         local slots = {}
@@ -242,28 +215,16 @@ function SlotScreen.new(spec)
             if itemId then
                 local component = byDynamic[slot - 1]
 
-                -- The slot must show exactly the item the inventory says it holds.
-                if component == nil then
-                    return { state = "unreliable", reason = spec.label .. " slot " .. slot .. " has no component" }
-                end
-
-                local shown = Log.field(component, "associatedObjectID")
-
-                if shown ~= itemId then
-                    return {
-                        state = "unreliable",
-                        reason = spec.label .. " slot " .. slot .. " shows item " .. tostring(shown)
-                            .. ", inventory has " .. itemId,
-                    }
+                if component == nil or Log.field(component, "associatedObjectID") ~= itemId then
+                    return { state = "unreliable", reason = spec.label .. " slot " .. slot .. " doesn't match" }
                 end
 
                 slots[#slots + 1] = { slot = slot, itemId = itemId, component = component }
             end
         end
 
-        -- If the inventory changed while we were reading, the pairs above may be mixed
-        -- from two states. Don't draw from it; the change also set the dirty flag, so
-        -- the next check reads again.
+        -- A change mid-read could mix two states; the change also set the dirty flag,
+        -- so the next check reads again.
         local after = SlotScreen.fingerprint(inv)
 
         if after == nil or not SlotScreen.sameFingerprint(before, after, count) then

@@ -10,8 +10,6 @@ local spec = {}
 -- that is already ready.
 local function setup()
     local client = FakeClient.install()
-    local Messages = require("src/messages")
-    local messages = Messages.new()
     local required = {
         isMarked = function(_, itemId)
             return itemId == 100
@@ -24,13 +22,8 @@ local function setup()
     local markers = require("src/ui/markers").new({
         screens = { (require("src/screens/backpack")) },
         questStatus = { ready = true, refreshUnwatched = function() end },
-        iconSprite = function()
-            return 26112
-        end,
-        requiredItems = function()
-            return required
-        end,
-        messages = messages,
+        iconSprite = 26112,
+        requiredItems = required,
     })
 
     client.setSlot(2, 100)
@@ -39,7 +32,7 @@ local function setup()
     return client, markers
 end
 
-spec["an unreliable screen loses its icons at once and tells the player once"] = function()
+spec["an unreliable screen loses its icons at once and gets them back once it reads"] = function()
     local client, markers = setup()
 
     client.fire("ServerLogic")
@@ -50,13 +43,9 @@ spec["an unreliable screen loses its icons at once and tells the player once"] =
     client.fire("ServerLogic")
 
     check.equal(#client.liveIcons(), 0, "icons removed on the first failure")
-    check.equal(#client.chat, 0, "no message for a one-tick hiccup")
 
     client.fire("ServerLogic")
     client.fire("ServerLogic")
-
-    check.equal(#client.chat, 1, "one message while it lasts")
-    check.contains(client.logs[#client.logs], "Couldn't read")
 
     client.slots[2].associatedObjectID = 100
     client.fire("ServerLogic")
@@ -128,7 +117,7 @@ spec["icons of an unloaded interface are forgotten, not touched, and redrawn"] =
     markers:stop()
 end
 
-spec["the icon cap stops drawing and says so once"] = function()
+spec["the icon cap stops drawing"] = function()
     local client, markers = setup()
 
     for slot = 1, 28 do
@@ -141,7 +130,6 @@ spec["the icon cap stops drawing and says so once"] = function()
     client.fire("ServerLogic")
 
     check.equal(#client.liveIcons(), 5)
-    check.contains(client.chat[1], "some markers are missing")
     markers:stop()
 end
 

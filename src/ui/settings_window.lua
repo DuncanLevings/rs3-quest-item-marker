@@ -1,6 +1,6 @@
--- The plugin's ribbon panel: the on/off checkbox, which quest types to mark (M5), the
--- shortcut and "Move quest box". Nothing else (author, 2026-11-16): status and
--- diagnostics go to the console log.
+-- The plugin's ribbon panel: which quest types to mark, the show/hide shortcut and
+-- "Move quest box". There's no on/off checkbox: the shortcut hides markers, and
+-- turning the plugin off removes them entirely.
 --
 -- The client hands us an empty layer (Event.ContentLayerReady) every time the ribbon
 -- icon is selected; we fill it with a PrettyUI SimpleView.
@@ -17,22 +17,17 @@ local SUBSCRIPTION = "quest-item-marker-settings"
 local CATEGORY_LABELS = { quest = "Quests", miniquest = "Miniquests" }
 
 -- options:
---   preferences     Preferences instance
---   categories      the quest types offered, in order (QuestData.CATEGORIES)
+--   preferences                Preferences instance
+--   categories                 the quest types offered, in order (QuestData.CATEGORIES)
 --   setCategory(category, on)  turns one quest type on or off
---   setEnabled(on)  shared with the keybind
---   onKeyChanged()  called after the shortcut is saved
---   moveBox()       opens the window that moves the quest box
+--   onKeyChanged()             called after the shortcut is saved
+--   moveBox()                  opens the window that moves the quest box
 function SettingsWindow.new(options)
     local self = {}
 
     local view = nil
-    local checkbox = nil
-    local layerInterfaceId = nil
 
     local function destroyView()
-        checkbox = nil
-
         if view then
             local old = view
             view = nil
@@ -44,7 +39,6 @@ function SettingsWindow.new(options)
 
     local function populate(layer)
         destroyView()
-        layerInterfaceId = layer.interfaceID
 
         view = prettyui.SimpleView.new(layer, {
             width = 0,
@@ -63,17 +57,7 @@ function SettingsWindow.new(options)
 
         current:AddTitle("Quest Item Marker")
 
-        checkbox = current:AddCheckboxButton({
-            { text = "Show quest item markers", value = "enabled", selected = options.preferences:isEnabled() },
-        }, {
-            onChange = function(_, _, _, selected)
-                if alive() then
-                    options.setEnabled(selected)
-                end
-            end,
-        })
-
-        -- Which quest types count (CUJ 6). Both on by default.
+        -- Which quest types get marked. Both start ticked.
         local filter = options.preferences:getFilter()
         local choices = {}
 
@@ -106,7 +90,7 @@ function SettingsWindow.new(options)
                 if options.preferences:setKey(value) then
                     options.onKeyChanged()
                 else
-                    Log.write("shortcut not saved, unexpected value:", tostring(value))
+                    Log.error("shortcut not saved, unexpected value:", tostring(value))
                 end
             end,
         })
@@ -115,31 +99,6 @@ function SettingsWindow.new(options)
         current:AddSimpleButton("Move quest box", function()
             if alive() then
                 options.moveBox()
-            end
-        end)
-    end
-
-    -- Brings an open panel's checkbox up to date (the shortcut may have changed it).
-    function self:refresh()
-        if not view then
-            return
-        end
-
-        -- Only while the panel is on screen. A closed panel is rebuilt from scratch the
-        -- next time the ribbon icon is selected, and its handles may no longer be ours.
-        local onScreen = false
-
-        pcall(function()
-            onScreen = ui.Interfaces:GetInterface(layerInterfaceId) ~= nil and view.root.visibleGlobal == true
-        end)
-
-        if not onScreen then
-            return
-        end
-
-        Log.safe("refresh settings", function()
-            if checkbox and checkbox:IsSelected("enabled") ~= options.preferences:isEnabled() then
-                checkbox:SetSelected("enabled", options.preferences:isEnabled(), false)
             end
         end)
     end

@@ -1,7 +1,6 @@
--- The optional shortcut that shows or hides markers. Reused from the author's Skill
--- Tips plugin (src/ui/keybind.lua there): PrettyUI's KeybindField.IsDown already
--- ignores presses while the player is typing (chat, the bank search box) or while a
--- keybind field is capturing keys, so we only add "once per press".
+-- The optional shortcut that shows or hides markers. PrettyUI's KeybindField.IsDown
+-- already ignores presses while the player is typing or a keybind field is capturing
+-- keys, so this only adds "once per press".
 --
 -- Unbound by default. Owns one Logic subscription, and only while a key is bound.
 
@@ -42,7 +41,7 @@ function Keybind.new(getBinding, onPress)
                 local ok, problem = pcall(onLogic)
 
                 if not ok then
-                    Log.write("keybind failed:", problem)
+                    Log.error("keybind failed:", problem)
                 end
             end)
         elseif not bound and subscribed then

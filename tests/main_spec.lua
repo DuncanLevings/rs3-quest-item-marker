@@ -194,7 +194,6 @@ spec["spamming the shortcut reads no quest status and off leaves nothing of ours
     check.equal(#client.liveIcons(), 0, "icons")
     check.equal(#client.liveTooltips(), 0, "tooltips")
     check.equal(client.hookedSlots(), 0, "hooks on game slots")
-    check.equal(client.chat[#client.chat], "Quest Item Marker: Markers hidden")
 
     -- What's left subscribed is only what turns markers back on and keeps the
     -- cache fresh: the shortcut, the quest watch and the ribbon panel.
@@ -249,13 +248,35 @@ spec["shutdown leaves zero icons, tooltips, hooks and subscriptions"] = function
     check.equal(client.subscriptionCount(), 0)
 end
 
-spec["the off setting is respected at the next start"] = function()
-    local client, shutdown = setup({ enabled = false })
+spec["hidden markers stay hidden at the next start while a shortcut is bound"] = function()
+    local client, shutdown = setup({ enabled = false, key = { 81 } })
 
     settle(client)
 
     check.equal(#client.liveIcons(), 0)
     check.falsy(client.subscribed("ServerLogic", "quest-item-marker-markers"))
+
+    shutdown()
+end
+
+spec["with no shortcut bound, hidden markers come back (nothing else could show them)"] = function()
+    local client, shutdown = setup({ enabled = false })
+
+    settle(client)
+
+    check.equal(#client.liveIcons(), 1)
+    check.truthy(client.db["quest-item-marker.settings.v1"].enabled, "saved as shown")
+
+    shutdown()
+end
+
+spec["the panel has no on/off checkbox, only the quest type filter"] = function()
+    local client, shutdown = setup()
+
+    client.fire("ContentLayerReady", { component = { interfaceID = 1477 } })
+
+    check.equal(#client.view.checkboxes, 1)
+    check.equal(client.view.checkboxes[1].choices[1].value, "quest")
 
     shutdown()
 end

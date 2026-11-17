@@ -37,9 +37,7 @@ function QuestState.fromConfig(quest)
         return "unknown"
     end
 
-    -- The build tool already skipped deprecated configs, so one turning up here means
-    -- the client changed under us. Its flags may be stale (M0: COOK_QUEST stays
-    -- false/false while COOKS_ASSISTANT tracks the real quest).
+    -- A deprecated config's flags aren't kept up to date, so don't trust them.
     if deprecated == true then
         return "missing"
     end
@@ -52,14 +50,13 @@ function QuestState.fromConfig(quest)
         return "finished"
     end
 
-    -- M0: hasStartedQuest is also true for finished quests, so it only means "in
+    -- hasStartedQuest is also true for finished quests, so it only means "in
     -- progress" once we know it isn't finished.
     if started then
         return "in_progress"
     end
 
-    -- canStartQuest matched known requirements in M0. If it's unreadable we still
-    -- know the quest isn't started, so "not started" is the honest answer.
+    -- If canStartQuest is unreadable we still know the quest isn't started.
     if canStart == false then
         return "cant_start"
     end

@@ -1,6 +1,10 @@
 Quest Item Marker - M3 (bank) in-game test
 ==========================================
 
+Note (after M5): the plugin no longer writes chat messages or status lines to the
+console, so steps below that look for those lines no longer apply. Check what you
+see on screen instead. Caught errors print only with Log.DEV = true in src/log.lua.
+
 What M3 covers: quest icons and the same hover tooltips in the bank (placeholders
 too) and on the backpack panel inside the bank screen. Icons follow tab switches,
 searches, scrolling and reordering in the same frame. Shops come in M4, the quest

@@ -1,6 +1,10 @@
 Quest Item Marker - M4 (shops) in-game test
 ===========================================
 
+Note (after M5): the plugin no longer writes chat messages or status lines to the
+console, so steps below that look for those lines no longer apply. Check what you
+see on screen instead. Caught errors print only with Log.DEV = true in src/log.lua.
+
 What M4 covers: quest icons and hover tooltips on shop stock, including a shop with
 several stock tabs. The quest type filter comes in M5.
 

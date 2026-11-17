@@ -1,10 +1,6 @@
--- The "Move quest box" window (author, 2026-11-16: the quest tooltip shows in one
--- spot the player picks, not next to the item; see item_tooltip.lua, Placement).
---
--- A PrettyUI Window stands in for the quest box while it's open: drag it by its
--- title bar, and wherever its top-left corner is dropped becomes the quest box's
--- top-left corner. It saves on every drop; closing it just closes it. It ignores the
--- game's interface lock, because the player opened it on purpose to move something.
+-- The "Move quest box" window. It stands in for the quest tooltip: wherever its
+-- top-left corner is dropped is saved as the tooltip's spot. It ignores the interface
+-- lock, since the player opened it on purpose to move something.
 --
 -- Owns: the window, while it's open.
 
@@ -60,7 +56,7 @@ function BoxMover.new(preferences)
         local holder = findHolder()
 
         if holder == nil then
-            Log.write("couldn't open the quest box mover: game area not found")
+            Log.error("couldn't open the quest box mover: game area not found")
             return
         end
 
@@ -77,7 +73,7 @@ function BoxMover.new(preferences)
                 respectInterfaceLock = false,
                 onPositionChange = function(_, newX, newY)
                     if window == current and not preferences:setBox(newX, newY) then
-                        Log.write("quest box spot not saved, unexpected value:", tostring(newX), tostring(newY))
+                        Log.error("quest box spot not saved, unexpected value:", tostring(newX), tostring(newY))
                     end
                 end,
                 onClose = function()

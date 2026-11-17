@@ -37,8 +37,7 @@ spec["the first read is spread over logic ticks, then reports ready"] = function
     check.equal(events[1].reason, "ready")
     check.equal(status:get(1), "not_started")
     check.equal(status:get(4), "missing", "quest unknown to the client")
-    check.equal(status.counts.unwatched, 1)
-    check.equal(status.counts.missing, 1)
+    check.equal(#status.unwatched, 1)
     check.falsy(client.subscribed("Logic", "quest-item-marker-quest-status"), "logic dropped once idle")
 end
 

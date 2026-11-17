@@ -1,14 +1,13 @@
--- Entry point for Quest Item Marker. Builds every module in dependency order, wires
--- them together, and returns the shutdown function (root main.lua hands it to
--- PluginShutdown). Shutdown runs in reverse: unsubscribe first, then destroy.
+-- Entry point: builds every module, wires them together, and returns the shutdown
+-- function that root main.lua hands to PluginShutdown.
 --
--- How the pieces fit (design doc, Technical Plan §3):
+-- How the pieces fit:
 --   data/quest_items.lua --QuestData--> item index ----+
 --   config.Quest --QuestStatus--> cached quest states --+--> RequiredItems
 --   Preferences (on/off, shortcut, filter, box spot) ---+        |
 --   screen adapters (slot reads) ---> Markers (icons + tooltips) <+
---   SettingsWindow (ribbon) and Keybind both call setEnabled(); the panel's
---   "Move quest box" opens BoxMover, which saves the spot tooltips are drawn at.
+--   Keybind calls setEnabled(); SettingsWindow sets the filter and shortcut, and its
+--   "Move quest box" button opens BoxMover.
 
 local QuestData = require("src/game/quest_data")
 local QuestStatus = require("src/game/quest_status")
@@ -22,14 +21,12 @@ local Markers = require("src/ui/markers")
 local Keybind = require("src/ui/keybind")
 local SettingsWindow = require("src/ui/settings_window")
 local BoxMover = require("src/ui/box_mover")
-local Messages = require("src/messages")
 local Log = require("src/log")
 
 local App = {}
 
--- The marker icon: the blue quest icon from the quest list (picked by the author in
--- the rsprite finder, 2026-11-16). By name, so a client update that renumbers sprites
--- still finds it; the id it had then is the fallback.
+-- The marker icon is the blue quest-list icon. Looked up by name so a client update
+-- that renumbers sprites still finds it; the id is the fallback.
 local ICON_SPRITE_NAME = "RS3_ICON_QUEST_LIST"
 local ICON_SPRITE_FALLBACK = 17130
 
@@ -42,66 +39,48 @@ local function questIconSprite()
         return sprite
     end
 
-    Log.write("sprite", ICON_SPRITE_NAME, "not found by name, using id", ICON_SPRITE_FALLBACK)
     return ICON_SPRITE_FALLBACK
 end
 
--- Each start gets fresh state, even if the client cached these modules.
+-- Builds fresh state on every start, even if the client cached these modules.
 function App.start()
-    local messages = Messages.new()
     local questData = QuestData.load()
     local dataOk = questData.status == "ok"
 
-    if dataOk then
-        Log.write(
-            "data loaded: snapshot", questData.snapshot, "|", questData.counts.quests, "quests |",
-            questData.counts.items, "marked item ids |", questData.counts.badQuests, "bad quests,",
-            questData.counts.badNeeds, "bad needs skipped"
-        )
-    else
-        -- CUJ 7: nothing is marked, and the player hears about it once.
-        Log.write("quest data incompatible:", questData.message)
-        messages:once("data", "Quest data incompatible, so no items are marked. Please update the plugin.")
+    -- Bad data means nothing gets marked, but the panel still works so the plugin
+    -- doesn't look broken.
+    if not dataOk then
+        Log.error("quest data incompatible:", questData.message)
     end
 
     local preferences = Preferences.new(PersistentDB, QuestData.CATEGORIES)
 
-    -- Filled in below; callbacks created first need to see them.
-    local questStatus, requiredItems, markers, settings, keybind
+    -- Assigned below; the callbacks created first close over them.
+    local questStatus, requiredItems, markers, keybind
     local boxMover = BoxMover.new(preferences)
 
-    local function refreshSettings()
-        if settings then
-            settings:refresh()
-        end
-    end
-
-    -- The checkbox and the shortcut share this one switch and one saved setting.
-    -- Showing markers again draws from the cached quest states: no quest is read.
-    local function setEnabled(enabled, fromShortcut)
+    -- Shows or hides markers and remembers it. Showing them again draws from cached
+    -- quest states; no quest is read.
+    local function setEnabled(enabled)
         preferences:setEnabled(enabled)
 
         if markers then
             markers:setEnabled(enabled)
         end
-
-        if fromShortcut then
-            messages:show(enabled and "Markers shown" or "Markers hidden")
-        end
-
-        -- The in-game toggle check: this number must not grow while toggling.
-        if questStatus then
-            Log.write("markers", enabled and "on" or "off", "| quest reads since login:", questStatus.counts.read)
-        end
-
-        refreshSettings()
     end
 
-    if dataOk then
-        local filter = preferences:getFilter()
+    -- The shortcut is the only way to bring hidden markers back, so with no shortcut
+    -- bound they must be showing, or the player would be stuck without them.
+    local function showIfNoShortcut()
+        if #preferences:getKey() == 0 and not preferences:isEnabled() then
+            setEnabled(true)
+        end
+    end
 
+    showIfNoShortcut()
+
+    if dataOk then
         questStatus = QuestStatus.new(questData.quests, function()
-            -- Ready, changed or reset: every screen re-checks on the next server tick.
             if markers then
                 markers:markAllDirty()
             end
@@ -109,36 +88,28 @@ function App.start()
 
         requiredItems = RequiredItems.new(questData, function(questId)
             return questStatus:get(questId)
-        end, filter)
-
-        local iconSprite = questIconSprite()
+        end, preferences:getFilter())
 
         markers = Markers.new({
-            -- The backpack, the bank, the backpack panel inside the bank screen, and
-            -- shops. The shop adapter remembers inventory ids, so each start gets its own.
+            -- The shop adapter keeps state, so each start gets its own.
             screens = { Backpack, Bank, BankBackpack, Shop.new() },
             questStatus = questStatus,
-            iconSprite = function()
-                return iconSprite
-            end,
-            requiredItems = function()
-                return requiredItems
-            end,
+            iconSprite = questIconSprite(),
+            requiredItems = requiredItems,
             boxPosition = function()
                 return preferences:getBox()
             end,
-            messages = messages,
         })
     end
 
     keybind = Keybind.new(function()
         return preferences:getKey()
     end, function()
-        setEnabled(not preferences:isEnabled(), true)
+        setEnabled(not preferences:isEnabled())
     end)
 
-    -- A quest type turned on or off (CUJ 6): save it, and redraw every open screen now
-    -- from the cached quest states (no quest is read).
+    -- A quest type was ticked or unticked: save it and redraw open screens straight
+    -- away instead of waiting for the next server tick.
     local function setCategory(category, included)
         if not preferences:setFilter(category, included) then
             return
@@ -148,19 +119,15 @@ function App.start()
             requiredItems:setFilter(preferences:getFilter())
             markers:refreshNow()
         end
-
-        Log.write("filter:", category, included and "on" or "off")
     end
 
-    settings = SettingsWindow.new({
+    local settings = SettingsWindow.new({
         preferences = preferences,
         categories = QuestData.CATEGORIES,
         setCategory = setCategory,
-        setEnabled = function(enabled)
-            setEnabled(enabled, false)
-        end,
         onKeyChanged = function()
             keybind:update()
+            showIfNoShortcut()
         end,
         moveBox = function()
             boxMover:open()
@@ -175,7 +142,6 @@ function App.start()
     end
 
     keybind:update()
-    Log.write("started | markers", preferences:isEnabled() and "on" or "off")
 
     local stopped = false
 
@@ -186,9 +152,7 @@ function App.start()
 
         stopped = true
 
-        -- Input first, so nothing can turn markers back on mid-shutdown; then the
-        -- markers (icons, tooltips, hover hooks, their events); then quest status
-        -- and the panel.
+        -- Input first, so nothing can turn markers back on mid-shutdown.
         Log.safe("stop keybind", function()
             keybind:stop()
         end)
@@ -212,8 +176,6 @@ function App.start()
         Log.safe("stop quest box mover", function()
             boxMover:stop()
         end)
-
-        Log.write("stopped")
     end
 end
 

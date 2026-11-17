@@ -1,35 +1,8 @@
--- Attaches one PrettyUI tooltip to one marker icon. Stateless apart from a weak table
--- of per-tooltip drawing details: the tooltip it returns belongs to that icon
--- (markers.lua destroys both together).
+-- Attaches a hover tooltip to a marker icon. The tooltip shows at the spot the player
+-- picked ("Move quest box"), with a quest sprite in front of each quest line.
 --
--- Hover is on the icon only (author, 2026-11-16, after the first in-game look), not
--- on the whole slot:
---   * M0 (hover option H2): hooks on our icon fire even while the icon lets clicks
---     through. Tooltip.attach sets its target's clickthrough to false, so we set it
---     back to true right after: the icon never takes a click, and the game slot
---     under it is never touched at all.
---   * Parented to the game area, the tooltip drew *under* the bank window. Parented
---     to the slot's top ancestor (1477 TOPLEVEL_V2), it draws above it.
---   * attach positions from the target's local x/y, which is wrong for a slot nested
---     inside a window, so we set the position ourselves on every hover.
---   * PrettyUI 1.3.0 only builds a tooltip's parts on its first Show, and Hide
---     releases them again, so an unhovered tooltip costs almost nothing.
---
--- Placement (author, 2026-11-16, after five in-game looks): in ONE FIXED SPOT on
--- screen that the player picks ("Move quest box" in the settings panel), not next to
--- the item. The game's own hover box is centred on the cursor, up to ~320 x 150 px for
--- food and potions, and flips near screen edges, so every spot near the item ended up
--- under it somewhere (above, below and beside the slot, and beside the window, were
--- all tried or weighed). A fixed spot never meets it, and the player knows where to
--- look. The saved spot is the tooltip's top-left corner; a tooltip that would run off
--- screen there is moved back on. With nothing saved it goes top centre.
---
--- Quest sprites: PrettyUI's tooltip only takes text, so after it shows we move its
--- label right and put a small quest sprite in front of each quest line, like a bullet
--- (author, 2026-11-16: long quest names may wrap). The sprites are children of the
--- tooltip's own root, so Hide (which releases the root) removes them too. Each line's
--- wrapped height is measured at the label's real width, and the tooltip is given the
--- sum as its height, so the frame, the label and the sprites agree.
+-- Owns a weak table of per-tooltip layout details. The tooltip itself belongs to its
+-- icon, and markers.lua destroys the two together.
 
 local Log = require("src/log")
 
@@ -171,8 +144,9 @@ local function removeLineIcons(detail)
     detail.lineIcons = {}
 end
 
--- Indents the label and puts a quest sprite in front of each quest line. Safe to call
--- again on the same parts (after a text change): old sprites are removed first.
+-- Indents the label and puts a quest sprite in front of each quest line (PrettyUI
+-- tooltips only take text). The sprites are children of the tooltip's root, so Hide
+-- removes them. Safe to call again after a text change: old sprites go first.
 local function decorate(tooltip)
     local detail = details[tooltip]
     local parts = rawget(tooltip, "_parts")
@@ -210,6 +184,8 @@ local function decorate(tooltip)
     end
 end
 
+-- Places the tooltip and shows it. We set x/y ourselves because PrettyUI positions
+-- from the icon's local coordinates, which are wrong for a slot nested in a window.
 local function show(tooltip, holder)
     local detail = details[tooltip]
     local saved = detail and detail.position and detail.position()
@@ -223,15 +199,14 @@ local function show(tooltip, holder)
     local ok, problem = pcall(decorate, tooltip)
 
     if not ok then
-        Log.write("tooltip quest icons failed:", problem)
+        Log.error("tooltip quest icons failed:", problem)
     end
 end
 
--- Hooks a tooltip onto our `icon`, drawn inside `holder` (the slot's top ancestor).
--- `text` is the tooltip text; `kinds` says what each of its lines is ("quest" lines
--- get a quest sprite). options: sprite (the quest sprite id), position (a function
--- giving the saved { x, y } spot, or nil for the default). Returns the PrettyUI
--- tooltip; the caller must Destroy() it before the icon.
+-- Hooks a tooltip onto our `icon`. `holder` is the slot's top ancestor, so the
+-- tooltip draws above windows like the bank. `kinds` says what each line of `text`
+-- is ("quest" lines get a sprite). options: sprite (quest sprite id), position
+-- (returns the saved { x, y } or nil). The caller must Destroy() it before the icon.
 function ItemTooltip.attach(icon, holder, text, kinds, options)
     local width, height, tops, rowHeight = ItemTooltip.layout(text)
     local tooltip = prettyui.Tooltip.attach(icon, holder, {
@@ -247,13 +222,13 @@ function ItemTooltip.attach(icon, holder, text, kinds, options)
             local ok, problem = pcall(show, tooltip, holder)
 
             if not ok then
-                Log.write("tooltip failed to show:", problem)
+                Log.error("tooltip failed to show:", problem)
             end
         end,
     })
 
-    -- attach made the icon take clicks; give them back to the item underneath.
-    -- Hover hooks keep firing on a click-through icon (M0, H2).
+    -- attach turns clickthrough off; turn it back on so clicks reach the item. Hover
+    -- still fires on a click-through icon.
     icon.clickthrough = true
 
     if tooltip then

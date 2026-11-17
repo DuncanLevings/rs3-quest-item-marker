@@ -11,7 +11,6 @@ local FakeClient = {}
 function FakeClient.install()
     local client = {
         logs = {},
-        chat = {},
         -- [eventName] = { [subscriptionName] = handler }
         handlers = {},
         components = {},
@@ -22,7 +21,6 @@ function FakeClient.install()
         inventory = { valid = true, slotCount = 28, slots = {}, counts = {} },
         bank = { valid = false, slotCount = 1920, slots = {}, counts = {} },
         playerAvailable = true,
-        chatAllowed = true,
         db = {},
         -- The bank interface (517) starts unloaded: the bank is closed.
         loadedInterfaces = { [1473] = true, [1477] = true },
@@ -93,17 +91,6 @@ function FakeClient.install()
         end,
     }
 
-    _G.Plugin = {
-        HasPermission = function()
-            return client.chatAllowed
-        end,
-    }
-    _G.PluginPermissions = { chatAccess = "chatAccess" }
-    _G.Chat = {
-        AddMessage = function(text)
-            client.chat[#client.chat + 1] = text
-        end,
-    }
 
     -- Configs -----------------------------------------------------------------
     client.questReads = 0

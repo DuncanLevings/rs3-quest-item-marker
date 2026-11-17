@@ -128,7 +128,6 @@ end
 -- Markers on all three screens, marking item 100 only, quest status ready.
 local function setup()
     local client = FakeClient.install()
-    local messages = require("src/messages").new()
     local required = {
         isMarked = function(_, itemId)
             return itemId == 100
@@ -145,13 +144,8 @@ local function setup()
             (require("src/screens/bank_backpack")),
         },
         questStatus = { ready = true, refreshUnwatched = function() end },
-        iconSprite = function()
-            return 17130
-        end,
-        requiredItems = function()
-            return required
-        end,
-        messages = messages,
+        iconSprite = 17130,
+        requiredItems = required,
     })
 
     client.setSlot(2, 100)
@@ -278,7 +272,7 @@ spec["a bank that unloads leaves its old handles alone"] = function()
     markers:stop()
 end
 
-spec["an unreadable bank shows no wrong icon and says 'Couldn't read Bank' once"] = function()
+spec["an unreadable bank shows no wrong icon"] = function()
     local client, markers = setup()
 
     client.openBank()
@@ -298,9 +292,6 @@ spec["an unreadable bank shows no wrong icon and says 'Couldn't read Bank' once"
 
     client.fire("ServerLogic")
     client.fire("ServerLogic")
-
-    check.equal(#client.chat, 1)
-    check.contains(client.chat[1], "Couldn't read Bank")
 
     client.bankSlots[1].associatedObjectID = 100
     client.fire("ServerLogic")

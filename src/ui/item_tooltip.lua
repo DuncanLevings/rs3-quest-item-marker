@@ -32,7 +32,7 @@ local DEFAULT_TOP = 0.15
 -- PrettyUI keeps a tooltip this far inside its parent (tooltip.lua OFFSET).
 local EDGE_MARGIN = 6
 
--- [tooltip] = { kinds, tops, rowHeight, sprite, position, lineIcons, decoratedParts }
+-- [tooltip] = { kinds, tops, rowHeight, sprite, tint, position, lineIcons, decoratedParts }
 local details = setmetatable({}, { __mode = "k" })
 
 -- The highest ancestor of a component (for game slots, interface 1477). Capped so a
@@ -176,6 +176,11 @@ local function decorate(tooltip)
         if kind == "quest" and top then
             local sprite = prettyui.NewComponent(ui.Sprite, parts.root, { categoryID = "auto" })
             sprite.sprite = detail.sprite
+
+            if detail.tint then
+                sprite.rgba = detail.tint
+            end
+
             sprite:SetSize(LINE_ICON_SIZE, LINE_ICON_SIZE)
             sprite:SetPos(PADDING_X, math.floor(top) + offset)
             sprite.clickthrough = true
@@ -205,8 +210,8 @@ end
 
 -- Hooks a tooltip onto our `icon`. `holder` is the slot's top ancestor, so the
 -- tooltip draws above windows like the bank. `kinds` says what each line of `text`
--- is ("quest" lines get a sprite). options: sprite (quest sprite id), position
--- (returns the saved { x, y } or nil). The caller must Destroy() it before the icon.
+-- is ("quest" lines get a sprite). options: sprite (quest sprite id), tint (0xRRGGBBAA
+-- for that sprite, or nil), position (returns the saved { x, y } or nil). The caller must Destroy() it before the icon.
 function ItemTooltip.attach(icon, holder, text, kinds, options)
     local width, height, tops, rowHeight = ItemTooltip.layout(text)
     local tooltip = prettyui.Tooltip.attach(icon, holder, {
@@ -237,6 +242,7 @@ function ItemTooltip.attach(icon, holder, text, kinds, options)
             tops = tops,
             rowHeight = rowHeight,
             sprite = options and options.sprite,
+            tint = options and options.tint,
             position = options and options.position,
             lineIcons = {},
         }
@@ -246,12 +252,13 @@ function ItemTooltip.attach(icon, holder, text, kinds, options)
 end
 
 -- Changes the text of an attached tooltip, resizing it to the new lines.
-function ItemTooltip.setText(tooltip, text, kinds)
+function ItemTooltip.setText(tooltip, text, kinds, tint)
     local detail = details[tooltip]
     local width, height, tops, rowHeight = ItemTooltip.layout(text)
 
     if detail then
         detail.kinds = kinds or {}
+        detail.tint = tint
         detail.tops = tops
         detail.rowHeight = rowHeight
     end

@@ -1,0 +1,54 @@
+{
+  "_about": "Hand-reviewed inputs for tools/build_post_quest.py. See tools/README.txt.",
+
+  "never_marked_patterns": {
+    "\\blamps?\\b": "XP lamps are rewards to use, not items to keep or throw away",
+    "\\btokens?\\b": "tokens are spent elsewhere",
+    "\\bXP\\b": "XP rewards"
+  },
+
+  "permanent": {
+    "10th squad sigil": "teleport to Ape Atoll",
+    "Balmung": "weapon against dagannoth",
+    "Blisterwood polearm": "weapon against vampyres",
+    "Camulet": "teleport to Enakhra's temple",
+    "Chaos boots": "armour reward",
+    "Cramulet": "teleport amulet",
+    "Cramulet (monkey, ghost, camel)": "teleport amulet",
+    "Cramulet (monkey, ghost, cat, camel)": "teleport amulet",
+    "Cramulet (monkey, ghost, cat, camel, enchanted)": "teleport amulet",
+    "Dagon'hai robe top": "armour reward",
+    "Dagon'hai robe bottom": "armour reward",
+    "Diving apparatus": "needed for underwater areas",
+    "Drakan's medallion": "teleports around Morytania",
+    "Ectophial": "teleport to the Ectofuntus",
+    "Ectophial (empty)": "the Ectophial after use, refilled at the Ectofuntus",
+    "Enchanted lyre": "teleport to Rellekka",
+    "Fishbowl helmet": "needed for underwater areas",
+    "Ivandis flail": "weapon against vampyres",
+    "Keris": "weapon reward",
+    "Primed keris": "weapon reward",
+    "Monkey greegree": "transforms into a monkey on Ape Atoll",
+    "Ring of charos (a)": "dialogue options and discounts",
+    "Seal of passage": "needed on Lunar Isle",
+    "Sunspear": "weapon reward",
+    "Sunspear (magic)": "weapon reward",
+    "Sunspear (melee)": "weapon reward",
+    "Sunspear (ranged)": "weapon reward",
+    "TokKul-Zo": "teleport and Smithing bonus in the Elder Kiln",
+    "Zanik's crossbow": "weapon reward",
+    "Zorgoth's ring": "reward ring"
+  },
+
+  "keep_exclude": {
+    "Post-quest rewards": "not an item"
+  },
+
+  "keep_add": {},
+
+  "done_exclude": {
+    "Monkey talisman": "made into greegrees after Monkey Madness",
+    "Monkey corpse": "made into greegrees after Monkey Madness",
+    "Monkey bones": "made into greegrees after Monkey Madness"
+  }
+}

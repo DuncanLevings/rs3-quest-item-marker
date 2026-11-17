@@ -5,6 +5,7 @@
 -- Owns every icon and its tooltip, plus the Inventory*, ServerLogic, GameStateChanged
 -- and Draw subscriptions. With markers off it owns nothing.
 
+local ItemMarks = require("src/game/item_marks")
 local ItemTooltip = require("src/ui/item_tooltip")
 local SlotScreen = require("src/screens/slot_screen")
 local Log = require("src/log")
@@ -31,7 +32,8 @@ local OPEN_WAIT_FRAMES = 60
 --   screens        list of screen adapters (src/screens/*.lua)
 --   questStatus    QuestStatus (only .ready and :refreshUnwatched are used)
 --   iconSprite     the quest icon sprite id
---   requiredItems  RequiredItems
+--   itemMarks      ItemMarks
+--   onScreenOpened()  optional; runs when a screen goes from closed to open
 --   boxPosition()  the saved tooltip spot { x, y }, or nil for the default
 function Markers.new(options)
     local self = {
@@ -39,7 +41,7 @@ function Markers.new(options)
         iconCount = 0,
     }
 
-    local required = options.requiredItems
+    local marks = options.itemMarks
     local screens = {}
 
     for _, adapter in ipairs(options.screens) do
@@ -48,7 +50,7 @@ function Markers.new(options)
             name = adapter.NAME,
             interfaceId = adapter.INTERFACE_ID,
 
-            -- [slot] = { itemId, icon, tooltip, component, text, key, containerKey }
+            -- [slot] = { itemId, kind, icon, tooltip, component, text, key, containerKey }
             icons = {},
             dirty = true,
 
@@ -171,8 +173,9 @@ function Markers.new(options)
     end
 
     -- Creates one slot's icon and tooltip. Returns the record, or nil.
-    local function createIcon(slot, text, kinds, holder)
+    local function createIcon(slot, kind, text, kinds, holder)
         local component = slot.component
+        local tint = ItemMarks.TINTS[kind]
         local icon = nil
 
         local built, problem = pcall(function()
@@ -183,6 +186,10 @@ function Markers.new(options)
             icon:SetSize(ICON_SIZE, ICON_SIZE)
             icon:SetPos(component.x + component.width - ICON_SIZE, component.y)
 
+            if tint then
+                icon.rgba = tint
+            end
+
             -- Clicks pass through to the item underneath.
             icon.clickthrough = true
         end)
@@ -192,6 +199,7 @@ function Markers.new(options)
         if built then
             built, tooltip = pcall(ItemTooltip.attach, icon, holder, text, kinds, {
                 sprite = options.iconSprite,
+                tint = tint,
                 position = options.boxPosition,
             })
             problem = tooltip
@@ -215,6 +223,7 @@ function Markers.new(options)
 
         return {
             itemId = slot.itemId,
+            kind = kind,
             icon = icon,
             tooltip = tooltip,
             component = component,
@@ -268,11 +277,14 @@ function Markers.new(options)
             return
         end
 
-        local wanted = {}
+        local wanted, kindOf = {}, {}
 
         for _, slot in ipairs(result.slots) do
-            if required:isMarked(slot.itemId) then
+            local kind = marks:kindOf(slot.itemId)
+
+            if kind then
                 wanted[slot.slot] = slot
+                kindOf[slot.slot] = kind
             end
         end
 
@@ -280,12 +292,13 @@ function Markers.new(options)
             dropDeletedIcons(screen, result.present, result.containerKey)
         end
 
-        -- Remove icons whose slot emptied, changed item, or sits in another container
-        -- than the one just read (a shop display-mode switch).
+        -- Remove icons whose slot emptied, changed item or marker kind, or sits in
+        -- another container than the one just read (a shop display-mode switch).
         for slotIndex, record in pairs(screen.icons) do
             local slot = wanted[slotIndex]
 
-            if slot == nil or slot.itemId ~= record.itemId or record.containerKey ~= result.containerKey then
+            if slot == nil or slot.itemId ~= record.itemId or record.kind ~= kindOf[slotIndex]
+                or record.containerKey ~= result.containerKey then
                 destroyIcon(record)
                 screen.icons[slotIndex] = nil
             elseif record.component ~= slot.component then
@@ -298,20 +311,21 @@ function Markers.new(options)
         local holder = nil
 
         for slotIndex, slot in pairs(wanted) do
-            local text, kinds = required:tooltipText(slot.itemId, nameOf)
+            local kind = kindOf[slotIndex]
+            local text, kinds = marks:tooltipText(slot.itemId, kind, nameOf)
             local record = screen.icons[slotIndex]
 
             if record then
                 if record.text ~= text then
                     Log.safe("update tooltip", function()
-                        ItemTooltip.setText(record.tooltip, text, kinds)
+                        ItemTooltip.setText(record.tooltip, text, kinds, ItemMarks.TINTS[kind])
                     end)
                     record.text = text
                 end
             elseif self.iconCount < ICON_CAP then
                 holder = holder or ItemTooltip.topAncestor(slot.component)
 
-                local created = createIcon(slot, text, kinds, holder)
+                local created = createIcon(slot, kind, text, kinds, holder)
 
                 if created then
                     created.containerKey = result.containerKey
@@ -345,6 +359,10 @@ function Markers.new(options)
 
         if open and screen.open == false then
             options.questStatus:refreshUnwatched(serverTick)
+
+            if options.onScreenOpened then
+                options.onScreenOpened()
+            end
         end
 
         screen.open = open

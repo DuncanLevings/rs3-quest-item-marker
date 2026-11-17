@@ -110,7 +110,16 @@ function FakeClient.install()
         return client.quests[questId]
     end
 
+    -- [achievementId] = progress (-2 complete). Unknown ids read as nil.
+    client.achievements = {}
+
     _G.config = {
+        Achievement = {
+            FromID = function(achievementId)
+                local progress = client.achievements[achievementId]
+                return progress and { progress = progress } or nil
+            end,
+        },
         Quest = {
             FromID = function(questId)
                 client.questReads = client.questReads + 1

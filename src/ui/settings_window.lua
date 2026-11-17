@@ -20,6 +20,7 @@ local CATEGORY_LABELS = { quest = "Quests", miniquest = "Miniquests" }
 --   preferences                Preferences instance
 --   categories                 the quest types offered, in order (QuestData.CATEGORIES)
 --   setCategory(category, on)  turns one quest type on or off
+--   setShown(kind, on)         turns a finished-quest marker ("keep"/"done") on or off
 --   onKeyChanged()             called after the shortcut is saved
 --   moveBox()                  opens the window that moves the quest box
 function SettingsWindow.new(options)
@@ -74,6 +75,20 @@ function SettingsWindow.new(options)
             onChange = function(_, _, category, selected)
                 if alive() then
                     options.setCategory(category, selected)
+                end
+            end,
+        })
+
+        current:AddText("For finished quests, also mark")
+        current:AddCheckboxButton({
+            { text = "Items still used afterwards (green)", value = "keep",
+              selected = options.preferences:isShown("keep") },
+            { text = "Items no longer needed (red)", value = "done",
+              selected = options.preferences:isShown("done") },
+        }, {
+            onChange = function(_, _, kind, selected)
+                if alive() then
+                    options.setShown(kind, selected)
                 end
             end,
         })

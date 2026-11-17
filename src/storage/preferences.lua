@@ -7,6 +7,7 @@
 --       key = { gameKey, gameKey? },            -- toggle shortcut, empty = none
 --       filter = { quest = true, miniquest = true },
 --       box = { x = 120, y = 80 },              -- quest box top-left; absent = default
+--       postQuest = { keep = true, done = true }, -- the two finished-quest markers
 --   }
 --
 -- Each field is checked on its own, so one bad value (or a field from a newer
@@ -27,6 +28,9 @@ local FILTER_DEFAULTS = { quest = true, miniquest = true }
 -- A category added to the data later starts included: an extra icon is safer than
 -- a missing one.
 local NEW_CATEGORY_DEFAULT = true
+
+-- The finished-quest marker kinds and their defaults (both shown).
+local POST_QUEST_DEFAULTS = { keep = true, done = true }
 
 -- A keybind is up to two distinct key codes (PrettyUI KeybindField's own limit).
 local function isBinding(value)
@@ -93,7 +97,18 @@ function Preferences.new(db, categories)
             enabled = true,
             key = {},
             filter = {},
+            postQuest = {},
         }
+
+        local savedPostQuest = type(saved.postQuest) == "table" and saved.postQuest or {}
+
+        for kind, default in pairs(POST_QUEST_DEFAULTS) do
+            if type(savedPostQuest[kind]) == "boolean" then
+                values.postQuest[kind] = savedPostQuest[kind]
+            else
+                values.postQuest[kind] = default
+            end
+        end
 
         if type(saved.enabled) == "boolean" then
             values.enabled = saved.enabled
@@ -145,6 +160,7 @@ function Preferences.new(db, categories)
                 key = copyList(values.key),
                 filter = values.filter,
                 box = values.box and { x = values.box.x, y = values.box.y } or nil,
+                postQuest = { keep = values.postQuest.keep, done = values.postQuest.done },
             })
         end)
 
@@ -204,6 +220,23 @@ function Preferences.new(db, categories)
         end
 
         values.box = { x = math.floor(x), y = math.floor(y) }
+        save()
+
+        return true
+    end
+
+    -- Whether a finished-quest marker kind ("keep" or "done") is shown.
+    function self:isShown(kind)
+        return values.postQuest[kind] == true
+    end
+
+    -- Returns true if the value changed (and was saved). Unknown kinds are refused.
+    function self:setShown(kind, shown)
+        if values.postQuest[kind] == nil or type(shown) ~= "boolean" or values.postQuest[kind] == shown then
+            return false
+        end
+
+        values.postQuest[kind] = shown
         save()
 
         return true

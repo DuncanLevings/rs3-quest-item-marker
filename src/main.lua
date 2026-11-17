@@ -3,15 +3,20 @@
 --
 -- How the pieces fit:
 --   data/quest_items.lua --QuestData--> item index ----+
---   config.Quest --QuestStatus--> cached quest states --+--> RequiredItems
---   Preferences (on/off, shortcut, filter, box spot) ---+        |
---   screen adapters (slot reads) ---> Markers (icons + tooltips) <+
---   Keybind calls setEnabled(); SettingsWindow sets the filter and shortcut, and its
---   "Move quest box" button opens BoxMover.
+--   config.Quest --QuestStatus--> cached quest states --+--> RequiredItems ----+
+--   Preferences (on/off, shortcut, filter, box spot) ---+                     |
+--   data/post_quest_items.lua --PostQuestData--> keep / done ---------> ItemMarks
+--   config.Achievement --AchievementStatus--> complete? -----------------^    |
+--   screen adapters (slot reads) ---> Markers (icons + tooltips) <------------+
+--   Keybind calls setEnabled(); SettingsWindow sets the filter, the finished-quest
+--   markers and the shortcut, and its "Move quest box" button opens BoxMover.
 
 local QuestData = require("src/game/quest_data")
 local QuestStatus = require("src/game/quest_status")
 local RequiredItems = require("src/game/required_items")
+local PostQuestData = require("src/game/post_quest_data")
+local AchievementStatus = require("src/game/achievement_status")
+local ItemMarks = require("src/game/item_marks")
 local Preferences = require("src/storage/preferences")
 local Backpack = require("src/screens/backpack")
 local Bank = require("src/screens/bank")
@@ -56,7 +61,7 @@ function App.start()
     local preferences = Preferences.new(PersistentDB, QuestData.CATEGORIES)
 
     -- Assigned below; the callbacks created first close over them.
-    local questStatus, requiredItems, markers, keybind
+    local questStatus, itemMarks, markers, keybind
     local boxMover = BoxMover.new(preferences)
 
     -- Shows or hides markers and remembers it. Showing them again draws from cached
@@ -79,25 +84,73 @@ function App.start()
 
     showIfNoShortcut()
 
+    -- Without it only the "needed" markers show.
+    local postData = PostQuestData.load()
+
+    if postData.status ~= "ok" then
+        Log.error("post-quest data incompatible:", postData.message)
+        postData = nil
+    end
+
     if dataOk then
-        questStatus = QuestStatus.new(questData.quests, function()
+        -- Status is read for every quest either file mentions, once each.
+        local tracked = {}
+
+        for _, quest in ipairs(questData.quests) do
+            tracked[#tracked + 1] = quest
+        end
+
+        if postData then
+            local extra = {}
+
+            for questId, quest in pairs(postData.quests) do
+                if not questData.questById[questId] then
+                    extra[#extra + 1] = quest
+                end
+            end
+
+            table.sort(extra, function(a, b)
+                return a.id < b.id
+            end)
+
+            for _, quest in ipairs(extra) do
+                tracked[#tracked + 1] = quest
+            end
+        end
+
+        questStatus = QuestStatus.new(tracked, function()
             if markers then
                 markers:markAllDirty()
             end
         end)
 
-        requiredItems = RequiredItems.new(questData, function(questId)
+        local function getState(questId)
             return questStatus:get(questId)
-        end, preferences:getFilter())
+        end
+
+        local achievements = AchievementStatus.new()
+
+        itemMarks = ItemMarks.new(RequiredItems.new(questData, getState, preferences:getFilter()), postData,
+            getState, function(achievementId)
+                return achievements:isDone(achievementId)
+            end, {
+                filter = preferences:getFilter(),
+                keep = preferences:isShown("keep"),
+                done = preferences:isShown("done"),
+            })
 
         markers = Markers.new({
             -- The shop adapter keeps state, so each start gets its own.
             screens = { Backpack, Bank, BankBackpack, Shop.new() },
             questStatus = questStatus,
             iconSprite = questIconSprite(),
-            requiredItems = requiredItems,
+            itemMarks = itemMarks,
             boxPosition = function()
                 return preferences:getBox()
+            end,
+            -- A finished achievement shows on the next bank or shop visit.
+            onScreenOpened = function()
+                achievements:clear()
             end,
         })
     end
@@ -115,8 +168,20 @@ function App.start()
             return
         end
 
-        if requiredItems then
-            requiredItems:setFilter(preferences:getFilter())
+        if itemMarks then
+            itemMarks:setFilter(preferences:getFilter())
+            markers:refreshNow()
+        end
+    end
+
+    -- A finished-quest marker kind ("keep" / "done") was ticked or unticked.
+    local function setShown(kind, shown)
+        if not preferences:setShown(kind, shown) then
+            return
+        end
+
+        if itemMarks then
+            itemMarks:setShown(kind, shown)
             markers:refreshNow()
         end
     end
@@ -125,6 +190,7 @@ function App.start()
         preferences = preferences,
         categories = QuestData.CATEGORIES,
         setCategory = setCategory,
+        setShown = setShown,
         onKeyChanged = function()
             keybind:update()
             showIfNoShortcut()

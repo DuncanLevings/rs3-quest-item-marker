@@ -20,16 +20,25 @@ local function setup(saved, finished)
     local client = FakeClient.install()
     client.db["quest-item-marker.settings.v1"] = saved
     local data = dofile("data/quest_items.lua")
+    local quests = {}
 
     for _, quest in ipairs(data.quests) do
-        local done = finished and finished[quest.name] or false
+        quests[quest.id] = quest.name
+    end
 
-        client.addQuest(quest.id, {
-            name = quest.name,
+    for questId, quest in pairs(dofile("data/post_quest_items.lua").quests) do
+        quests[questId] = quests[questId] or quest.name
+    end
+
+    for questId, name in pairs(quests) do
+        local done = finished and finished[name] or false
+
+        client.addQuest(questId, {
+            name = name,
             started = done,
             finished = done,
             -- Goblin Diplomacy stands in for a quest with no watchable variable.
-            vars = quest.name ~= "Goblin Diplomacy" and { { varPlayer = { id = 10000 + quest.id } } } or {},
+            vars = name ~= "Goblin Diplomacy" and { { varPlayer = { id = 10000 + questId } } } or {},
         })
     end
 
@@ -270,14 +279,115 @@ spec["with no shortcut bound, hidden markers come back (nothing else could show 
     shutdown()
 end
 
-spec["the panel has no on/off checkbox, only the quest type filter"] = function()
+spec["the panel has no on/off checkbox: the quest type filter and the finished-quest markers"] = function()
     local client, shutdown = setup()
 
     client.fire("ContentLayerReady", { component = { interfaceID = 1477 } })
 
-    check.equal(#client.view.checkboxes, 1)
+    check.equal(#client.view.checkboxes, 2)
     check.equal(client.view.checkboxes[1].choices[1].value, "quest")
+    check.equal(client.view.checkboxes[2].choices[1].value, "keep")
+    check.equal(client.view.checkboxes[2].choices[2].value, "done")
+    check.truthy(client.view.checkboxes[2].choices[1].selected, "keep on by default")
+    check.truthy(client.view.checkboxes[2].choices[2].selected, "done on by default")
 
+    shutdown()
+end
+
+local INKY_QUILL = 13328 -- Rocking Out only
+local WOLFBANE = 2952 -- Priest in Peril and River of Blood; two achievements
+local ECTOPHIAL = 4251 -- Ghosts Ahoy; a lasting use, so never marked
+local GREEN, RED = 0x40E040FF, 0xFF4040FF
+
+-- The icon on backpack slot `slot`, or nil.
+local function iconOn(client, itemId)
+    for _, icon in ipairs(client.liveIcons()) do
+        for slot, component in pairs(client.slots) do
+            if component.associatedObjectID == itemId and icon.x == component.x + component.width - 12
+                and icon.y == component.y then
+                return icon, slot
+            end
+        end
+    end
+
+    return nil
+end
+
+spec["a quest-only item gets a red icon once its quest is finished, none before"] = function()
+    local client, shutdown = setup(nil, {})
+
+    client.setSlot(5, INKY_QUILL)
+    settle(client)
+    check.equal(iconOn(client, INKY_QUILL), nil, "Rocking Out not finished")
+    shutdown()
+
+    client, shutdown = setup(nil, { ["Rocking Out"] = true })
+    client.setSlot(5, INKY_QUILL)
+    settle(client)
+
+    local icon = iconOn(client, INKY_QUILL)
+    check.truthy(icon, "marked once finished")
+    check.equal(icon.rgba, RED)
+
+    local found = false
+
+    for _, tooltip in ipairs(client.liveTooltips()) do
+        found = found or (tooltip.text:find("(done)", 1, true) ~= nil
+            and tooltip.text:find("Rocking Out", 1, true) ~= nil)
+    end
+
+    check.truthy(found, "tooltip says Rocking Out (done)")
+    shutdown()
+end
+
+spec["an item kept for its achievements is green until they're done, then red"] = function()
+    local finished = { ["Priest in Peril"] = true, ["River of Blood"] = true }
+    local client, shutdown = setup(nil, finished)
+
+    client.setSlot(5, WOLFBANE)
+    settle(client)
+    check.equal(iconOn(client, WOLFBANE).rgba, GREEN, "achievements left")
+    shutdown()
+
+    client, shutdown = setup(nil, finished)
+    client.achievements[846] = -2
+    client.achievements[4996] = -2
+    client.setSlot(5, WOLFBANE)
+    settle(client)
+    check.equal(iconOn(client, WOLFBANE).rgba, RED, "both achievements done")
+    shutdown()
+end
+
+spec["an item with a lasting use is never marked"] = function()
+    local client, shutdown = setup(nil, { ["Ghosts Ahoy"] = true })
+
+    client.setSlot(5, ECTOPHIAL)
+    settle(client)
+    check.equal(iconOn(client, ECTOPHIAL), nil)
+    shutdown()
+end
+
+spec["unticking a finished-quest marker removes those icons and saves"] = function()
+    local client, shutdown = setup(nil, { ["Priest in Peril"] = true, ["River of Blood"] = true,
+        ["Rocking Out"] = true })
+
+    client.setSlot(5, WOLFBANE)
+    client.setSlot(6, INKY_QUILL)
+    settle(client)
+    check.equal(iconOn(client, WOLFBANE).rgba, GREEN)
+    check.equal(iconOn(client, INKY_QUILL).rgba, RED)
+
+    client.fire("ContentLayerReady", { component = { interfaceID = 1477 } })
+    client.view.checkboxes[2]:click("keep")
+    check.equal(iconOn(client, WOLFBANE), nil, "green removed straight away")
+    check.truthy(iconOn(client, INKY_QUILL), "red stays")
+
+    client.view.checkboxes[2]:click("done")
+    check.equal(iconOn(client, INKY_QUILL), nil, "red removed")
+
+    local saved = client.db["quest-item-marker.settings.v1"].postQuest
+    check.falsy(saved.keep, "keep saved off")
+    check.falsy(saved.done, "done saved off")
     shutdown()
 end
 

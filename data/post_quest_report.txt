@@ -1,0 +1,125 @@
+Post-quest items build report - 2026-11-16
+Quest item pages: 3798
+Requests: 0 sent, 506 from cache; 0 s
+Wiki quests not matched to a client quest (their items get no marker): 2
+
+Pages by verdict
+   2487  done
+    101  keep
+      1  never (done_exclude)
+    250  never (name)
+    420  never (no quest)
+     30  never (permanent)
+    509  never (useful)
+
+Item ids written: keep 134, done 2530
+Done ids dropped (shared with another verdict, or required by a quest): 40
+
+Achievement names with no achievement id (ignored)
+  Golden fleece: He's My Berry Pie
+  Golden wool: He's My Berry Pie
+  Strange key loop: Relight My Fire (Post-Quest achievement)
+  Strange key teeth: Relight My Fire (Post-Quest achievement)
+
+Keep pages (kept until these achievements are complete)
+  Ali's pendant (The Temple at Senntisten): Master Quest Cape
+  Ancestral key (Spirits of the Elid): Are You The Keymaster?
+  Ancient bones (The Restless Ghost) (The Restless Ghost): Aereck's Old Bones
+  Ancient elven wedding ring (The Light Within): Angs Off My Ring
+  Augmented Sunspear (magic) (River of Blood): Master Quest Cape
+  Augmented Sunspear (melee) (River of Blood): Master Quest Cape
+  Augmented Sunspear (ranged) (River of Blood): Master Quest Cape
+  Azdaran document (Birthright of the Dwarves): Azdaran Birthright
+  Battered key (Elemental Workshop I): Are You The Keymaster?
+  Bedsheet (Ghosts Ahoy): Poor Imitation
+  Bedsheet (ectoplasm) (Ghosts Ahoy): Poor Imitation
+  Blisterwood logs (The Branches of Darkmeyer): A Firemaker's Log
+  Blurite ore (Defender of Varrock, The Knight's Sword): Do They Come in Other Colours?
+  Bob's collar (Ritual of the Mahjarrat): Is He Chipped?
+  Bonesack(e) (Fur 'n Seek): Master Quest Cape
+  Brooch (The Lost Tribe) (The Lost Tribe): You Mistag This Brooch
+  Broomstick (Swept Away): Advanced Sweeping
+  Chimp ice (Do No Evil): Ice Ice Chimpy, TzKal-Zuk! Ice Cream!
+  Communication device (Dishonour among Thieves): Master Quest Cape
+  Cooked crab meat (Recipe for Disaster: Freeing Pirate Pete): Nice to Meat You
+  Cooked jubbly (Recipe for Disaster, Recipe for Disaster: Freeing Skrach Uglogwee): Nice to Meat You
+  Cooked oomlie wrap (Legends' Quest): Nice to Meat You, I'd Be Kharazi to Eat This
+  Diary (Shades of Mort'ton) (Shades of Mort'ton): Herbi's Flax
+  Directions (Rat Catchers): Master Quest Cape
+  Disk of returning (Gower Quest) (Gower Quest): Master Quest Cape
+  Dragonkin Primer (One of a Kind): Dusting Murial, Roake Kal
+  Enchanted key (Making History) (Making History): Banking History
+  Enchanted key (Meeting History) (Meeting History, The Light Within): Meeting History, Again, Banking History
+  Frozen snow impling (Violet is Blue): To Thaw a Frozen Heart
+  Goblin village sphere (Another Slice of H.A.M., Death to the Dorgeshuun): Master Quest Cape
+  Golden fleece (The Fremennik Trials): Kili's Knowledge VII
+  Golden wool (The Fremennik Trials): Kili's Knowledge VII
+  Goulash (Swept Away): Goulash! Get Your Free Goulash!
+  Haemalchemy (Vol. 2) (River of Blood): Master Quest Cape
+  Human tooth (A Fairy Tale III - Battle at Ork's Rift): Milky Teeth
+  Invitation box (Missing, Presumed Death): Master Quest Cape
+  Jade vine seed (Back to my Roots): Vine-detta
+  Lady Henryeta's necklace (Carnillean Rising): Carnillean Riches
+  Lady Karmini (Heralds of Crimson): Karmini Ghrazi
+  Lava eel (Heroes' Quest): Fishy Dishes
+  Leela's favour (Pharaoh's Folly): Master Quest Cape
+  Lev's old music box (Beneath Cursed Tides): Pure Newbstalgia
+  Mabel's ring (Love Story): For the Love of Mabel
+  Magical meteorite chunk (Stellar Born): Master Quest Cape
+  Maze key (Dragon Slayer): Are You The Keymaster?
+  Metal key (The Tourist Trap): Are You The Keymaster?
+  Monkey (Monkey Madness) (Monkey Madness): Clue's in the Monkey Drool
+  Monkey dentures (Monkey Madness): Milky Teeth
+  Monty the rubber duckie (Duck Quest): Master Quest Cape
+  Mysterious medallion (The Branches of Darkmeyer): Master Quest Cape
+  New key (Mourning's End Part II): Are You The Keymaster?
+  Pet rock (The Fremennik Trials): Who's a Good Boy?, Who's Your Daddy?
+  Pickled brain (Creature of Fenkenstrain): Brain Bending
+  Pirate spell sheet (A Clockwork Syringe): Master Quest Cape
+  Plain of mud sphere (Land of the Goblins): Master Quest Cape
+  Ram skull helm(e) (Rag and Bone Man): Master Quest Cape
+  Rat pole (Rat Catchers): With a Ten-foot Pole
+  Remora's necklace (Song from the Depths): Master Quest Cape
+  Rubium (Kennith's Concerns): Volatile Valuables
+  Sandstone (10kg) (Enakhra's Lament): It's Mine!
+  Sandstone (1kg) (Enakhra's Lament): It's Mine!
+  Sandstone (2kg) (Enakhra's Lament): It's Mine!
+  Sandstone (5kg) (Enakhra's Lament): It's Mine!
+  Scabaras research (Dealing with Scabaras): Scabigail
+  Scabarite notes (1) (Dealing with Scabaras): Scabigail
+  Scabarite notes (10) (Dealing with Scabaras): Scabigail
+  Scabarite notes (11) (Dealing with Scabaras): Scabigail
+  Scabarite notes (12) (Dealing with Scabaras): Scabigail
+  Scabarite notes (13) (Dealing with Scabaras): Scabigail
+  Scabarite notes (14) (Dealing with Scabaras): Scabigail
+  Scabarite notes (15) (Dealing with Scabaras): Scabigail
+  Scabarite notes (16) (Dealing with Scabaras): Scabigail
+  Scabarite notes (17) (Dealing with Scabaras): Scabigail
+  Scabarite notes (18) (Dealing with Scabaras): Scabigail
+  Scabarite notes (19) (Dealing with Scabaras): Scabigail
+  Scabarite notes (2) (Dealing with Scabaras): Scabigail
+  Scabarite notes (3) (Dealing with Scabaras): Scabigail
+  Scabarite notes (4) (Dealing with Scabaras): Scabigail
+  Scabarite notes (5) (Dealing with Scabaras): Scabigail
+  Scabarite notes (6) (Dealing with Scabaras): Scabigail
+  Scabarite notes (7) (Dealing with Scabaras): Scabigail
+  Scabarite notes (8) (Dealing with Scabaras): Scabigail
+  Scabarite notes (9) (Dealing with Scabaras): Scabigail
+  Serum 208 (Shades of Mort'ton): Many Shades of a Cure
+  Shiny key (Temple of Ikov): Are You The Keymaster?
+  Shortcut key (The Darkness of Hallowvale): Are You The Keymaster?
+  Sir Ceril's money pouch (Carnillean Rising): Carnillean Riches
+  Sixth-Age circuit (The World Wakes): Master Quest Cape
+  Steel key ring (One Small Favour): Are You The Keymaster?
+  Strange key loop (While Guthix Sleeps): Master Quest Cape
+  Strange key teeth (While Guthix Sleeps): Master Quest Cape
+  Strange teleorb (While Guthix Sleeps): Master Quest Cape
+  Suqah tooth (Lunar Diplomacy): Milky Teeth
+  Teleport to house (chipped) (Love Story): Master Quest Cape
+  The Book of Char (The Firemaker's Curse): Master Quest Cape
+  The Measure (Fate of the Gods): Measure of Old
+  Tune bane scroll (Ritual of the Mahjarrat): Bane Tuner
+  Wolfbane (Priest in Peril, River of Blood): Dislike-Anthrope, Argh, it burns!
+  Wrought iron key (The Tourist Trap): Are You The Keymaster?
+  Yelps's very own cash bag (The Mighty Fall): Squeal for Coins
+  Zamorak's Book of Chaos (Horror from the Deep): The Red Wedding

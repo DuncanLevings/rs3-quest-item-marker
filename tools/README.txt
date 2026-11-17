@@ -12,6 +12,7 @@ Files
 -----
 
   build_quest_items.py   the build: fetch, parse, resolve, match, check, write
+  build_post_quest.py    the finished-quest markers' data (see below)
   quest_parser.py        reads one quest's "Items required" text (no network; tested)
   wiki.py                polite cached Wiki client (forked from monster-data-core, see below)
   import_probe_log.py    reads the probe plugin's console log into tools/data (see below)
@@ -24,12 +25,14 @@ Files
     common_items.json      items the plugin never marks (hammer, coins, runes...)
     noted_ids.json         unnoted -> noted item id pairs confirmed in the client
     overrides/*.json       per-quest replacements for the whole item list
+    post_quest_review.json reviewed rules for the finished-quest markers
     client_quest_objects.json (optional) the client's ObjType.quests dump, for the cross-check
 
 Outputs:
 
   data/quest_items.lua     the generated data file (only written when the build passes)
   data/build_report.txt    counts and lists from the last passing build (not shipped)
+  data/post_quest_items.lua, data/post_quest_report.txt   the same for build_post_quest.py
   work/                    Wiki answer cache, failed-build reports, samples (gitignored)
 
 
@@ -181,6 +184,44 @@ The rule leans towards marking: a missing icon is worse than an extra one.
     the client ties to the same quest. Those are often items the quest gives you; review
     them by hand, nothing is removed automatically. An item the author confirms is given or
     sold by the quest goes in link_classes.json as "ignore" with the reason.
+
+
+Finished-quest markers (build_post_quest.py)
+--------------------------------------------
+
+  py -3 -I tools/build_post_quest.py              build data/post_quest_items.lua
+  py -3 -I tools/build_post_quest.py --offline    from the cache only
+
+Run it after build_quest_items.py: it reads data/quest_items.lua so that nothing a quest
+needs is ever called "no longer needed". Its report is data/post_quest_report.txt.
+
+It starts from every page in the Wiki's Category:Quest items, not from the quests' item
+lists, so quests with no required items are covered too. An item belongs to the quests
+its infobox names (|quest = [[...]]); links are matched to quest titles ignoring case,
+"(quest)" / "(miniquest)", "Series: " prefixes and subpages, and following redirects.
+Links that aren't quests (an NPC) are dropped. The page's quest categories are used only
+when the infobox names no quest: a quest page that merely mentions an item puts it in
+the quest's category too (Buttons is in "The Dig Site", but belongs to Animal
+Magnetism). Hand-reviewed inputs are in
+tools/data/post_quest_review.json:
+
+  never_marked_patterns  item names that never get a marker (XP lamps, tokens)
+  permanent              items with a lasting use (teleports, weapons): never marked
+  keep_exclude           pages that would be "keep" but aren't items, etc.
+  keep_add               items to keep that the Wiki gives no signal for
+  done_exclude           items that would be "no longer needed" but still have a use
+
+Keep (green): the page lists {{Achievement|...}} or links to the master quest cape. The
+achievement names are matched to client ids through bucket('achievement'); with none,
+the master quest cape achievement stands in. The plugin keeps the item until every one is
+complete, then shows it as no longer needed. Names with no id are listed in the report.
+
+No longer needed (red): untradeable, in none of USEFUL_CATEGORIES (equipment, tools,
+reward scroll items, XP books, items sold in shops...), in no category named after
+a minigame or activity (Buttons is in "Fishing Trawler": it can be got outside its
+quest), no keep signal, not required by any quest, every quest it
+belongs to is tracked, and no item id shared with anything that isn't "no longer needed".
+The plugin shows it only once all its quests are finished.
 
 
 Client inputs from the probe plugin

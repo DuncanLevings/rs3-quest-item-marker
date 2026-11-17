@@ -22,6 +22,20 @@ spec["defaults: on, no shortcut, Quest and Miniquest on, no tutorial option"] = 
     check.equal(filter.tutorial, nil)
 end
 
+spec["finished-quest markers default on, recover per kind, and save"] = function()
+    local client = FakeClient.install()
+    client.db[KEY] = { postQuest = { keep = false, done = "no", extra = true } }
+
+    local preferences = require("src/storage/preferences").new(PersistentDB, CATEGORIES)
+
+    check.falsy(preferences:isShown("keep"), "kept keep = false")
+    check.truthy(preferences:isShown("done"), "bad value back to default")
+    check.falsy(preferences:setShown("other", true), "unknown kind refused")
+    check.truthy(preferences:setShown("done", false))
+    check.equal(client.db[KEY].postQuest.done, false)
+    check.equal(client.db[KEY].postQuest.extra, nil)
+end
+
 spec["one bad field doesn't reset the others"] = function()
     local client = FakeClient.install()
     client.db[KEY] = { enabled = false, key = { "not a key" }, filter = { quest = false, miniquest = "yes", tutorial = true }, extra = 1 }

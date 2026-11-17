@@ -129,8 +129,8 @@ end
 local function setup()
     local client = FakeClient.install()
     local required = {
-        isMarked = function(_, itemId)
-            return itemId == 100
+        kindOf = function(_, itemId)
+            return itemId == 100 and "required" or nil
         end,
         tooltipText = function()
             return "Priest in Peril"
@@ -145,7 +145,7 @@ local function setup()
         },
         questStatus = { ready = true, refreshUnwatched = function() end },
         iconSprite = 17130,
-        requiredItems = required,
+        itemMarks = required,
     })
 
     client.setSlot(2, 100)

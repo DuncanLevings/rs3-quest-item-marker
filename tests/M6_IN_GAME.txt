@@ -1,0 +1,68 @@
+Quest Item Marker - M6 (finished-quest markers) in-game test
+============================================================
+
+What M6 covers: two new markers for items from FINISHED quests, both on by default:
+  - green icon: "Keep" - still used for achievements you haven't done yet
+    (e.g. Wolfbane until Dislike-Anthrope and "Argh, it burns!" are done,
+    Bob's collar until "Is He Chipped?")
+  - red icon: "No longer needed" - only used in quests you've finished, or a kept
+    item whose achievements are all done (e.g. Rocking Out's inky quill and paper)
+The normal (untinted) icon still means "needed by an unfinished quest" and always wins.
+Items with a lasting use (Ectophial, diving gear, greegrees, Sunspears...) get no icon.
+
+Automated checks (no client): from the plugin folder run
+
+    lua tests/run.lua
+
+It should end with "100 passed, 0 failed".
+
+
+0. Set up
+---------
+1. Reload with prl quest-item-marker (prettyui-dev must be on).
+2. Open the plugin's ribbon panel.
+   Check: under the quest type filter there is "For finished quests, also mark" with
+   "Items still used afterwards (green)" and "Items no longer needed (red)", both ticked.
+
+
+1. Red: no longer needed
+------------------------
+1. Open the bank (a late-game bank is ideal).
+   Check: red icons only on quest items from quests you've finished. Write down a few,
+   and anything red you think you still need (that's a data mistake to fix).
+   Check: the bank isn't flooded; tradeable items, tools, keys, equipment and XP lamps
+   have no red icon.
+2. Hover a red icon.
+   Check: the quest box lists the quest(s), each as "<quest> (done)" with
+   "(done)" in a muted green and a red quest icon in front. A red item that was kept
+   for achievements lists those achievements the same way. No heading line.
+
+
+2. Green: keep for achievements
+-------------------------------
+1. Find a green icon (Wolfbane, Bob's collar, Ali's pendant, Scabarite notes...).
+   Check: the quest box lists only the achievements still to do, in a muted green, each with a
+   green quest icon (e.g. Wrought iron key: "Are You The Keymaster?").
+2. If you can, finish one of its achievements, then close and reopen the bank.
+   Check: once every listed achievement is done the icon turns red.
+3. Check: Ectophial / diving apparatus / monkey greegree (if you have them) have no icon.
+
+
+3. Settings
+-----------
+1. Untick "Items still used afterwards (green)".
+   Check: every green icon goes at once (bank, backpack, shop); red and normal stay.
+2. Untick "Items no longer needed (red)".
+   Check: every red icon goes at once.
+3. Reload the plugin (prl quest-item-marker).
+   Check: both stay unticked and no green/red icons come back. Tick them again.
+
+
+4. Priority and performance
+---------------------------
+1. Check: an item an unfinished quest needs still shows the normal icon even if a
+   finished quest also used it.
+2. Check: opening a big bank feels no slower than before M6.
+
+
+Write down what you see at each "Check".

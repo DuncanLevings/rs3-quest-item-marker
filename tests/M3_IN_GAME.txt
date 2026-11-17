@@ -1,0 +1,105 @@
+Quest Item Marker - M3 (bank) in-game test
+==========================================
+
+What M3 covers: quest icons and the same hover tooltips in the bank (placeholders
+too) and on the backpack panel inside the bank screen. Icons follow tab switches,
+searches, scrolling and reordering in the same frame. Shops come in M4, the quest
+type filter in M5.
+
+Automated checks (no client): from the plugin folder run
+
+    lua tests/run.lua
+
+It should end with "62 passed, 0 failed". Those tests use a fake client, so they
+don't prove anything about the real one. That's what the steps below are for.
+
+Write down what you see at each "Check", and copy the [Quest Item Marker] lines from
+the console (Alt + `) into your notes.
+
+
+0. Set up
+---------
+1. Reload with prl quest-item-marker (prettyui-dev must be on).
+2. Make sure bank placeholders are on (bank settings), and that the bank holds items
+   from a few unfinished quests (the M2 sample quests work: rune or pure essence for
+   Priest in Peril, planks, ores, a dye) plus some junk.
+3. Have at least one placeholder for a quest item: withdraw ALL of a marked item so
+   its placeholder stays behind.
+4. Put one marked item in your backpack too.
+
+
+1. Opening the bank (CUJ 2)
+---------------------------
+1. Open the bank.
+   Check: the console shows
+     Bank: OK, <k> marked
+     Bank backpack: OK, <j> marked
+   Icons appear in the top-right corner of every bank item an unfinished quest needs,
+   and on the marked item in the bank's own backpack panel. Junk, empty slots and
+   common items (coins, runes, hammer, containers) have none.
+2. Check: the placeholder from step 0.3 has an icon too, and hovering it shows the
+   same quest list as the item would.
+3. Hover a bank icon.
+   Check: the quest list shows at the quest box spot (set with "Move quest box"),
+   ABOVE the bank window, never under it. It goes when the mouse leaves the icon.
+   Clicks, right-click menus and the game's hover text on bank items still work.
+4. Compare a few bank tooltips with the quest's Wiki "Items required". A finished
+   quest must never appear.
+
+
+2. Moving around the bank (CUJ 2) - watch for icons lagging or left behind
+------------------------------------------------------------------------
+For each step, watch the icons WHILE the bank changes. An icon must move with its
+item in the same frame, and no icon may sit on an empty spot or on the wrong item.
+1. Switch through every bank tab, including the "all items" tab.
+2. Scroll the bank up and down, slowly and quickly.
+3. Search for a marked item's name, then for junk, then clear the search.
+   Check: only the matching items keep icons; they come back on clearing.
+4. Drag a marked item to another slot, and into another tab.
+5. Deposit a marked item from your backpack, then withdraw one (and all) of one.
+   Check: the icon follows it within a second; withdrawing all leaves the icon on its
+   placeholder; the backpack panel's icons update too.
+6. Deposit all (backpack) with marked items in it.
+   Check: no icon is left floating; the right items end up marked.
+WRITE DOWN anything that lingered, blinked a lot or landed on the wrong item, and in
+which step.
+
+
+3. Closing the bank
+-------------------
+1. Close the bank (Esc or the close button).
+   Check: every bank icon goes at once; the console shows
+     Bank: closed (...)
+     Bank backpack: closed (...)
+   The normal backpack keeps its icons.
+2. Open the bank again, then close it by walking away or teleporting.
+   Check: no bank icon stays on screen anywhere afterwards.
+3. Open the bank, then open it again from another banker or chest.
+   Check: one icon per marked item (no doubles).
+
+
+4. A bank the plugin can't read (CUJ 3)
+---------------------------------------
+This is hard to trigger on purpose. Try depositing and withdrawing several items as
+fast as you can.
+Check: if the console ever shows "Bank: Couldn't read: ...", no icon was on a wrong
+item meanwhile, "Couldn't read Bank, so its markers are off until it reads
+correctly." appeared at most once (chat with chatAccess, else the console), and
+icons came back once the bank settled ("Bank reads correctly again").
+WRITE DOWN every "Couldn't read" line you see, with what you were doing.
+
+
+5. On/off and shutdown with the bank open
+-----------------------------------------
+1. With the bank open and a bank tooltip showing, press the shortcut (or untick the
+   box).
+   Check: every bank, bank backpack and backpack icon and the tooltip go at once.
+   Turn markers back on: the icons come back at once.
+2. With the bank open and a bank tooltip showing, reload with prl quest-item-marker.
+   Check: nothing left on screen from the old run; one icon per marked item after.
+3. With a big bank open (most slots used), look for any slowdown while scrolling
+   and switching tabs, compared with markers off.
+
+
+Send back: the console lines from parts 1, 3 and 4, anything that lingered or landed
+on the wrong item (with the step), and anything that felt slow.

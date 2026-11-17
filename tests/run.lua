@@ -14,6 +14,7 @@ local SPECS = {
     "tests/preferences_spec",
     "tests/quest_status_spec",
     "tests/backpack_spec",
+    "tests/bank_spec",
     "tests/markers_spec",
     "tests/box_mover_spec",
     "tests/main_spec",

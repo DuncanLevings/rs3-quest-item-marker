@@ -6,7 +6,7 @@
 --   data/quest_items.lua --QuestData--> item index ----+
 --   config.Quest --QuestStatus--> cached quest states --+--> RequiredItems
 --   Preferences (on/off, shortcut, filter, box spot) ---+        |
---   Backpack adapter (slot reads) --> Markers (icons + tooltips) <+
+--   screen adapters (slot reads) ---> Markers (icons + tooltips) <+
 --   SettingsWindow (ribbon) and Keybind both call setEnabled(); the panel's
 --   "Move quest box" opens BoxMover, which saves the spot tooltips are drawn at.
 
@@ -15,6 +15,8 @@ local QuestStatus = require("src/game/quest_status")
 local RequiredItems = require("src/game/required_items")
 local Preferences = require("src/storage/preferences")
 local Backpack = require("src/screens/backpack")
+local Bank = require("src/screens/bank")
+local BankBackpack = require("src/screens/bank_backpack")
 local Markers = require("src/ui/markers")
 local Keybind = require("src/ui/keybind")
 local SettingsWindow = require("src/ui/settings_window")
@@ -111,7 +113,8 @@ function App.start()
         local iconSprite = questIconSprite()
 
         markers = Markers.new({
-            screens = { Backpack },
+            -- The backpack, the bank, and the backpack panel inside the bank screen.
+            screens = { Backpack, Bank, BankBackpack },
             questStatus = questStatus,
             iconSprite = function()
                 return iconSprite

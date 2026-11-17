@@ -4,7 +4,7 @@
 --
 -- It only models what the M0 probe proved (see the design doc §0); it is not a test
 -- of the real client. Real-client behaviour is checked by the in-game steps in
--- tests/M2_IN_GAME.txt.
+-- tests/M2_IN_GAME.txt and tests/M3_IN_GAME.txt.
 
 local FakeClient = {}
 
@@ -17,10 +17,14 @@ function FakeClient.install()
         components = {},
         quests = {},
         objects = {},
-        inventory = { valid = true, slots = {} },
+        -- The backpack (93) and the bank (95). slots[slot] = item id (nil = empty);
+        -- counts[slot] = how many (default 1; 0 for a bank placeholder).
+        inventory = { valid = true, slotCount = 28, slots = {}, counts = {} },
+        bank = { valid = false, slotCount = 1920, slots = {}, counts = {} },
         playerAvailable = true,
         chatAllowed = true,
         db = {},
+        -- The bank interface (517) starts unloaded: the bank is closed.
         loadedInterfaces = { [1473] = true, [1477] = true },
     }
 
@@ -131,27 +135,45 @@ function FakeClient.install()
                 return { name = client.objects[itemId] or ("Item " .. itemId) }
             end,
         },
-        Inv = { INV = { id = 93 } },
+        Inv = { INV = { id = 93 }, BANK = { id = 95 } },
     }
 
     -- Inventory ---------------------------------------------------------------
-    -- client.inventory.slots[slot] = item id (nil = empty).
-    _G.Inventory = {
-        Find = function()
-            local inv = client.inventory
+    local inventoriesById = { [93] = client.inventory, [95] = client.bank }
 
-            if not inv.valid then
+    -- Count of slot reads, so a test can see a closed screen isn't read.
+    client.slotReads = 0
+
+    _G.Inventory = {
+        Find = function(invConfig)
+            local inv = inventoriesById[invConfig and invConfig.id]
+
+            if inv == nil or not inv.valid then
                 return nil
             end
 
             return {
                 isValid = true,
-                slotCount = 28,
+                slotCount = inv.slotCount,
                 GetSlots = function()
+                    client.slotReads = client.slotReads + 1
+
+                    -- A test hook: change the inventory in the middle of a read.
+                    if inv.onRead then
+                        inv.onRead()
+                    end
+
                     local slots = {}
 
-                    for index = 1, 28 do
-                        slots[index] = { obj = { id = inv.slots[index] or -1 }, count = inv.slots[index] and 1 or 0 }
+                    for index = 1, inv.slotCount do
+                        local itemId = inv.slots[index]
+                        local count = 0
+
+                        if itemId then
+                            count = inv.counts[index] or 1
+                        end
+
+                        slots[index] = { obj = { id = itemId or -1 }, count = count }
                     end
 
                     return slots
@@ -213,27 +235,110 @@ function FakeClient.install()
         })
     end
 
-    function client.container:IterateDynamicComponents(callback)
-        for _, slot in ipairs(client.slots) do
-            if callback(slot, true) then
-                break
+    local function iterateOver(container, slots)
+        function container:IterateDynamicComponents(callback)
+            for _, slot in ipairs(slots) do
+                if callback(slot, true) then
+                    break
+                end
             end
         end
     end
 
-    -- Puts an item in a backpack slot: in the inventory and on its slot component,
-    -- like the real client does once it has updated.
+    iterateOver(client.container, client.slots)
+
+    -- The bank window (517), drawn above the game like the real one, with the bank
+    -- grid (static 201, 1920 slots) and its own backpack panel (static 15, 28 slots).
+    -- Hidden until openBank().
+    client.bankWindow = newComponent("layer", client.root, { interfaceID = 517, visibleGlobal = false })
+    client.bankContainer = newComponent("layer", client.bankWindow, { interfaceID = 517, visibleGlobal = false })
+    client.bankBackpackContainer = newComponent("layer", client.bankWindow, { interfaceID = 517, visibleGlobal = false })
+    client.bankSlots = {}
+    client.bankBackpackSlots = {}
+
+    -- M0: an empty bank slot component shows object 48447 ("Empty slot").
+    client.EMPTY_BANK_SLOT = 48447
+
+    for slot = 1, client.bank.slotCount do
+        client.bankSlots[slot] = newComponent("slot", client.bankContainer, {
+            dynamicID = slot - 1,
+            associatedObjectID = client.EMPTY_BANK_SLOT,
+            visibleGlobal = true,
+            x = ((slot - 1) % 10) * 44,
+            y = math.floor((slot - 1) / 10) * 36,
+        })
+    end
+
+    for slot = 1, 28 do
+        client.bankBackpackSlots[slot] = newComponent("slot", client.bankBackpackContainer, {
+            dynamicID = slot - 1,
+            associatedObjectID = -1,
+            visibleGlobal = true,
+            x = ((slot - 1) % 4) * 40,
+            y = math.floor((slot - 1) / 4) * 36,
+        })
+    end
+
+    iterateOver(client.bankContainer, client.bankSlots)
+    iterateOver(client.bankBackpackContainer, client.bankBackpackSlots)
+
+    -- Puts an item in a backpack slot: in the inventory and on both views of it (the
+    -- backpack and the bank's backpack panel), like the real client once updated.
     function client.setSlot(slot, itemId)
         client.inventory.slots[slot] = itemId
         client.slots[slot].associatedObjectID = itemId or -1
+        client.bankBackpackSlots[slot].associatedObjectID = itemId or -1
     end
+
+    -- Puts an item in a bank slot, in the inventory and on its component. count 0 is
+    -- a placeholder: the real item id with nothing in it (M0). nil empties the slot.
+    function client.setBankSlot(slot, itemId, count)
+        client.bank.slots[slot] = itemId
+        client.bank.counts[slot] = count
+        client.bankSlots[slot].associatedObjectID = itemId or client.EMPTY_BANK_SLOT
+    end
+
+    -- Opens the bank: the inventory is sent, 517 loads, its containers show.
+    function client.openBank()
+        client.bank.valid = true
+        client.loadedInterfaces[517] = true
+        client.bankWindow.visibleGlobal = true
+        client.bankContainer.visibleGlobal = true
+        client.bankBackpackContainer.visibleGlobal = true
+    end
+
+    -- Closes the bank. M0: 517 doesn't always unload, and the bank inventory can
+    -- stay valid, so by default only the containers hide.
+    function client.closeBank(unload)
+        client.bankWindow.visibleGlobal = false
+        client.bankContainer.visibleGlobal = false
+        client.bankBackpackContainer.visibleGlobal = false
+
+        if unload then
+            client.loadedInterfaces[517] = nil
+        end
+    end
+
+    local containers = {
+        ["1473:5"] = function()
+            return client.container
+        end,
+        ["517:201"] = function()
+            return client.bankContainer
+        end,
+        ["517:15"] = function()
+            return client.bankBackpackContainer
+        end,
+    }
 
     _G.ui = {
         Sprite = { name = "Sprite" },
         Interfaces = {
             GetComponent = function(_, interfaceId, staticId)
-                if interfaceId == 1473 and staticId == 5 and client.loadedInterfaces[1473] then
-                    return client.container
+                local find = containers[interfaceId .. ":" .. staticId]
+
+                if find and client.loadedInterfaces[interfaceId] then
+                    return find()
                 end
 
                 return nil

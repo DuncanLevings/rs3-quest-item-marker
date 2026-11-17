@@ -17,6 +17,7 @@ local Preferences = require("src/storage/preferences")
 local Backpack = require("src/screens/backpack")
 local Bank = require("src/screens/bank")
 local BankBackpack = require("src/screens/bank_backpack")
+local Shop = require("src/screens/shop")
 local Markers = require("src/ui/markers")
 local Keybind = require("src/ui/keybind")
 local SettingsWindow = require("src/ui/settings_window")
@@ -113,8 +114,9 @@ function App.start()
         local iconSprite = questIconSprite()
 
         markers = Markers.new({
-            -- The backpack, the bank, and the backpack panel inside the bank screen.
-            screens = { Backpack, Bank, BankBackpack },
+            -- The backpack, the bank, the backpack panel inside the bank screen, and
+            -- shops. The shop adapter remembers inventory ids, so each start gets its own.
+            screens = { Backpack, Bank, BankBackpack, Shop.new() },
             questStatus = questStatus,
             iconSprite = function()
                 return iconSprite

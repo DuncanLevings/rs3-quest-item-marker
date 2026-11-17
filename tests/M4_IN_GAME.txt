@@ -1,0 +1,99 @@
+Quest Item Marker - M4 (shops) in-game test
+===========================================
+
+What M4 covers: quest icons and hover tooltips on shop stock, including a shop with
+several stock tabs. The quest type filter comes in M5.
+
+How it works, so the log lines make sense: a shop's stock inventory differs from
+shop to shop, so the plugin remembers the inventories the server sends and uses the
+one whose items match the shop's slots exactly. If none matches, that shop gets no
+icons ("Couldn't read Shop"). While a shop is open, a cheap check every 3rd frame
+notices a Buy/Sell switch, a restock or the game redrawing its slots, so icons
+should appear and come back almost at once.
+
+Automated checks (no client): from the plugin folder run
+
+    lua tests/run.lua
+
+It should end with "81 passed, 0 failed". Those tests use a fake client, so they
+don't prove anything about the real one. That's what the steps below are for.
+
+Write down what you see at each "Check", and copy the [Quest Item Marker] lines from
+the console (Alt + `) into your notes.
+
+
+0. Set up
+---------
+1. Reload with prl quest-item-marker (prettyui-dev must be on), with NO shop open.
+2. Pick two shops that sell an item an unfinished quest needs:
+   - Shop A: a one-tab shop, e.g. a general store (a rope should be marked;
+     buckets, pots and the tinderbox are common, so no icon).
+   - Shop B: a shop with several stock tabs, or with a separate free-stock list.
+     WRITE DOWN which shop you used.
+
+
+1. One-tab shop (shop A)
+------------------------
+1. Open shop A.
+   Check: the console shows "Shop: OK, <k> marked". Every stock item an unfinished
+   quest needs has the icon in its top-right corner; others and common items have
+   none.
+2. Hover a shop icon.
+   Check: the quest list shows at your quest box spot, above the shop window. It goes
+   when the mouse leaves the icon. Buying, right-click menus and the game's hover text
+   still work.
+3. Buy one item (any item), then a marked item until it runs out.
+   Check: icons are back right away after each purchase and while the shop restocks
+   (at most a blink of a few frames). The game rebuilds the shop slots on every stock change
+   and deletes our icons with them; the console shows "Shop: the game removed N
+   icons with its slots; drawing them again (logged once)". No icon floats on an
+   empty slot.
+4. Right after reloading the plugin, open the shop and go straight to the Sell tab.
+   Then sell an item and switch back to Buy.
+   Check: the Sell tab marks your backpack's quest items at once (no "Couldn't read
+   Shop"), and keeps them after the sale. Back on Buy, the stock icons are right.
+5. Stand in the shop a minute with the window open and nothing changing, markers on
+   and then off.
+   Check: no difference in smoothness. (An open shop adds one read of its slots' item
+   ids every 3rd frame; nothing else unless something changes.)
+   Also check: opening the shop and switching Buy/Sell shows icons with no visible
+   delay.
+6. Set the shop's "Item display mode" to full names, then back to icons.
+   Check: within about 3 seconds of switching to full names, the console shows
+   "Shop: found shop slots at 1265:<n> (inventory <id>)" and the quest items get icons
+   in the name list. Back in icon mode they move back at once. WRITE DOWN <n>. If
+   instead you see "Shop: no matching slots in 1265; visible components with
+   items: ...", copy that whole line.
+7. Close the shop.
+   Check: "Shop: closed (...)" and every shop icon goes at once.
+
+
+2. Shop with several stock tabs (shop B) - the M4 open question
+----------------------------------------------------------------
+1. Open shop B.
+   Check: "Shop: OK, <k> marked" and icons on the first tab's quest items.
+2. Switch to each other stock tab, and back.
+   Check: within about half a second of each switch, icons are on that tab's quest
+   items only. Note if an icon sat on a wrong item, and for how long.
+3. If the shop has a "sell" view showing your backpack, switch to it.
+   Check: your backpack's quest items get icons there, or "Couldn't read Shop".
+WRITE DOWN every "Shop:" console line from this part, especially any
+  "Couldn't read: no inventory matches the shop slots (...)" line. The part after
+  "closest" says which slot didn't match and what it showed. That tells us how this
+  shop's tabs are drawn.
+
+
+3. Edge cases
+-------------
+1. With a shop open, turn markers off and on (shortcut or checkbox).
+   Check: shop icons may be missing with "Couldn't read Shop ... reopen the shop".
+   That's expected: the plugin hasn't seen the stock list yet. Close and reopen the
+   shop: icons come back.
+2. Reload the plugin with a shop open: same as 1.
+3. Open the bank, then a shop, then the bank again.
+   Check: each screen's icons only while it's open; nothing left behind.
+4. With a shop open, look for any slowdown compared with markers off.
+
+
+Send back: the shops you used, the console "Shop:" lines from parts 1 and 2, anything
+that landed on the wrong item (with the step), and anything that felt slow.

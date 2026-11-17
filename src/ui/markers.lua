@@ -22,6 +22,7 @@
 -- subscriptions.
 
 local ItemTooltip = require("src/ui/item_tooltip")
+local SlotScreen = require("src/screens/slot_screen")
 local Log = require("src/log")
 
 local Markers = {}
@@ -40,6 +41,16 @@ local ICON_CAP = 2000
 -- icons go away on the first failure; this only stops a one-tick hiccup from
 -- posting a chat message.
 local FAILURES_BEFORE_MESSAGE = 2
+
+-- Screens whose adapter has signature() (the shop) can change with no inventory event
+-- (Buy/Sell tab switch) and get rebuilt by the game, deleting our icons. While one is
+-- open, its cheap signature is compared every POLL_FRAMES frames (about 50 ms), and a
+-- full read only happens when it changes.
+local POLL_FRAMES = 3
+
+-- After an inventory event for such a screen, how many frames to keep checking
+-- whether it has appeared (a shop window shows a moment after its stock arrives).
+local OPEN_WAIT_FRAMES = 60
 
 -- options:
 --   screens       list of screen adapters (src/screens/*.lua)
@@ -71,6 +82,11 @@ function Markers.new(options)
             open = nil,
             failures = 0,
             status = "off",
+            -- Polled every few frames while open (see POLL_FRAMES): the shop.
+            polls = adapter.signature ~= nil,
+            signature = nil,
+            readNextFrame = false,
+            openWaitFrames = 0,
         }
     end
 
@@ -82,6 +98,10 @@ function Markers.new(options)
     -- never per frame.
     local syncList = {}
     local syncListStale = false
+
+    -- True once any of our icons has been seen among its container's children (on
+    -- any screen). Until then, an icon missing from that list isn't taken as gone.
+    local iconsListed = false
 
     -- Item names for "+ partner" tooltip lines. Names never change, so cache them.
     local itemNames = {}
@@ -134,6 +154,18 @@ function Markers.new(options)
         syncListStale = true
     end
 
+    -- Drops an icon the client already removed (its interface unloaded, or the game
+    -- rebuilt the slots around it). The icon handle isn't touched; the tooltip is
+    -- destroyed, because its parts live in 1477, not in the screen.
+    local function forgetIcon(record)
+        Log.safe("remove tooltip", function()
+            record.tooltip:Destroy()
+        end)
+
+        self.iconCount = self.iconCount - 1
+        syncListStale = true
+    end
+
     -- Removes every icon on one screen. If its interface has unloaded, the client
     -- already took the icons with it, and the old icon handles must not be touched.
     -- The tooltip is still destroyed: its parts live in 1477, not in the screen, so
@@ -151,12 +183,7 @@ function Markers.new(options)
             if loaded then
                 destroyIcon(record)
             else
-                Log.safe("remove tooltip", function()
-                    record.tooltip:Destroy()
-                end)
-
-                self.iconCount = self.iconCount - 1
-                syncListStale = true
+                forgetIcon(record)
             end
 
             screen.icons[slot] = nil
@@ -234,7 +261,16 @@ function Markers.new(options)
             return nil
         end
 
-        local record = { itemId = slot.itemId, icon = icon, component = component, text = text }
+        local record = {
+            itemId = slot.itemId,
+            icon = icon,
+            component = component,
+            text = text,
+            -- How to find this icon among its container's children later.
+            key = SlotScreen.childKey(icon),
+            -- The slot's container, which the icon is a child of.
+            container = Log.field(component, "parent"),
+        }
 
         record.tooltip = tooltip
         self.iconCount = self.iconCount + 1
@@ -242,6 +278,47 @@ function Markers.new(options)
 
         return record
     end
+
+    -- The game can rebuild a screen's slot components and delete our icons with them
+    -- (a shop does on every stock change: seen in game, 2026-11-16). `present` is the
+    -- set of SlotScreen.childKey of every child of the icons' container. An icon
+    -- missing from it is gone: forget it (the caller then draws it again). Only
+    -- trusted once one of our icons has been seen in such a list, so a client that
+    -- doesn't list our icons never loses them. Returns how many were dropped.
+    local function dropDeletedIcons(screen, present, containerKey)
+        for _, record in pairs(screen.icons) do
+            if record.key and present[record.key] then
+                iconsListed = true
+                break
+            end
+        end
+
+        if not iconsListed then
+            return 0
+        end
+
+        local gone = 0
+
+        for slotIndex, record in pairs(screen.icons) do
+            -- Only icons in the container just read; one in another (a shop display
+            -- mode switch) is destroyed properly by the caller instead.
+            if record.key and record.containerKey == containerKey and not present[record.key] then
+                forgetIcon(record)
+                screen.icons[slotIndex] = nil
+                gone = gone + 1
+            end
+        end
+
+        -- Once per screen: a shop restocking does this every few seconds.
+        if gone > 0 and not screen.rebuildLogged then
+            screen.rebuildLogged = true
+            Log.write(screen.name .. ": the game removed " .. gone .. " icons with its slots; drawing them again"
+                .. " (logged once)")
+        end
+
+        return gone
+    end
+
 
     local startSync, stopSync
 
@@ -284,6 +361,12 @@ function Markers.new(options)
         if not result.open then
             clearScreen(screen)
             setStatus(screen, "closed (" .. tostring(result.reason) .. ")")
+
+            -- The shop still looking for its slots in another display mode.
+            if result.retry then
+                screen.dirty = true
+            end
+
             return
         end
 
@@ -298,13 +381,23 @@ function Markers.new(options)
             end
         end
 
-        -- Remove icons whose slot emptied or now holds something else.
+        -- Icons the game deleted with its slots are forgotten here and drawn again below.
+        if result.present then
+            dropDeletedIcons(screen, result.present, result.containerKey)
+        end
+
+        -- Remove icons whose slot emptied or now holds something else, or that sit in
+        -- another container than the slots now read (a shop's other display mode).
         for slotIndex, record in pairs(screen.icons) do
             local slot = wanted[slotIndex]
 
-            if slot == nil or slot.itemId ~= record.itemId then
+            if slot == nil or slot.itemId ~= record.itemId or record.containerKey ~= result.containerKey then
                 destroyIcon(record)
                 screen.icons[slotIndex] = nil
+            elseif record.component ~= slot.component then
+                -- The same slot, read through a new handle: follow the new one.
+                record.component = slot.component
+                syncListStale = true
             end
         end
 
@@ -327,9 +420,24 @@ function Markers.new(options)
                 capped = true
             else
                 holder = holder or ItemTooltip.topAncestor(slot.component)
-                screen.icons[slotIndex] = Log.safe("create icon", function()
+                local created = Log.safe("create icon", function()
                     return createIcon(screen, slot, text, kinds, holder)
                 end)
+
+                if created then
+                    created.containerKey = result.containerKey
+
+                    -- Once per run: does the client list our icons among the slots'
+                    -- children? If so, an icon missing from that list later means the
+                    -- game deleted it (see dropDeletedIcons).
+                    if not iconsListed and created.key and created.container then
+                        local _, present = SlotScreen.componentsByDynamicId(created.container)
+
+                        iconsListed = present ~= nil and present[created.key] == true
+                    end
+                end
+
+                screen.icons[slotIndex] = created
             end
         end
 
@@ -343,11 +451,41 @@ function Markers.new(options)
             marked = marked + 1
         end
 
-        setStatus(screen, "OK, " .. marked .. " marked")
+        -- An adapter may add what it read (the shop does), so the console line says
+        -- more than a count when something looks wrong.
+        local detail = result.detail and (" (" .. result.detail .. ")") or ""
+
+        setStatus(screen, "OK, " .. marked .. " marked" .. detail)
 
         if self.iconCount > 0 then
             startSync()
         end
+    end
+
+    -- Records whether a screen is open. A screen opening is when quests we can't watch
+    -- get re-read (at most once every few seconds; see quest_status.lua). Only a real
+    -- closed-to-open change counts: the first look after markers are turned on is not
+    -- an opening, so the toggle never reads quests.
+    local function updateOpen(screen, open)
+        if open == screen.open then
+            return
+        end
+
+        screen.dirty = true
+
+        if open and screen.open == false then
+            options.questStatus:refreshUnwatched(serverTick)
+        end
+
+        screen.open = open
+    end
+
+    -- A full read of a polled screen, then its signature as it now stands (our new
+    -- icons included), so the poll only fires on the next real change.
+    local function refreshPolled(screen)
+        screen.readNextFrame = false
+        refreshScreen(screen)
+        screen.signature = screen.adapter.signature()
     end
 
     -- Builds the flat list for the Draw pass. Positions and visibility are cached in
@@ -379,6 +517,45 @@ function Markers.new(options)
     -- frame cost for this pass with 1920 icons.
     local syncFailed = false
 
+    -- For polled screens (the shop), every frame: is one that should be appearing open
+    -- yet (one visibility check, only for OPEN_WAIT_FRAMES after its inventory
+    -- arrived), and has an open one changed (its signature every POLL_FRAMES frames:
+    -- one field read per slot)? A change means a full read now, not at the next server
+    -- tick. Returns true while a polled screen is open or being waited for.
+    local frameCount = 0
+
+    local function pollScreens()
+        frameCount = frameCount + 1
+
+        local active = false
+
+        for _, screen in ipairs(screens) do
+            if screen.polls then
+                if not screen.open and screen.openWaitFrames > 0 then
+                    screen.openWaitFrames = screen.openWaitFrames - 1
+
+                    if screen.adapter.isOpen() then
+                        updateOpen(screen, true)
+                        screen.readNextFrame = true
+                    end
+                end
+
+                if screen.open then
+                    active = true
+
+                    if screen.readNextFrame
+                        or (frameCount % POLL_FRAMES == 0 and screen.adapter.signature() ~= screen.signature) then
+                        refreshPolled(screen)
+                    end
+                elseif screen.openWaitFrames > 0 then
+                    active = true
+                end
+            end
+        end
+
+        return active
+    end
+
     local function syncFrame()
         for _, screen in ipairs(screens) do
             if next(screen.icons) ~= nil and not interfaceLoaded(screen) then
@@ -387,8 +564,13 @@ function Markers.new(options)
             end
         end
 
+        local polling = pollScreens()
+
         if self.iconCount == 0 then
-            stopSync()
+            if not polling then
+                stopSync()
+            end
+
             return
         end
 
@@ -473,21 +655,23 @@ function Markers.new(options)
         for _, screen in ipairs(screens) do
             local open = screen.adapter.isOpen()
 
-            if open ~= screen.open then
-                screen.dirty = true
+            updateOpen(screen, open)
 
-                -- A screen opening is when quests we can't watch get re-read (at
-                -- most once every few seconds; see quest_status.lua). Only a real
-                -- closed-to-open change counts: the first look after markers are
-                -- turned on is not an opening, so the toggle never reads quests.
-                if open and screen.open == false then
-                    options.questStatus:refreshUnwatched(serverTick)
+            if screen.polls then
+                -- The per-frame poll does this sooner; this is the backstop (and
+                -- starts the poll when markers are turned on with a shop open).
+                if open then
+                    if screen.adapter.signature() ~= screen.signature then
+                        screen.dirty = true
+                    end
+
+                    startSync()
                 end
 
-                screen.open = open
-            end
-
-            if screen.dirty then
+                if screen.dirty then
+                    refreshPolled(screen)
+                end
+            elseif screen.dirty then
                 refreshScreen(screen)
             end
         end
@@ -497,8 +681,26 @@ function Markers.new(options)
         local invId = event.inv and event.inv.id
 
         for _, screen in ipairs(screens) do
+            -- The shop doesn't know its stock inventory up front; it learns the ids
+            -- from these events (shop.lua).
+            if screen.adapter.noteInventory then
+                screen.adapter.noteInventory(invId)
+            end
+
             if screen.adapter.inventoryIds()[invId] then
                 screen.dirty = true
+
+                -- Read the shop in the next frame, and if it isn't on screen yet,
+                -- look for it for a moment (see pollScreens).
+                if screen.polls then
+                    screen.readNextFrame = true
+
+                    if not screen.open then
+                        screen.openWaitFrames = OPEN_WAIT_FRAMES
+                    end
+
+                    startSync()
+                end
             end
         end
     end
@@ -575,6 +777,9 @@ function Markers.new(options)
                 screen.open = nil
                 screen.failures = 0
                 screen.dirty = true
+                screen.signature = nil
+                screen.readNextFrame = false
+                screen.openWaitFrames = 0
             end
 
             subscribe()

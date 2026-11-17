@@ -105,6 +105,24 @@ spec["the backpack panel in the bank reads the backpack inventory"] = function()
     check.truthy(require("src/screens/bank").inventoryIds()[95])
 end
 
+spec["a visible slot container with no slots is closed, not unreadable"] = function()
+    local client = FakeClient.install()
+    client.setSlot(1, 1436)
+    client.openBank()
+    client.bankWindow.visibleGlobal = false
+
+    -- Seen in game at a shop: 517:15 read as visible with no slot components.
+    for index = #client.bankBackpackSlots, 1, -1 do
+        client.bankBackpackSlots[index] = nil
+    end
+
+    local result = require("src/screens/bank_backpack").read()
+
+    check.equal(result.state, "ok")
+    check.falsy(result.open)
+    check.contains(result.reason, "has no slots")
+end
+
 -- With the marker manager ------------------------------------------------------------
 
 -- Markers on all three screens, marking item 100 only, quest status ready.

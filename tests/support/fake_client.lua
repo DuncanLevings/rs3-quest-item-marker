@@ -139,14 +139,28 @@ function FakeClient.install()
     }
 
     -- Inventory ---------------------------------------------------------------
-    local inventoriesById = { [93] = client.inventory, [95] = client.bank }
+    -- Two shop stock lists, like a shop with two stock tabs (M0: the general store's
+    -- stock is inventory 24, 40 slots). Sent when a shop opens.
+    client.shopStock = {
+        [24] = { valid = false, slotCount = 40, slots = {}, counts = {} },
+        [25] = { valid = false, slotCount = 40, slots = {}, counts = {} },
+    }
+
+    local inventoriesById = {
+        [93] = client.inventory,
+        [95] = client.bank,
+        [24] = client.shopStock[24],
+        [25] = client.shopStock[25],
+    }
 
     -- Count of slot reads, so a test can see a closed screen isn't read.
     client.slotReads = 0
 
     _G.Inventory = {
+        -- Takes a config.Inv entry or a plain inventory id (the M0 probe used both).
         Find = function(invConfig)
-            local inv = inventoriesById[invConfig and invConfig.id]
+            local invId = type(invConfig) == "number" and invConfig or (invConfig and invConfig.id)
+            local inv = inventoriesById[invId]
 
             if inv == nil or not inv.valid then
                 return nil
@@ -236,10 +250,18 @@ function FakeClient.install()
     end
 
     local function iterateOver(container, slots)
+        -- The game's slots, then any plugin-made children (our icons): the real client
+        -- lists both (M4: a shop's 17 slots read as 22 children with 5 icons).
         function container:IterateDynamicComponents(callback)
             for _, slot in ipairs(slots) do
                 if callback(slot, true) then
-                    break
+                    return
+                end
+            end
+
+            for _, child in ipairs(container.pluginChildren or {}) do
+                if not child.destroyed and callback(child, true) then
+                    return
                 end
             end
         end
@@ -319,7 +341,116 @@ function FakeClient.install()
         end
     end
 
+    -- The shop window (1265) with its 40 stock slots (static 24). Hidden until
+    -- openShop(). The slots show whichever stock list is on screen.
+    client.shopWindow = newComponent("layer", client.root, { interfaceID = 1265, visibleGlobal = false })
+    client.shopContainer = newComponent("layer", client.shopWindow, { interfaceID = 1265, visibleGlobal = false })
+    client.shopSlots = {}
+
+    for slot = 1, 40 do
+        client.shopSlots[slot] = newComponent("slot", client.shopContainer, {
+            dynamicID = slot - 1,
+            associatedObjectID = -1,
+            visibleGlobal = true,
+            x = ((slot - 1) % 8) * 48,
+            y = math.floor((slot - 1) / 8) * 48,
+        })
+    end
+
+    iterateOver(client.shopContainer, client.shopSlots)
+
+    -- The same 40 slots in the "full name" display mode, hidden until setShopDisplay.
+    client.shopListContainer = newComponent("layer", client.shopWindow, { interfaceID = 1265, visibleGlobal = false })
+    client.shopListSlots = {}
+
+    for slot = 1, 40 do
+        client.shopListSlots[slot] = newComponent("slot", client.shopListContainer, {
+            dynamicID = slot - 1,
+            associatedObjectID = -1,
+            visibleGlobal = true,
+            x = ((slot - 1) % 3) * 160,
+            y = math.floor((slot - 1) / 3) * 50,
+        })
+    end
+
+    iterateOver(client.shopListContainer, client.shopListSlots)
+
+    -- Puts an item in a shop stock list (in the inventory only; showShopList draws it).
+    function client.setShopStock(invId, slot, itemId)
+        client.shopStock[invId].slots[slot] = itemId
+    end
+
+    -- Draws one inventory's items in the shop slots, like switching stock tab (or the
+    -- sell view, with 93). No inventory event comes with it.
+    function client.showShopList(invId)
+        local inv = inventoriesById[invId]
+
+        for slot = 1, 40 do
+            client.shopSlots[slot].associatedObjectID = inv.slots[slot] or -1
+            client.shopListSlots[slot].associatedObjectID = inv.slots[slot] or -1
+        end
+    end
+
+    -- What the game does after a purchase (M4, in game): new slot components, and
+    -- every other child of the container, our icons included, deleted. The deleted
+    -- icons are marked `gone`, not `destroyed`: the plugin didn't destroy them.
+    function client.rebuildShop()
+        for slot = 1, 40 do
+            local old = client.shopSlots[slot]
+
+            client.shopSlots[slot] = newComponent("slot", client.shopContainer, {
+                dynamicID = old.dynamicID,
+                associatedObjectID = old.associatedObjectID,
+                visibleGlobal = true,
+                x = old.x,
+                y = old.y,
+            })
+        end
+
+        for _, child in ipairs(client.shopContainer.pluginChildren or {}) do
+            child.gone = true
+        end
+
+        client.shopContainer.pluginChildren = {}
+    end
+
+    -- The shop's "Item display mode": "icons" (1265:24) or "list" (full names, drawn
+    -- in another component; 1265:60 here, the real one is found by searching).
+    function client.setShopDisplay(mode)
+        client.shopContainer.visibleGlobal = mode ~= "list"
+        client.shopListContainer.visibleGlobal = mode == "list"
+    end
+
+    -- Opens a shop: its stock lists are sent (with InventoryAdded through fire, if a
+    -- test wants markers to hear it), 1265 loads, and the first list shows.
+    function client.openShop(firstList)
+        for _, stock in pairs(client.shopStock) do
+            stock.valid = true
+        end
+
+        client.loadedInterfaces[1265] = true
+        client.shopWindow.visibleGlobal = true
+        client.shopContainer.visibleGlobal = true
+        client.showShopList(firstList or 24)
+    end
+
+    function client.closeShop()
+        for _, stock in pairs(client.shopStock) do
+            stock.valid = false
+        end
+
+        client.shopWindow.visibleGlobal = false
+        client.shopContainer.visibleGlobal = false
+        client.shopListContainer.visibleGlobal = false
+    end
+
     local containers = {
+        ["1265:24"] = function()
+            return client.shopContainer
+        end,
+        ["1265:60"] = function()
+            return client.shopListContainer
+        end,
         ["1473:5"] = function()
             return client.container
         end,
@@ -353,8 +484,19 @@ function FakeClient.install()
     client.tooltips = {}
 
     _G.prettyui = {
+        -- Like PrettyUI's automatic ids: its own category, a fresh dynamic id, and the
+        -- component listed among its parent's children.
         NewComponent = function(kind, parent)
-            return newComponent(kind.name, parent)
+            client.nextPluginDynamicId = (client.nextPluginDynamicId or 9000) + 1
+
+            local component = newComponent(kind.name, parent, { categoryID = 7, dynamicID = client.nextPluginDynamicId })
+
+            if parent then
+                parent.pluginChildren = parent.pluginChildren or {}
+                parent.pluginChildren[#parent.pluginChildren + 1] = component
+            end
+
+            return component
         end,
         Tooltip = {
             attach = function(target, holder, options)
@@ -389,7 +531,7 @@ function FakeClient.install()
         local list = {}
 
         for _, component in ipairs(client.components) do
-            if component.kind == "Sprite" and not component.destroyed then
+            if component.kind == "Sprite" and not component.destroyed and not component.gone then
                 list[#list + 1] = component
             end
         end

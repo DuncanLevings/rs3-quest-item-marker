@@ -1,19 +1,21 @@
 Post-quest items build report - 2026-11-16
 Quest item pages: 3798
-Requests: 0 sent, 506 from cache; 0 s
+Requests: 0 sent, 988 from cache; 1 s
 Wiki quests not matched to a client quest (their items get no marker): 2
 
 Pages by verdict
-   2487  done
+   2481  done
     101  keep
       1  never (done_exclude)
+      6  never (linked from untracked quest)
     250  never (name)
     420  never (no quest)
      30  never (permanent)
     509  never (useful)
 
-Item ids written: keep 134, done 2530
+Item ids written: keep 134, done 2524
 Done ids dropped (shared with another verdict, or required by a quest): 40
+Done pages that also wait for other quests linking to them: 145
 
 Achievement names with no achievement id (ignored)
   Golden fleece: He's My Berry Pie

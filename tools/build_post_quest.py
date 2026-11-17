@@ -18,7 +18,9 @@ Rules (hand-reviewed inputs in tools/data/post_quest_review.json):
   done          untradeable, in no "useful" category (incl. one named after a minigame or
                 activity, so it can be got outside the quest), no keep signal, not required by any
                 quest in data/quest_items.lua, not in done_exclude, every quest tracked, and
-                no id shared with a keep, useful or common item
+                no id shared with a keep, useful or common item. Every playable quest whose
+                page links to the item joins its quests, since a quest may use an item it
+                doesn't list (A Fairy Tale I's random ingredients)
 
 Run from the plugin folder:
     py -3 -I tools/build_post_quest.py            (asks the Wiki, ~1 request a second)
@@ -98,6 +100,32 @@ def filtered_prop(wiki, titles, prop, targets):
             params = dict(params, **data["continue"])
 
     return found
+
+
+def linked_from(wiki, titles, quest_titles):
+    # {title: set of quest titles whose page (or a subpage, "Quest/Quick guide") links to it}
+    result = defaultdict(set)
+
+    for start in range(0, len(titles), TITLES_PER_QUERY):
+        params = {"action": "query", "prop": "linkshere", "lhnamespace": "0", "lhprop": "title",
+                  "lhlimit": "max", "titles": "|".join(titles[start:start + TITLES_PER_QUERY])}
+
+        while True:
+            data = wiki.get(params)
+
+            for page in data["query"]["pages"]:
+                for entry in page.get("linkshere", []):
+                    source = entry["title"].split("/", 1)[0]
+
+                    if source in quest_titles:
+                        result[page["title"]].add(source)
+
+            if "continue" not in data:
+                break
+
+            params = dict(params, **data["continue"])
+
+    return result
 
 
 def page_texts(wiki, titles):
@@ -411,6 +439,26 @@ def main(argv=None):
         if missing:
             unresolved[row["page"]] = missing
 
+    # A quest page that links to a "done" item may use it without listing it (A Fairy Tale I
+    # picks random ingredients, Red vine worm among them), so every quest whose page links
+    # to the item must be finished too. A link from a quest we don't track (a holiday
+    # quest, Dimension of Disaster) means "done" can't be checked, so the item gets no
+    # marker. Removed quests (the historical versions) can't be played, so their links
+    # don't count.
+    print("quest pages linking to items", flush=True)
+    done_rows = [row for row in table if row["verdict"] == "done"]
+    playable = {title for title in quest_titles if "Removed content" not in quest_categories[title]}
+    linking = linked_from(wiki, [row["page"] for row in done_rows], playable)
+
+    for row in done_rows:
+        extra = linking.get(row["page"], set()) - set(row["quests"])
+        row["linkedQuests"] = sorted(extra)
+
+        if extra - set(quests):
+            row["verdict"] = "never (linked from untracked quest)"
+        else:
+            row["quests"] = sorted(set(row["quests"]) | extra)
+
     # An id shared with anything that isn't "done" (another version of a keep item, say),
     # or required by a quest, is never "done".
     blocked = set(required)
@@ -477,6 +525,8 @@ def write_report(snapshot, table, keep, until, done, dropped, unmatched, unresol
         f"Item ids written: keep {len(keep)}, done {len(done)}",
         f"Done ids dropped (shared with another verdict, or required by a quest): "
         f"{dropped['done id shared or required']}",
+        f"Done pages that also wait for other quests linking to them: "
+        f"{sum(1 for row in table if row['verdict'] == 'done' and row.get('linkedQuests'))}",
         "",
         "Achievement names with no achievement id (ignored)",
     ]

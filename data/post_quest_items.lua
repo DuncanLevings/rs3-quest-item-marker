@@ -62,6 +62,7 @@ return {
         [101] = { name = "Rum Deal", category = "quest" }, -- RUM_DEAL
         [102] = { name = "Big Chompy Bird Hunting", category = "quest" }, -- BIG_CHOMPY_BIRD_HUNTING
         [104] = { name = "Zogre Flesh Eaters", category = "quest" }, -- ZOGRE_FLESH_EATERS
+        [108] = { name = "Merlin's Crystal", category = "quest" }, -- MERLINS_CRYSTAL
         [110] = { name = "Roving Elves", category = "quest" }, -- ROVING_ELVES
         [111] = { name = "Druidic Ritual", category = "quest" }, -- DRUIDIC_RITUAL
         [112] = { name = "Holy Grail", category = "quest" }, -- HOLY_GRAIL
@@ -140,6 +141,7 @@ return {
         [295] = { name = "The Hand in the Sand", category = "quest" }, -- HAND_IN_THE_SAND
         [296] = { name = "Cabin Fever", category = "quest" }, -- CABIN_FEVER
         [297] = { name = "A Fairy Tale I - Growing Pains", category = "quest" }, -- FAIRY_TALE_I
+        [298] = { name = "Recipe for Disaster: Another Cook's Quest", category = "quest" }, -- RECIPE_FOR_DISASTER_INTRO
         [299] = { name = "Recipe for Disaster: Freeing the Mountain Dwarf", category = "quest" }, -- RECIPE_FOR_DISASTER_DWARF
         [300] = { name = "Recipe for Disaster: Freeing the Goblin Generals", category = "quest" }, -- RECIPE_FOR_DISASTER_GOBLIN
         [301] = { name = "Recipe for Disaster: Freeing Pirate Pete", category = "quest" }, -- RECIPE_FOR_DISASTER_PIRATE
@@ -228,8 +230,13 @@ return {
         [400] = { name = "Violet is Blue", category = "quest" }, -- XMAS18
         [401] = { name = "Chef's Assistant", category = "quest" }, -- CHEESECAKE
         [402] = { name = "Curse of the Black Stone", category = "quest" }, -- ELITEDUNGEONS
+        [403] = { name = "Bar Crawl (miniquest)", category = "miniquest" }, -- BARCRAWL
         [404] = { name = "Enter the Abyss (miniquest)", category = "miniquest" }, -- ABYSS
+        [406] = { name = "Lair of Tarn Razorlor (miniquest)", category = "miniquest" }, -- LAIR_OF_TARN_RAZORLOR
+        [408] = { name = "The Hunt for Surok (miniquest)", category = "miniquest" }, -- HUNT_FOR_SUROK
         [409] = { name = "One Foot in the Grave (miniquest)", category = "miniquest" }, -- HANDSAND2
+        [410] = { name = "Hopespear's Will (miniquest)", category = "miniquest" }, -- HOPESPEARS_WILL
+        [412] = { name = "Purple Cat (miniquest)", category = "miniquest" }, -- PURPLE_CAT
         [413] = { name = "From Tiny Acorns (miniquest)", category = "miniquest" }, -- CAPER_ACORNS
         [414] = { name = "Lost Her Marbles (miniquest)", category = "miniquest" }, -- CAPER_MARBLES
         [415] = { name = "A Guild of Our Own (miniquest)", category = "miniquest" }, -- CAPER_OUROWN
@@ -245,6 +252,7 @@ return {
         [433] = { name = "Koschei's Troubles (miniquest)", category = "miniquest" }, -- KHARSHAI
         [434] = { name = "Mahjarrat Memories (miniquest)", category = "miniquest" }, -- MAHMEM
         [435] = { name = "Tales of the God Wars (miniquest)", category = "miniquest" }, -- TALES_OF_THE_GOD_WARS
+        [437] = { name = "In Memory of the Myreque (miniquest)", category = "miniquest" }, -- MYQ7_MEMORIAL
         [438] = { name = "The Lost Toys (miniquest)", category = "miniquest" }, -- MYQ7_LOST_TOYS
         [441] = { name = "Head of the Family (miniquest)", category = "miniquest" }, -- ELR_HEAD
         [442] = { name = "Spiritual Enlightenment (miniquest)", category = "miniquest" }, -- ELR_SLAYER
@@ -258,6 +266,7 @@ return {
         [460] = { name = "Desperate Times", category = "quest" }, -- CHAROS
         [465] = { name = "Desperate Measures", category = "quest" }, -- DM
         [468] = { name = "Heartstealer", category = "quest" }, -- HEARTSTEALER
+        [469] = { name = "Azzanadra's Quest", category = "quest" }, -- AZZANADRA
         [470] = { name = "The Vault of Shadows", category = "quest" }, -- TRINDINE
         [471] = { name = "Foreshadowing", category = "quest" }, -- OUT1
         [472] = { name = "Flashback", category = "quest" }, -- OUT2
@@ -276,6 +285,10 @@ return {
         [498] = { name = "Remains of the Necrolord", category = "quest" }, -- QUEST_NECROMANCY_NECROLORD
         [500] = { name = "Kili Row", category = "quest" }, -- NECROMANCY_CITY_SMITH
         [501] = { name = "That Old Black Magic", category = "quest" }, -- NECROMANCY_CITY_BAND
+        [503] = { name = "My One and Only Lute", category = "quest" }, -- NECROMANCY_CITY_BAND_GUITAR
+        [504] = { name = "Skelly By Everlight", category = "quest" }, -- NECROMANCY_CITY_BAND_TRUMPET
+        [505] = { name = "Flesh and Bone", category = "quest" }, -- NECROMANCY_CITY_BAND_PIANO
+        [506] = { name = "Hermy and Bass", category = "quest" }, -- NECROMANCY_CITY_BAND_DRUMS
         [509] = { name = "Housing of Parliament", category = "quest" }, -- NECROMANCY_CITY_OWLERY
         [511] = { name = "Requiem for a Dragon", category = "quest" }, -- QUEST_VORKATH
         [512] = { name = "Osseous Rex", category = "quest" }, -- QUEST_OSSEOUS
@@ -626,19 +639,18 @@ return {
         [3] = { 34 }, -- Nulodion's notes
         [14] = { 34 }, -- Stones (Dwarf Cannon)
         [15] = { 112 }, -- Holy table napkin
-        [16] = { 112 }, -- Magic whistle
+        [16] = { 15, 112 }, -- Magic whistle
         [17] = { 112 }, -- Grail bell
         [18] = { 112 }, -- Magic gold feather
         [20] = { 44 }, -- White cog
         [21] = { 44 }, -- Black cog
         [22] = { 44 }, -- Blue cog
         [23] = { 44 }, -- Red cog
-        [25] = { 76 }, -- Red vine worm
+        [25] = { 76, 292, 297 }, -- Red vine worm
         [27] = { 76 }, -- Fishing pass
         [76] = { 268 }, -- Khazard cell keys
         [83] = { 126 }, -- Lever (Temple of Ikov)
-        [84] = { 126 }, -- Staff of Armadyl
-        [90] = { 266 }, -- Child's blanket
+        [90] = { 44, 266 }, -- Child's blanket
         [271] = { 15 }, -- Pressure gauge
         [272] = { 15 }, -- Fish food
         [274] = { 15 }, -- Poisoned fish food
@@ -651,10 +663,10 @@ return {
         [282] = { 39 }, -- Sheep bones (3)
         [283] = { 39 }, -- Sheep bones (4)
         [292] = { 93 }, -- Book on Baxtorian
-        [293] = { 93 }, -- A key
+        [293] = { 93, 320 }, -- A key
         [296] = { 93 }, -- Glarial's urn (full)
         [297] = { 93 }, -- Glarial's urn (empty)
-        [298] = { 93 }, -- A key (Waterfall Dungeon)
+        [298] = { 93, 110, 320, 378 }, -- A key (Waterfall Dungeon)
         [300] = { 178 }, -- Rat's tail
         [337] = { 76 }, -- Giant carp
         [338] = { 76 }, -- Raw giant carp
@@ -665,18 +677,18 @@ return {
         [419] = { 128 }, -- Touch paper
         [422] = { 128 }, -- Bird feed
         [423] = { 128 }, -- Key (Biohazard)
-        [424] = { 128 }, -- Pigeon cage (full)
+        [424] = { 128, 146 }, -- Pigeon cage (full)
         [425] = { 128, 146 }, -- Pigeon cage (empty)
         [432] = { 60 }, -- Chest key (Pirate's Treasure)
         [433] = { 60 }, -- Pirate message
         [446] = { 116 }, -- 'Perfect' gold ore
-        [457] = { 265 }, -- Scorpion cage (Taverley)
-        [458] = { 265 }, -- Scorpion cage (Taverley, Outpost)
-        [459] = { 265 }, -- Scorpion cage (Taverley, Monastery)
-        [460] = { 265 }, -- Scorpion cage (Outpost)
-        [461] = { 265 }, -- Scorpion cage (Outpost, Monastery)
-        [462] = { 265 }, -- Scorpion cage (Monastery)
-        [463] = { 265 }, -- Scorpion cage (full)
+        [457] = { 265, 403 }, -- Scorpion cage (Taverley)
+        [458] = { 265, 403 }, -- Scorpion cage (Taverley, Outpost)
+        [459] = { 265, 403 }, -- Scorpion cage (Taverley, Monastery)
+        [460] = { 265, 403 }, -- Scorpion cage (Outpost)
+        [461] = { 265, 403 }, -- Scorpion cage (Outpost, Monastery)
+        [462] = { 265, 403 }, -- Scorpion cage (Monastery)
+        [463] = { 265, 403 }, -- Scorpion cage (full)
         [587] = { 267 }, -- Orb of protection
         [588] = { 267 }, -- Orbs of protection
         [601] = { 271 }, -- Goblin kitchen key
@@ -724,13 +736,13 @@ return {
         [708] = { 273 }, -- Arcenia root
         [709] = { 273 }, -- Chest key (The Dig Site)
         [711] = { 273 }, -- Book on chemicals
-        [716] = { 274 }, -- Bull roarer
+        [716] = { 274, 437 }, -- Bull roarer
         [717] = { 274 }, -- Scrawled note
         [718] = { 274 }, -- A scribbled note
         [719] = { 274 }, -- Scrumpled note
         [720] = { 274 }, -- Sketch
-        [721] = { 274 }, -- Gold bowl
-        [722] = { 274 }, -- Blessed gold bowl
+        [721] = { 274, 437 }, -- Gold bowl
+        [722] = { 274, 437 }, -- Blessed gold bowl
         [723] = { 274 }, -- Golden bowl (water)
         [724] = { 274 }, -- Golden bowl (pure water)
         [725] = { 274 }, -- Golden bowl (blessed, water)
@@ -803,15 +815,15 @@ return {
         [1509] = { 58 }, -- Book (Turnip Growing for Beginners)
         [1510] = { 58 }, -- Picture
         [1525] = { 59, 274 }, -- Grimy snake weed
-        [1526] = { 59, 274 }, -- Clean snake weed
+        [1526] = { 59, 104, 274 }, -- Clean snake weed
         [1527] = { 59, 274 }, -- Grimy ardrigal
         [1528] = { 59, 274 }, -- Clean ardrigal
         [1529] = { 59 }, -- Grimy sito foil
         [1530] = { 59 }, -- Clean sito foil
         [1531] = { 59 }, -- Grimy volencia moss
         [1532] = { 59 }, -- Clean volencia moss
-        [1533] = { 59 }, -- Grimy rogue's purse
-        [1534] = { 59 }, -- Clean rogue's purse
+        [1533] = { 59, 279 }, -- Grimy rogue's purse
+        [1534] = { 59, 104, 304 }, -- Clean rogue's purse
         [1535] = { 66 }, -- Map part (Melzar)
         [1537] = { 66 }, -- Map part (Thalzar)
         [1538] = { 66 }, -- Crandor map
@@ -827,7 +839,7 @@ return {
         [1582] = { 264 }, -- Blamish oil
         [1583] = { 264 }, -- Entranan firebird feather
         [1584] = { 264 }, -- ID papers
-        [1585] = { 264 }, -- Oily fishing rod
+        [1585] = { 264, 291 }, -- Oily fishing rod
         [1588] = { 264 }, -- Grip's key
         [1797] = { 28 }, -- Silver necklace (dusted)
         [1798] = { 28 }, -- Silver cup
@@ -840,9 +852,9 @@ return {
         [1805] = { 28 }, -- Silver needle (dusted)
         [1806] = { 28 }, -- Silver pot
         [1807] = { 28 }, -- Silver pot (dusted)
-        [1808] = { 28 }, -- Criminal's thread (red)
-        [1809] = { 28 }, -- Criminal's thread (green)
-        [1810] = { 28 }, -- Criminal's thread (blue)
+        [1808] = { 28, 61 }, -- Criminal's thread (red)
+        [1809] = { 28, 61 }, -- Criminal's thread (green)
+        [1810] = { 28, 61 }, -- Criminal's thread (blue)
         [1811] = { 28 }, -- Flypaper
         [1812] = { 28 }, -- Pungent pot
         [1813] = { 28 }, -- Criminal's dagger
@@ -857,7 +869,7 @@ return {
         [1822] = { 28 }, -- Unknown print
         [1840] = { 272 }, -- Cell door key
         [1841] = { 272 }, -- Barrel (The Tourist Trap)
-        [1842] = { 272 }, -- Ana in a barrel
+        [1842] = { 97, 272, 400 }, -- Ana in a barrel
         [1850] = { 272 }, -- Technical plans
         [1851] = { 272 }, -- Tenti pineapple
         [1852] = { 272 }, -- Bedabin key
@@ -865,7 +877,7 @@ return {
         [1855] = { 272 }, -- Punishment rock (ore)
         [1856] = { 40 }, -- Guide book
         [1858] = { 40 }, -- Address label
-        [2148] = { 264 }, -- Raw lava eel
+        [2148] = { 215, 264, 265 }, -- Raw lava eel
         [2365] = { 116 }, -- 'Perfect' gold bar
         [2373] = { 16 }, -- Relic part 1
         [2374] = { 16 }, -- Relic part 2
@@ -887,19 +899,19 @@ return {
         [2390] = { 16 }, -- Vial (jangerberries and guam leaves)
         [2393] = { 16 }, -- Toban's gold
         [2394] = { 16 }, -- Potion (Watchtower)
-        [2395] = { 16 }, -- Magic ogre potion
+        [2395] = { 16, 215 }, -- Magic ogre potion
         [2396] = { 16 }, -- Spell scroll
         [2397] = { 16 }, -- Shaman robe
         [2403] = { 125 }, -- Hazeel scroll
         [2404] = { 125 }, -- Chest key (Hazeel Cult)
         [2407] = { 263 }, -- Ball
         [2408] = { 263 }, -- Diary (Witch's House)
-        [2409] = { 263, 319 }, -- House key
+        [2409] = { 263, 293, 319 }, -- House key
         [2411] = { 263 }, -- Shed key (Witch's House)
         [2513] = { 314 }, -- Dragon chainbody (My Arm's Big Adventure)
-        [2875] = { 102 }, -- Bloated toad
+        [2875] = { 102, 304 }, -- Bloated toad
         [2882] = { 102 }, -- Seasoned chompy
-        [2886] = { 275 }, -- Battered book
+        [2886] = { 275, 293 }, -- Battered book
         [2888] = { 275 }, -- A stone bowl
         [2889] = { 275 }, -- A stone bowl (full)
         [2892] = { 275, 313, 338, 344 }, -- Elemental ore
@@ -953,18 +965,18 @@ return {
         [3221] = { 278, 289 }, -- Barrel of naphtha
         [3222] = { 278 }, -- Naphtha mix (sulphur)
         [3223] = { 278 }, -- Naphtha mix (quicklime)
-        [3230] = { 278 }, -- The Big Book of Bangs
-        [3262] = { 75 }, -- Troll thistle
+        [3230] = { 278, 289 }, -- The Big Book of Bangs
+        [3262] = { 75, 85 }, -- Troll thistle
         [3263] = { 75 }, -- Dried thistle
         [3264] = { 75 }, -- Ground thistle
         [3265] = { 75 }, -- Troll potion
         [3266] = { 75 }, -- Drunk parrot
-        [3267] = { 75 }, -- Dirty robe
+        [3267] = { 75, 289 }, -- Dirty robe
         [3268] = { 75 }, -- Fake man
         [3269] = { 75 }, -- Storeroom key
         [3270] = { 75 }, -- Alco-chunks
         [3688] = { 280 }, -- Unstrung lyre
-        [3689] = { 280 }, -- Lyre
+        [3689] = { 145, 280 }, -- Lyre
         [3692] = { 280 }, -- Branch
         [3696] = { 280 }, -- Hunters' talisman (Draugen)
         [3697] = { 280 }, -- Hunters' talisman
@@ -1026,9 +1038,9 @@ return {
         [4005] = { 130 }, -- Narnode's orders
         [4007] = { 130 }, -- Enchanted bar
         [4022] = { 130 }, -- M'speak amulet
-        [4075] = { 120 }, -- Glowing fungus
-        [4078] = { 120 }, -- Zealot's key
-        [4082] = { 120 }, -- Salve shard
+        [4075] = { 120, 406 }, -- Glowing fungus
+        [4078] = { 120, 406 }, -- Zealot's key
+        [4082] = { 120, 406 }, -- Salve shard
         [4083] = { 90 }, -- Sled
         [4085] = { 90 }, -- Wax
         [4178] = { 314 }, -- Abyssal whip (My Arm's Big Adventure)
@@ -1102,8 +1114,8 @@ return {
         [4487] = { 151 }, -- Half a rock
         [4488] = { 151 }, -- Corpse of woman
         [4489] = { 151 }, -- Asleif's necklace
-        [4490] = { 151 }, -- Mud (Mountain Daughter)
-        [4492] = { 151 }, -- Muddy rock
+        [4490] = { 115, 151 }, -- Mud (Mountain Daughter)
+        [4492] = { 115, 151 }, -- Muddy rock
         [4494] = { 115, 151 }, -- Pole
         [4495] = { 115, 151 }, -- Pole
         [4568] = { 284 }, -- Dwarven lore
@@ -1126,8 +1138,7 @@ return {
         [4604] = { 285 }, -- Hag's poison
         [4607] = { 285 }, -- Full snake basket
         [4615] = { 286 }, -- Letter (The Golem)
-        [4616] = { 286 }, -- Varmen's notes
-        [4617] = { 286 }, -- Display cabinet key
+        [4616] = { 286, 313 }, -- Varmen's notes
         [4619] = { 71, 286 }, -- Strange implement
         [4621] = { 286 }, -- Phoenix feather
         [4623] = { 286 }, -- Phoenix quill pen
@@ -1146,10 +1157,10 @@ return {
         [4666] = { 135 }, -- Silver pot (spice)
         [4667] = { 135 }, -- Blessed pot (spice)
         [4668] = { 135 }, -- Garlic powder
-        [4670] = { 135 }, -- Blood diamond
+        [4670] = { 135, 474 }, -- Blood diamond
         [4671] = { 135 }, -- Ice diamond
         [4672] = { 135 }, -- Smoke diamond
-        [4673] = { 135 }, -- Shadow diamond
+        [4673] = { 135, 474 }, -- Shadow diamond
         [4674] = { 135 }, -- Gilded cross
         [4678] = { 287 }, -- Canopic jar of Het
         [4679] = { 287 }, -- Canopic jar of Apmeken
@@ -1226,7 +1237,7 @@ return {
         [6066] = { 289 }, -- Mourner trousers (damaged)
         [6071] = { 289 }, -- Mourner letter
         [6072] = { 289 }, -- Tegid's soap
-        [6073] = { 289 }, -- Prifddinas' history
+        [6073] = { 289, 293 }, -- Prifddinas' history
         [6077] = { 289 }, -- Eastern settlement
         [6081] = { 289 }, -- Broken device
         [6085] = { 289 }, -- Red dye bellows
@@ -1282,7 +1293,7 @@ return {
         [6712] = { 101 }, -- Bucket of water (stagnant)
         [6713] = { 101 }, -- Wrench
         [6715] = { 101 }, -- Sluglings
-        [6716] = { 101 }, -- Karamthulhu
+        [6716] = { 4, 101 }, -- Karamthulhu
         [6718] = { 101 }, -- Fever spider body
         [6719] = { 101 }, -- Unsanitary swill
         [6747] = { 71 }, -- Demonic sigil mould
@@ -1312,8 +1323,8 @@ return {
         [6953] = { 295 }, -- Bottled water
         [6954] = { 295 }, -- Redberry juice
         [6956] = { 86, 295 }, -- Rose-tinted lens
-        [6957] = { 295, 409 }, -- Wizard's head
-        [6958] = { 295 }, -- Sand
+        [6957] = { 295, 321, 409 }, -- Wizard's head
+        [6958] = { 295, 302 }, -- Sand
         [6987] = { 97 }, -- Sandstone body
         [6988] = { 97 }, -- Sandstone base
         [6989] = { 97 }, -- Stone head (Lazim)
@@ -1341,9 +1352,9 @@ return {
         [7150] = { 296 }, -- Tacks
         [7155] = { 296 }, -- Rope (Cabin Fever)
         [7156] = { 296 }, -- Tinderbox (Cabin Fever)
-        [7408] = { 297 }, -- Draynor skull
+        [7408] = { 15, 297 }, -- Draynor skull
         [7411] = { 297 }, -- Symptoms list
-        [7465] = { 305 }, -- Vanilla pod
+        [7465] = { 274, 305 }, -- Vanilla pod
         [7468] = { 305 }, -- Pot of cornflour
         [7470] = { 305 }, -- Cornflour mixture
         [7471] = { 305 }, -- Milky mixture
@@ -1356,12 +1367,12 @@ return {
         [7486] = { 303 }, -- Orange spice
         [7487] = { 303 }, -- Orange spice
         [7496] = { 303 }, -- Empty spice shaker
-        [7497] = { 30 }, -- Dirty blast
+        [7497] = { 30, 298 }, -- Dirty blast
         [7508] = { 299 }, -- Asgoldian ale
         [7510] = { 299 }, -- Dwarven rock cake (cooled)
-        [7512] = { 30 }, -- Soggy bread
+        [7512] = { 30, 300 }, -- Soggy bread
         [7513] = { 30, 300 }, -- Spicy maggots
-        [7514] = { 30 }, -- Dyed orange
+        [7514] = { 30, 300 }, -- Dyed orange
         [7515] = { 30, 301 }, -- Breadcrumbs
         [7516] = { 301 }, -- Kelp (Mogre Camp)
         [7517] = { 301 }, -- Ground kelp
@@ -1370,7 +1381,7 @@ return {
         [7528] = { 30, 301 }, -- Ground cod
         [7529] = { 301 }, -- Raw fishcake
         [7530] = { 301 }, -- Cooked fishcake
-        [7531] = { 30 }, -- Burnt fishcake
+        [7531] = { 30, 301 }, -- Burnt fishcake
         [7532] = { 301 }, -- Mudskipper hide
         [7533] = { 301 }, -- Rock (Mogre Camp)
         [7538] = { 301 }, -- Fresh crab shell
@@ -1380,27 +1391,27 @@ return {
         [7546] = { 302 }, -- Enchanted flour
         [7564] = { 304 }, -- Balloon toad
         [7565] = { 304 }, -- Balloon toad (grey)
-        [7573] = { 30 }, -- Tchiki monkey nuts
-        [7574] = { 30 }, -- Sliced red banana
-        [7575] = { 30 }, -- Tchiki nut paste
+        [7573] = { 30, 306 }, -- Tchiki monkey nuts
+        [7574] = { 30, 306 }, -- Sliced red banana
+        [7575] = { 30, 306 }, -- Tchiki nut paste
         [7576] = { 306 }, -- Snake corpse
-        [7577] = { 30 }, -- Raw stuffed snake
-        [7578] = { 30 }, -- Odd stuffed snake
+        [7577] = { 30, 306 }, -- Raw stuffed snake
+        [7578] = { 30, 306 }, -- Odd stuffed snake
         [7579] = { 30, 306 }, -- Stuffed snake
-        [7580] = { 30 }, -- Snake over-cooked
+        [7580] = { 30, 306 }, -- Snake over-cooked
         [7622] = { 21 }, -- Bucket of rubble (partially filled)
         [7624] = { 21 }, -- Bucket of rubble (almost full)
         [7626] = { 21 }, -- Bucket of rubble (totally filled)
         [7628] = { 21 }, -- Plaster fragment
         [7629] = { 21 }, -- Dusty scroll
         [7630] = { 21 }, -- Crate (In Aid of the Myreque)
-        [7632] = { 21 }, -- Temple library key
+        [7632] = { 21, 311, 438 }, -- Temple library key
         [7633] = { 21, 383 }, -- The Sleeping Seven
         [7635] = { 21 }, -- Modern Day Morytania
         [7637] = { 21 }, -- Silvthril rod
         [7638] = { 21 }, -- Silvthril rod (enchanted)
-        [7649] = { 21 }, -- Rod clay mould
-        [7811] = { 68 }, -- Pot of vinegar
+        [7649] = { 21, 437 }, -- Rod clay mould
+        [7811] = { 33, 68 }, -- Pot of vinegar
         [7812] = { 68 }, -- Goblin skull
         [7813] = { 68 }, -- Bone in vinegar (Goblin skull)
         [7814] = { 68 }, -- Polished goblin skull
@@ -1416,7 +1427,7 @@ return {
         [7824] = { 68 }, -- Giant rat bone
         [7825] = { 68 }, -- Bone in vinegar (Giant rat bone)
         [7826] = { 68 }, -- Polished giant rat bone
-        [7827] = { 68 }, -- Giant bat wing
+        [7827] = { 68, 108 }, -- Giant bat wing
         [7828] = { 68 }, -- Bone in vinegar (Giant bat wing)
         [7829] = { 68 }, -- Polished giant bat wing
         [7854] = { 68 }, -- Monkey paw
@@ -1425,7 +1436,7 @@ return {
         [7908] = { 68 }, -- Big frog leg
         [7909] = { 68 }, -- Bone in vinegar (Big frog leg)
         [7910] = { 68 }, -- Polished big frog leg
-        [7922] = { 77 }, -- Al Kharid flyer
+        [7922] = { 77, 290 }, -- Al Kharid flyer
         [7941] = { 308 }, -- Iron sheet
         [7942] = { 308 }, -- Fresh monkfish (raw)
         [7943] = { 308 }, -- Fresh monkfish
@@ -1444,7 +1455,7 @@ return {
         [7969] = { 127 }, -- Pulley beam
         [7970] = { 127 }, -- Long pulley beam
         [7971] = { 127 }, -- Longer pulley beam
-        [7972] = { 127 }, -- Lift manual
+        [7972] = { 77, 127 }, -- Lift manual
         [7973] = { 127 }, -- Beam
         [9016] = { 309 }, -- Gorak claws
         [9017] = { 309 }, -- Star flower
@@ -1458,10 +1469,10 @@ return {
         [9080] = { 24 }, -- Suqah hide
         [9081] = { 24 }, -- Suqah leather
         [9082] = { 24 }, -- Ground tooth
-        [9085] = { 24 }, -- Empty vial
+        [9085] = { 24, 531 }, -- Empty vial
         [9086] = { 24 }, -- Vial of water (Lunar Diplomacy)
         [9087] = { 24 }, -- Waking sleep vial
-        [9088] = { 24 }, -- Guam vial
+        [9088] = { 16, 24 }, -- Guam vial
         [9089] = { 24 }, -- Marr vial
         [9090] = { 24 }, -- Guam-marr vial
         [9094] = { 24 }, -- Kindling
@@ -1487,7 +1498,7 @@ return {
         [9612] = { 310, 320 }, -- Green pentagon
         [9613] = { 310, 320 }, -- Blue circle
         [9614] = { 310, 320 }, -- Blue triangle
-        [9615] = { 186, 310 }, -- Blue square
+        [9615] = { 186, 310, 320 }, -- Blue square
         [9616] = { 310, 320 }, -- Blue pentagon
         [9617] = { 310, 320 }, -- Indigo circle
         [9618] = { 310, 320 }, -- Indigo triangle
@@ -1502,12 +1513,12 @@ return {
         [9647] = { 311 }, -- Castle sketch 2
         [9648] = { 311 }, -- Castle sketch 3
         [9651] = { 311 }, -- Large ornate key
-        [9652] = { 311 }, -- Haemalchemy (Vol. 1)
+        [9652] = { 311, 327 }, -- Haemalchemy (Vol. 1)
         [9653] = { 311 }, -- Sealed message
         [9654] = { 311 }, -- Door key (Darkness of Hallowvale)
         [9655] = { 311 }, -- Ladder top
         [9680] = { 312 }, -- Sea slug glue
-        [9681] = { 312 }, -- Commorb v2
+        [9681] = { 83, 312 }, -- Commorb v2
         [9682] = { 312 }, -- Door transcription
         [9683] = { 312 }, -- Dead sea slug
         [9684] = { 312 }, -- Page 1
@@ -1525,7 +1536,7 @@ return {
         [9697] = { 312 }, -- Mind rune (The Slug Menace)
         [9698] = { 312 }, -- Blank fire rune
         [9699] = { 312 }, -- Fire rune (The Slug Menace)
-        [9715] = { 275 }, -- Slashed book
+        [9715] = { 275, 293 }, -- Slashed book
         [9717] = { 313 }, -- Beaten book
         [9718] = { 313 }, -- Crane schematic
         [9720] = { 313 }, -- Crane claw
@@ -1575,7 +1586,7 @@ return {
         [10597] = { 145 }, -- Mission report (Ardougne)
         [10598] = { 145 }, -- Mission report (Lumbridge)
         [10599] = { 145 }, -- Mission report (Fake)
-        [10600] = { 145 }, -- Kgp id card
+        [10600] = { 145, 332 }, -- Kgp id card
         [10830] = { 148 }, -- Royal decree
         [10831] = { 148 }, -- Empty tax bag
         [10832] = { 148 }, -- Light tax bag
@@ -1593,7 +1604,7 @@ return {
         [10876] = { 1 }, -- Metal bar
         [10884] = { 317 }, -- Fuse (The Great Brain Robbery)
         [10885] = { 317 }, -- Keg
-        [10890] = { 317 }, -- Prayer book
+        [10890] = { 188, 317, 321 }, -- Prayer book
         [10893] = { 317 }, -- Cranial clamp
         [10894] = { 317 }, -- Brain tongs
         [10895] = { 317 }, -- Bell jar
@@ -1601,17 +1612,17 @@ return {
         [10897] = { 317 }, -- Shipping order
         [10899] = { 317 }, -- Crate part
         [10904] = { 317 }, -- Skull staple
-        [11001] = { 144 }, -- Dagon'hai history
-        [11002] = { 144 }, -- Sin'keth's diary
-        [11003] = { 144 }, -- An empty folder
-        [11006] = { 144 }, -- Used folder
-        [11007] = { 144 }, -- Full folder
-        [11008] = { 144 }, -- Rat's paper
-        [11009] = { 144 }, -- Rat's letter
-        [11010] = { 144 }, -- Surok's letter
-        [11011] = { 144 }, -- Zaff's instructions
-        [11012] = { 144 }, -- Wand (What Lies Below)
-        [11013] = { 144 }, -- Infused wand
+        [11001] = { 144, 408 }, -- Dagon'hai history
+        [11002] = { 144, 408 }, -- Sin'keth's diary
+        [11003] = { 144, 408 }, -- An empty folder
+        [11006] = { 144, 408 }, -- Used folder
+        [11007] = { 144, 408 }, -- Full folder
+        [11008] = { 144, 408 }, -- Rat's paper
+        [11009] = { 144, 408 }, -- Rat's letter
+        [11010] = { 144, 408 }, -- Surok's letter
+        [11011] = { 144, 408 }, -- Zaff's instructions
+        [11012] = { 144, 408 }, -- Wand (What Lies Below)
+        [11013] = { 144, 408 }, -- Infused wand
         [11031] = { 318 }, -- Damp planks
         [11032] = { 318 }, -- Crude carving
         [11033] = { 318 }, -- Cruder carving
@@ -1655,30 +1666,30 @@ return {
         [11747] = { 320 }, -- A key to a chest
         [11748] = { 320 }, -- Strongroom key
         [11750] = { 320 }, -- Yewnock's notes
-        [11761] = { 409 }, -- Locked diary
-        [11762] = { 409 }, -- Unlocked diary
-        [11764] = { 409 }, -- Foot
-        [11765] = { 409 }, -- Torso (Back to my Roots)
-        [11766] = { 409 }, -- Left arm
-        [11767] = { 409 }, -- Right arm
-        [11768] = { 409 }, -- Left leg
-        [11769] = { 409 }, -- Right leg
-        [11770] = { 321 }, -- Root cutting
-        [11771] = { 321 }, -- Root cutting
-        [11772] = { 321 }, -- Root cutting
-        [11773] = { 321 }, -- Root cutting
-        [11774] = { 321 }, -- Root cutting
-        [11775] = { 321 }, -- Wilted cutting
-        [11776] = { 321 }, -- Potted root
-        [11777] = { 321 }, -- Sealed pot
-        [11795] = { 322 }, -- Ekeleshuun key (Land of the Goblins)
-        [11796] = { 322 }, -- Narogoshuun key (Land of the Goblins)
-        [11797] = { 322 }, -- Huzamogaarb key (Land of the Goblins)
-        [11798] = { 322 }, -- Saragorgak key (Land of the Goblins)
-        [11799] = { 322 }, -- Horogothgar key (Land of the Goblins)
-        [11800] = { 322 }, -- Yurkolgokh key (Land of the Goblins)
-        [11807] = { 322 }, -- Pharmakos berries
-        [11808] = { 322 }, -- Whitefish
+        [11761] = { 321, 409 }, -- Locked diary
+        [11762] = { 321, 409 }, -- Unlocked diary
+        [11764] = { 321, 409 }, -- Foot
+        [11765] = { 321, 409 }, -- Torso (Back to my Roots)
+        [11766] = { 321, 409 }, -- Left arm
+        [11767] = { 321, 409 }, -- Right arm
+        [11768] = { 321, 409 }, -- Left leg
+        [11769] = { 321, 409 }, -- Right leg
+        [11770] = { 321, 409 }, -- Root cutting
+        [11771] = { 321, 409 }, -- Root cutting
+        [11772] = { 321, 409 }, -- Root cutting
+        [11773] = { 321, 409 }, -- Root cutting
+        [11774] = { 321, 409 }, -- Root cutting
+        [11775] = { 321, 409 }, -- Wilted cutting
+        [11776] = { 321, 409 }, -- Potted root
+        [11777] = { 321, 409 }, -- Sealed pot
+        [11795] = { 322, 410 }, -- Ekeleshuun key (Land of the Goblins)
+        [11796] = { 322, 410 }, -- Narogoshuun key (Land of the Goblins)
+        [11797] = { 322, 410 }, -- Huzamogaarb key (Land of the Goblins)
+        [11798] = { 322, 410 }, -- Saragorgak key (Land of the Goblins)
+        [11799] = { 322, 410 }, -- Horogothgar key (Land of the Goblins)
+        [11800] = { 322, 410 }, -- Yurkolgokh key (Land of the Goblins)
+        [11807] = { 322, 410 }, -- Pharmakos berries
+        [11808] = { 322, 410 }, -- Whitefish
         [11970] = { 323 }, -- Smelly crate
         [11971] = { 323 }, -- Full crate
         [11972] = { 323 }, -- Empty crate
@@ -1718,7 +1729,7 @@ return {
         [13149] = { 327 }, -- Book page
         [13150] = { 327 }, -- Crate (Legacy of Seergaze)
         [13151] = { 327 }, -- Combat book
-        [13153] = { 327 }, -- Chain link mould
+        [13153] = { 327, 437 }, -- Chain link mould
         [13154] = { 327 }, -- Silvthril chain
         [13159] = { 327 }, -- Ornate tomb key
         [13228] = { 328 }, -- Crate (Perils of Ice Mountain)
@@ -1729,7 +1740,7 @@ return {
         [13236] = { 138 }, -- Three little kittens
         [13238] = { 329 }, -- Treated oak plank
         [13243] = { 329 }, -- Stone tablet (TokTz-Ket-Dill)
-        [13244] = { 329 }, -- TzHaar Tourist Guide
+        [13244] = { 270, 329 }, -- TzHaar Tourist Guide
         [13245] = { 329 }, -- Stone slab
         [13259] = { 330 }, -- Ranged path key
         [13260] = { 330 }, -- Magic path key
@@ -1814,7 +1825,7 @@ return {
         [13758] = { 56 }, -- Grubby key
         [13759] = { 56 }, -- Scrap of paper
         [13760] = { 56 }, -- Bottle
-        [13761] = { 56 }, -- Bottle of mist
+        [13761] = { 56, 117 }, -- Bottle of mist
         [13762] = { 56 }, -- List of elders
         [14062] = { 20 }, -- Broom ointment
         [14064] = { 20 }, -- Newt
@@ -1822,12 +1833,12 @@ return {
         [14066] = { 20 }, -- Toad label
         [14067] = { 20 }, -- Newts and toads label
         [14068] = { 20 }, -- Betty's wand
-        [14069] = { 20 }, -- Magic slate
-        [14071] = { 20 }, -- Blackbird
-        [14072] = { 20 }, -- Bat (Swept Away)
-        [14073] = { 20 }, -- Spider (Swept Away)
-        [14074] = { 20 }, -- Rat (Swept Away)
-        [14075] = { 20 }, -- Snail
+        [14069] = { 20, 412 }, -- Magic slate
+        [14071] = { 20, 412 }, -- Blackbird
+        [14072] = { 20, 412 }, -- Bat (Swept Away)
+        [14073] = { 20, 412 }, -- Spider (Swept Away)
+        [14074] = { 20, 412 }, -- Rat (Swept Away)
+        [14075] = { 20, 412 }, -- Snail
         [14085] = { 86, 126 }, -- Armadyl communiqué
         [14459] = { 86 }, -- Unconscious broav
         [14460] = { 86 }, -- Dirty laundry
@@ -1935,9 +1946,6 @@ return {
         [15109] = { 117 }, -- Oil in a canopic jar
         [15110] = { 117 }, -- Oil and berries in a jar
         [15111] = { 117 }, -- Full canopic jar
-        [15112] = { 117 }, -- Empty canopic jar
-        [15114] = { 117 }, -- Code key
-        [15115] = { 117, 194 }, -- Decoder strips
         [15116] = { 117 }, -- Notes (a-j)
         [15117] = { 117 }, -- Notes (k-z)
         [15128] = { 33 }, -- Foot bone
@@ -1946,7 +1954,7 @@ return {
         [15133] = { 33 }, -- Polished sabre-like teeth
         [15134] = { 33 }, -- Long, sharp claws
         [15136] = { 33 }, -- Polished long, sharp claws
-        [15137] = { 33 }, -- Fibula bone
+        [15137] = { 33, 68 }, -- Fibula bone
         [15139] = { 33 }, -- Polished fibula bone
         [15140] = { 33 }, -- Hand bone
         [15142] = { 33 }, -- Polished hand bone
@@ -1970,13 +1978,13 @@ return {
         [15169] = { 33 }, -- Polished mithril dragon tail-bone
         [15170] = { 33 }, -- Neck bone
         [15172] = { 33 }, -- Polished neck bone
-        [15173] = { 33 }, -- Shoulder bone
+        [15173] = { 33, 68 }, -- Shoulder bone
         [15175] = { 33 }, -- Polished shoulder bone
         [15176] = { 33 }, -- Giant snake spine
         [15178] = { 33 }, -- Polished giant snake spine
-        [15179] = { 33 }, -- Pelvis bone
+        [15179] = { 33, 68 }, -- Pelvis bone
         [15181] = { 33 }, -- Polished pelvis bone
-        [15182] = { 33 }, -- Femur bone
+        [15182] = { 33, 408 }, -- Femur bone
         [15184] = { 33 }, -- Polished femur bone
         [15185] = { 33 }, -- Humerus bone
         [15187] = { 33 }, -- Polished humerus bone
@@ -2020,7 +2028,7 @@ return {
         [15378] = { 333 }, -- Barrows icon
         [15383] = { 333 }, -- Imperfect heat globe
         [15385] = { 333 }, -- Relic (The Temple at Senntisten)
-        [15386] = { 333 }, -- Frostenhorn
+        [15386] = { 194, 333, 469 }, -- Frostenhorn
         [15387] = { 333 }, -- Ruined backpack (The Temple at Senntisten)
         [15388] = { 333 }, -- Battered letter
         [15391] = { 333 }, -- Ancient hymnal
@@ -2050,7 +2058,7 @@ return {
         [18658] = { 414 }, -- Flame fragment (guard)
         [18659] = { 414 }, -- Flame fragment (rogue)
         [18660] = { 414 }, -- Flame fragment (cave goblin)
-        [18661] = { 415 }, -- Vial of stench
+        [18661] = { 124, 415 }, -- Vial of stench
         [18662] = { 415 }, -- Vial of stench (a) (A Guild of Our Own)
         [18664] = { 415 }, -- Cuckoo clock key
         [18665] = { 415 }, -- Lever key
@@ -2195,7 +2203,7 @@ return {
         [20686] = { 188 }, -- Cannonball barrel-boat
         [20687] = { 188 }, -- Roll of bandage
         [20688] = { 188 }, -- Surgical mask
-        [20690] = { 188 }, -- Barrelchest disguise
+        [20690] = { 188, 397 }, -- Barrelchest disguise
         [20691] = { 188 }, -- Evidence file
         [20692] = { 188 }, -- Gunpowder-filled barrel
         [20693] = { 188 }, -- Bundle o' kegs
@@ -2274,7 +2282,6 @@ return {
         [21804] = { 194 }, -- Dathana's message
         [21805] = { 194 }, -- Kethsian key
         [21806] = { 194 }, -- Teleorb (Ritual of the Mahjarrat)
-        [21807] = { 194 }, -- Arrav's heart
         [21809] = { 194 }, -- Beacon part
         [21810] = { 194 }, -- Beacon part
         [21811] = { 194 }, -- Beacon part
@@ -2457,7 +2464,7 @@ return {
         [28917] = { 363 }, -- Captain Dulcin's journal (locked)
         [28918] = { 363 }, -- Captain Dulcin's journal
         [28919] = { 363 }, -- Grimoire (The Death of Chivalry)
-        [28920] = { 363 }, -- Red candle
+        [28920] = { 97, 363 }, -- Red candle
         [28921] = { 363 }, -- Chalk (The Death of Chivalry)
         [28922] = { 363 }, -- Cage door key
         [28923] = { 363 }, -- Letter from Lord Daquarius
@@ -2496,7 +2503,7 @@ return {
         [30925] = { 365 }, -- Dragonkin memory
         [30926] = { 365 }, -- Animate Rock scroll (One of a Kind)
         [30927] = { 365 }, -- Hannibus Hunted
-        [30992] = { 434 }, -- Engrammeter
+        [30992] = { 366, 386, 434 }, -- Engrammeter
         [30993] = { 434 }, -- Engrammeter (depleted)
         [30995] = { 434 }, -- Lamistard's memory
         [31046] = { 366 }, -- Mah memory
@@ -2508,7 +2515,7 @@ return {
         [31253] = { 367 }, -- Valve outer wheel
         [31254] = { 367 }, -- Valve inner wheel
         [31255] = { 367 }, -- Pitch
-        [31379] = { 273 }, -- Codex Ultimatus
+        [31379] = { 135, 273 }, -- Codex Ultimatus
         [31532] = { 368 }, -- Yelps's very own cash bag (empty)
         [31533] = { 368 }, -- Expired spin ticket
         [31788] = { 222 }, -- Iestin's report
@@ -2692,7 +2699,7 @@ return {
         [37427] = { 384 }, -- Ludicrous flail
         [37428] = { 384 }, -- Potion (Kindred Spirits)
         [37429] = { 384 }, -- Bag of Crystals
-        [37430] = { 384 }, -- Empty bottle
+        [37430] = { 117, 384 }, -- Empty bottle
         [37431] = { 384 }, -- Bottle on a string
         [37432] = { 384 }, -- Bottle of acid
         [37457] = { 384 }, -- Death at Sea
@@ -2747,7 +2754,7 @@ return {
         [39444] = { 388 }, -- Mask of Sorrow
         [39445] = { 388 }, -- Prism (Sliske's Endgame)
         [39446] = { 388 }, -- Mirror (Sliske's Endgame)
-        [39450] = { 388 }, -- Armadyl's feather
+        [39450] = { 388, 397 }, -- Armadyl's feather
         [39451] = { 388 }, -- A fallen mask
         [39452] = { 388 }, -- A fallen mask
         [39453] = { 388 }, -- A fallen mask
@@ -2887,8 +2894,8 @@ return {
         [42457] = { 450 }, -- Aggie's broom (uncharged)
         [42458] = { 450 }, -- Aggie's broom
         [42680] = { 398 }, -- Locked casket
-        [42681] = { 398 }, -- Casket key
-        [42689] = { 398 }, -- Charos's Journal
+        [42681] = { 15, 398 }, -- Casket key
+        [42689] = { 379, 398 }, -- Charos's Journal
         [42690] = { 398 }, -- Puzzle casket
         [44479] = { 399 }, -- Buckthorn berry
         [44576] = { 400 }, -- Spare sock (Violet is Blue)
@@ -2964,7 +2971,7 @@ return {
         [51265] = { 468 }, -- Smoke bombs
         [51409] = { 472 }, -- Handwritten message (Flashback)
         [51671] = { 474 }, -- Blood Bank Ledger
-        [52822] = { 478 }, -- Eye of Het
+        [52822] = { 478, 479, 481 }, -- Eye of Het
         [52823] = { 479 }, -- Badly-hidden notes
         [52983] = { 480 }, -- Communication device (Extinction)
         [53031] = { 480 }, -- Warped gem
@@ -2985,15 +2992,15 @@ return {
         [54590] = { 490 }, -- Poison detection potion (strange spices)
         [55162] = { 492 }, -- Dragonkin device (Dead and Buried)
         [55163] = { 492 }, -- Potion of dreamless sleep
-        [55215] = { 501 }, -- 'No Gums' Murray's trumpet
-        [55216] = { 501 }, -- Animated drumsticks
-        [55217] = { 501 }, -- Zommy's piano keys (white)
-        [55218] = { 501 }, -- Zommy's piano keys (black)
+        [55215] = { 501, 503, 504, 505, 506 }, -- 'No Gums' Murray's trumpet
+        [55216] = { 501, 503, 504, 505, 506 }, -- Animated drumsticks
+        [55217] = { 501, 503, 504, 505, 506 }, -- Zommy's piano keys (white)
+        [55218] = { 501, 503, 504, 505, 506 }, -- Zommy's piano keys (black)
         [55222] = { 500 }, -- Soul urn (Kili Row)
         [55224] = { 495 }, -- Soul urn (Vessel of the Harbinger)
         [55225] = { 495 }, -- Netty's death certificate and will
         [55226] = { 495 }, -- Netty's key
-        [55227] = { 495 }, -- Book of Haricanto
+        [55227] = { 82, 495 }, -- Book of Haricanto
         [55235] = { 498 }, -- Basic ghostly ink (Remains of the Necrolord)
         [55236] = { 498 }, -- Regular ghostly ink (Remains of the Necrolord)
         [55237] = { 498 }, -- Greater ghostly ink (Remains of the Necrolord)

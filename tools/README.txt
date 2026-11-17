@@ -221,7 +221,12 @@ reward scroll items, XP books, items sold in shops...), in no category named aft
 a minigame or activity (Buttons is in "Fishing Trawler": it can be got outside its
 quest), no keep signal, not required by any quest, every quest it
 belongs to is tracked, and no item id shared with anything that isn't "no longer needed".
-The plugin shows it only once all its quests are finished.
+Every playable quest whose page (or a subpage, such as its quick guide) links to the item
+is added to its quests, because a quest can use an item without listing it: A Fairy Tale
+I picks random ingredients, Red vine worm among them, though the worm belongs to Fishing
+Contest. A link from a quest that isn't tracked (Dimension of Disaster, a holiday quest)
+means no marker; links from removed (historical) quests are ignored. The plugin shows it
+only once all its quests are finished.
 
 
 Client inputs from the probe plugin

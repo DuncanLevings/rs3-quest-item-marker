@@ -98,23 +98,25 @@ function ItemMarks.new(required, postData, getState, achievementDone, options)
         return true
     end
 
-    -- The finished quests in the filter that make an item "keep", or nil.
-    local function keepQuests(itemId)
+    -- True when one of the item's quests in the filter is finished and it still has
+    -- achievements to do. Runs for every slot on every refresh, so it builds nothing.
+    local function isKept(itemId)
         local quests = shown.keep and keepItems[itemId]
 
-        if not quests or usedUp(itemId) then
-            return nil
+        if not quests then
+            return false
         end
 
-        local list = {}
+        local anyFinished = false
 
         for _, quest in ipairs(quests) do
             if filter[quest.category] and finished(quest) then
-                list[#list + 1] = quest
+                anyFinished = true
+                break
             end
         end
 
-        return #list > 0 and list or nil
+        return anyFinished and not usedUp(itemId)
     end
 
     -- The quests that make an item "done", or nil.
@@ -139,7 +141,7 @@ function ItemMarks.new(required, postData, getState, achievementDone, options)
             return "required"
         end
 
-        if keepQuests(itemId) then
+        if isKept(itemId) then
             return "keep"
         end
 

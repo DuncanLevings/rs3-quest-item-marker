@@ -245,8 +245,8 @@ function Shop.new()
     end
 
     -- Same results as slot_screen.lua's read, plus `containerKey` (the static id read),
-    -- `retry` while a display mode is still being searched for, and `inventoryId`
-    -- (which inventory matched).
+    -- `retry` while a display mode is still being searched for, `inventoryId` (which
+    -- inventory matched) and `buying` (true for shop stock, false for the Sell tab).
     function self.read()
         local container, staticId = visibleContainer()
 
@@ -312,6 +312,9 @@ function Shop.new()
             present = present,
             containerKey = staticId,
             inventoryId = found.invId,
+
+            -- Shop stock (a Buy tab) rather than the backpack (the Sell tab).
+            buying = found.invId ~= inventoryId("INV"),
         }
     end
 

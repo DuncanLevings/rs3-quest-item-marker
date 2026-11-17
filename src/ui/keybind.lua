@@ -16,8 +16,12 @@ function Keybind.new(getBinding, onPress)
     local subscribed = false
     local wasDown = false
 
+    -- The binding as of the last update(), so the per-tick check doesn't copy the saved
+    -- one 50 times a second.
+    local binding = {}
+
     local function onLogic()
-        local down = prettyui.KeybindField.IsDown(getBinding())
+        local down = prettyui.KeybindField.IsDown(binding)
         local pressed = down and not wasDown
 
         -- Record the press before acting on it, so an error in onPress can't make
@@ -32,7 +36,9 @@ function Keybind.new(getBinding, onPress)
     -- Call after start and whenever the binding changes. Polls the keyboard (50 times
     -- a second, a few table reads) only while a key is actually bound.
     function self:update()
-        local bound = #getBinding() > 0
+        binding = getBinding()
+
+        local bound = #binding > 0
 
         if bound and not subscribed then
             subscribed = true

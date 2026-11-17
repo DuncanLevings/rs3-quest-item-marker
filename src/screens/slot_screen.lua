@@ -60,9 +60,10 @@ function SlotScreen.childKey(component)
     return nil
 end
 
--- Every slot component under a container by dynamicID, plus the set of every
--- child's childKey (our icons are children too; markers use it to spot the game
--- deleting them). nil if listing failed.
+-- Every slot component under a container by dynamicID, plus every child by its
+-- childKey (our icons are children too; markers use it to spot the game deleting
+-- them). Keys aren't unique: a game slot can get the key a deleted icon had.
+-- nil if listing failed.
 function SlotScreen.componentsByDynamicId(container)
     local byDynamic = {}
     local present = {}
@@ -73,7 +74,7 @@ function SlotScreen.componentsByDynamicId(container)
             local key = SlotScreen.childKey(child)
 
             if key then
-                present[key] = true
+                present[key] = child
             end
 
             if type(dynamicId) == "number" and byDynamic[dynamicId] == nil then

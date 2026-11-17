@@ -1,6 +1,7 @@
 -- Answers "is this achievement complete?" from config.Achievement, caching each answer
--- until the next clear(). Markers clear it when a screen opens, so a just-finished
--- achievement shows on the next bank or shop visit.
+-- until the next clear(). main.lua clears it when a screen opens (so a just-finished
+-- achievement shows on the next bank or shop visit) and at logout (another character
+-- may log in next).
 --
 -- Owns the cache only.
 

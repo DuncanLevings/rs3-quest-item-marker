@@ -10,7 +10,7 @@ local Log = require("src/log")
 
 local QuestStatus = {}
 
--- Quests read per Logic tick (50 a second): ~227 quests take about ten ticks.
+-- Quests read per Logic tick (50 a second): ~300 quests take about twelve ticks.
 local QUESTS_PER_TICK = 25
 
 -- ~30 s in server ticks. Icons always draw from the cache, so this only bounds how
@@ -19,7 +19,8 @@ local UNWATCHED_COOLDOWN_TICKS = 50
 
 local SUBSCRIPTION = "quest-item-marker-quest-status"
 
--- quests: the list from QuestData. onChanged(reason, changedIds) runs after the first
+-- quests: { { id }, ... }, every quest either data file mentions (main.lua merges
+-- them). onChanged(reason, changedIds) runs after the first
 -- full read ("ready"), after re-reads that changed a state ("changed"), and when
 -- everything is forgotten at logout ("reset").
 function QuestStatus.new(quests, onChanged)
@@ -40,8 +41,11 @@ function QuestStatus.new(quests, onChanged)
         unwatched = {},
     }
 
-    -- The read queue: a list in order, plus a set so nothing is queued twice.
+    -- The read queue: quest ids in order, read from `head` and added at `tail`, plus a
+    -- set so nothing is queued twice. Indexes instead of table.remove(queue, 1), which
+    -- would shift the whole list (~300 quests) on every read.
     local queue, queued = {}, {}
+    local head, tail = 1, 0
 
     -- True while the queue holds the first full read after login.
     local fullRead = false
@@ -160,17 +164,21 @@ function QuestStatus.new(quests, onChanged)
         end
 
         for _ = 1, QUESTS_PER_TICK do
-            local questId = table.remove(queue, 1)
-
-            if questId == nil then
+            if head > tail then
                 break
             end
+
+            local questId = queue[head]
+            queue[head] = nil
+            head = head + 1
 
             queued[questId] = nil
             readQuest(questId)
         end
 
-        if #queue == 0 then
+        -- Ran dry: start the next batch from a fresh, empty list.
+        if head > tail then
+            queue, head, tail = {}, 1, 0
             finishBatch()
         end
     end
@@ -181,7 +189,8 @@ function QuestStatus.new(quests, onChanged)
         end
 
         queued[questId] = true
-        queue[#queue + 1] = questId
+        tail = tail + 1
+        queue[tail] = questId
 
         if not logicSubscribed then
             logicSubscribed = true
@@ -198,6 +207,7 @@ function QuestStatus.new(quests, onChanged)
         self.unwatched = {}
 
         queue, queued, changed = {}, {}, {}
+        head, tail = 1, 0
         fullRead = false
         lastUnwatchedTick = nil
         unwatchedFresh = false

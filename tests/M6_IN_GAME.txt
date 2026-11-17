@@ -14,7 +14,7 @@ Automated checks (no client): from the plugin folder run
 
     lua tests/run.lua
 
-It should end with "100 passed, 0 failed".
+It should end with "103 passed, 0 failed".
 
 
 0. Set up
@@ -46,6 +46,16 @@ It should end with "100 passed, 0 failed".
 2. If you can, finish one of its achievements, then close and reopen the bank.
    Check: once every listed achievement is done the icon turns red.
 3. Check: Ectophial / diving apparatus / monkey greegree (if you have them) have no icon.
+
+
+2b. Shops
+---------
+1. Carry a red-marked item and open a shop, ideally one that also sells a quest item.
+   Check: no red icons on any Buy tab; the Sell tab shows the red icon on your item.
+   Green and normal icons still show on the Buy tabs.
+2. Buy a quest item (e.g. eye of newt at Jatix's), then switch to the Sell tab and wait
+   a few seconds.
+   Check: its icon stays on the Sell tab (it used to vanish after about a second).
 
 
 3. Settings

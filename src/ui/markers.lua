@@ -232,13 +232,23 @@ function Markers.new(options)
         }
     end
 
+    -- Is the child listed under this key one of our icons? The game reuses keys: a
+    -- shop's Sell tab, rebuilt with more slots, gave a game slot the key of the icon
+    -- it had just deleted (in game, 2026-11-17).
+    local function isOurIcon(present, key)
+        local child = key and present[key]
+
+        return child ~= nil and options.iconSprite ~= nil
+            and Log.field(child, "sprite") == options.iconSprite
+    end
+
     -- Forgets icons the game deleted by rebuilding the slots (a shop does this on
-    -- stock changes), so the caller draws them again. `present` = child keys of the
-    -- container just read. Skipped until we know the client lists our icons at all.
+    -- stock changes), so the caller draws them again. `present` = children by key in
+    -- the container just read. Skipped until we know the client lists our icons.
     local function dropDeletedIcons(screen, present, containerKey)
         if not iconsListed then
             for _, record in pairs(screen.icons) do
-                if record.key and present[record.key] then
+                if isOurIcon(present, record.key) then
                     iconsListed = true
                     break
                 end
@@ -250,7 +260,7 @@ function Markers.new(options)
         end
 
         for slotIndex, record in pairs(screen.icons) do
-            if record.key and record.containerKey == containerKey and not present[record.key] then
+            if record.key and record.containerKey == containerKey and not isOurIcon(present, record.key) then
                 forgetIcon(record)
                 screen.icons[slotIndex] = nil
             end
@@ -262,6 +272,7 @@ function Markers.new(options)
         screen.dirty = false
 
         local result = Log.safe(screen.name .. " read", screen.adapter.read) or { state = "unreliable" }
+
 
         if result.state == "unreliable" then
             pruneMismatched(screen)
@@ -281,6 +292,12 @@ function Markers.new(options)
 
         for _, slot in ipairs(result.slots) do
             local kind = marks:kindOf(slot.itemId)
+
+            -- "No longer needed" is about items you hold; on a shop's Buy tab it would
+            -- just be noise.
+            if kind == "done" and result.buying then
+                kind = nil
+            end
 
             if kind then
                 wanted[slot.slot] = slot
@@ -334,7 +351,7 @@ function Markers.new(options)
                     -- among the slot container's children (see dropDeletedIcons).
                     if not iconsListed and created.key then
                         local _, present = SlotScreen.componentsByDynamicId(Log.field(slot.component, "parent"))
-                        iconsListed = present ~= nil and present[created.key] == true
+                        iconsListed = present ~= nil and isOurIcon(present, created.key)
                     end
                 end
 

@@ -358,6 +358,24 @@ spec["an item kept for its achievements is green until they're done, then red"] 
     shutdown()
 end
 
+spec["achievement answers are forgotten at logout (the next character has its own)"] = function()
+    local client, shutdown = setup(nil, { ["Priest in Peril"] = true, ["River of Blood"] = true })
+
+    client.setSlot(5, WOLFBANE)
+    settle(client)
+    check.equal(iconOn(client, WOLFBANE).rgba, GREEN, "cached: achievements not done")
+
+    -- Another character, with both achievements done, logs in.
+    client.achievements[846] = -2
+    client.achievements[4996] = -2
+    client.fire("GameStateChanged", { newState = GameState.LOBBY })
+    client.fire("GameStateChanged", { newState = GameState.GAME })
+    settle(client)
+
+    check.equal(iconOn(client, WOLFBANE).rgba, RED, "read again after logout")
+    shutdown()
+end
+
 spec["an item with a lasting use is never marked"] = function()
     local client, shutdown = setup(nil, { ["Ghosts Ahoy"] = true })
 

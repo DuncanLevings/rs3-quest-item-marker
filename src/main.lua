@@ -118,7 +118,14 @@ function App.start()
             end
         end
 
-        questStatus = QuestStatus.new(tracked, function()
+        local achievements = AchievementStatus.new()
+
+        questStatus = QuestStatus.new(tracked, function(reason)
+            -- Logout or the lobby: the next character has its own achievements.
+            if reason == "reset" then
+                achievements:clear()
+            end
+
             if markers then
                 markers:markAllDirty()
             end
@@ -127,8 +134,6 @@ function App.start()
         local function getState(questId)
             return questStatus:get(questId)
         end
-
-        local achievements = AchievementStatus.new()
 
         itemMarks = ItemMarks.new(RequiredItems.new(questData, getState, preferences:getFilter()), postData,
             getState, function(achievementId)

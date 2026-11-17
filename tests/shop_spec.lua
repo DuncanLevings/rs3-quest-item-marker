@@ -83,6 +83,10 @@ spec["the sell view (backpack items) matches the backpack"] = function()
 
     check.equal(result.inventoryId, 93)
     check.equal(result.slots[1].component, client.shopSlots[4])
+    check.falsy(result.buying, "the Sell tab")
+
+    client.showShopList(24)
+    check.truthy(shop.read().buying, "a Buy tab")
 end
 
 spec["slots that match no known list are unreliable"] = function()
@@ -117,11 +121,12 @@ end
 
 -- With the marker manager ------------------------------------------------------------
 
-local function setup()
+-- kind: the marker item 100 gets ("required" unless given).
+local function setup(kind)
     local client = FakeClient.install()
     local required = {
         kindOf = function(_, itemId)
-            return itemId == 100 and "required" or nil
+            return itemId == 100 and (kind or "required") or nil
         end,
         tooltipText = function()
             return "Priest in Peril"
@@ -263,6 +268,63 @@ spec["opening a shop marks it in the frame its window appears, not at the next t
     client.openShop(24)
     client.fire("Draw")
     check.equal(#shopIcons(client), 1, "no server tick needed")
+    markers:stop()
+end
+
+spec["no-longer-needed markers show on the Sell tab but not the Buy tabs"] = function()
+    local client, markers = setup("done")
+
+    client.setSlot(4, 100)
+    client.openShop(24)
+    client.fire("InventoryAdded", { inv = { id = 24 } })
+    client.fire("ServerLogic")
+    check.equal(#shopIcons(client), 0, "Buy tab")
+
+    client.showShopList(93)
+    client.fire("ServerLogic")
+    check.equal(#shopIcons(client), 1, "Sell tab")
+
+    client.showShopList(24)
+    client.fire("ServerLogic")
+    check.equal(#shopIcons(client), 0, "back on the Buy tab")
+    markers:stop()
+end
+
+spec["the Sell tab icon comes back after the game rebuilds the shop"] = function()
+    local client, markers = setup()
+
+    client.setSlot(1, 100)
+    client.openShop(24)
+    client.fire("InventoryAdded", { inv = { id = 24 } })
+    client.fire("ServerLogic")
+
+    client.showShopList(93)
+
+    for _ = 1, 3 do
+        client.fire("Draw")
+    end
+
+    local icon = shopIcons(client)[1]
+
+    check.truthy(icon, "Sell tab")
+
+    -- The game rebuilds the slots, deleting our icon, and one of its new slots gets
+    -- the key the icon had (in game: the Sell tab redrawn with the backpack's 28).
+    client.rebuildShop()
+    client.shopSlots[#client.shopSlots + 1] = {
+        kind = "slot",
+        categoryID = icon.categoryID,
+        dynamicID = icon.dynamicID,
+        associatedObjectID = -1,
+        visibleGlobal = true,
+    }
+
+    for _ = 1, 6 do
+        client.fire("Draw")
+    end
+
+    client.fire("ServerLogic")
+    check.equal(#shopIcons(client), 1, "drawn again")
     markers:stop()
 end
 

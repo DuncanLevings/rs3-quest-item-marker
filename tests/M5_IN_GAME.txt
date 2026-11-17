@@ -1,0 +1,69 @@
+Quest Item Marker - M5 (quest type filter) in-game test
+=======================================================
+
+What M5 covers: the settings panel's "Mark items needed for" checkboxes, Quests and
+Miniquests, both on by default. Turning one off removes the icons and tooltip lines
+for that type in every open screen at once, and the choice is kept after a reload or
+client restart (CUJ 6).
+
+Automated checks (no client): from the plugin folder run
+
+    lua tests/run.lua
+
+It should end with "83 passed, 0 failed". Those tests use a fake client, so they
+don't prove anything about the real one. That's what the steps below are for.
+
+Write down what you see at each "Check", and copy the [Quest Item Marker] lines from
+the console (Alt + `) into your notes.
+
+
+0. Set up
+---------
+1. Reload with prl quest-item-marker (prettyui-dev must be on).
+2. Have in your backpack (or bank):
+   - an item needed only by an unfinished MINIQUEST (e.g. a bar for Doric's Task V,
+     if you haven't done it; its tooltip says "(miniquest)"),
+   - an item needed only by an unfinished quest (e.g. rune essence for Priest in
+     Peril),
+   - an item needed by both kinds, if you have one.
+3. Open the plugin's ribbon panel.
+   Check: under "Show quest item markers" there is "Mark items needed for" with
+   "Quests" and "Miniquests", both ticked.
+
+
+1. Turning a type off and on (CUJ 6)
+------------------------------------
+1. Open the bank too, so two screens are open. Untick "Miniquests".
+   Check: at once (no half-second wait), the miniquest-only item loses its icon in the
+   backpack AND the bank; the quest item keeps its icon. An item needed by both
+   keeps its icon, and its tooltip no longer lists the miniquest. The console shows
+   "filter: miniquest off".
+2. Tick "Miniquests" again.
+   Check: the icons and tooltip lines come back at once.
+3. Untick "Quests" (keep Miniquests on).
+   Check: only miniquest items keep icons.
+4. Untick both.
+   Check: no icons anywhere. Tick both again.
+5. With a shop open (one selling a marked item), repeat step 1.
+   Check: the shop icons follow too.
+
+
+2. Kept after reload
+--------------------
+1. Untick "Miniquests". Reload with prl quest-item-marker.
+   Check: the panel shows Miniquests unticked, and the miniquest-only item has no
+   icon after login/reload.
+2. Restart the client and log in.
+   Check: still unticked. Tick it again at the end.
+
+
+3. No extra work
+----------------
+1. Untick and tick "Miniquests" ten times quickly, then press the shortcut to hide
+   and show markers once.
+   Check: the console's "markers on | quest reads since login: R" line shows the same
+   R as before you started (the filter never reads quest status).
+
+
+Send back: anything that didn't update at once, anything that wasn't kept after the
+reload or restart, and the console lines from part 3.

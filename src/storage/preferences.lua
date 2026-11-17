@@ -220,6 +220,23 @@ function Preferences.new(db, categories)
         return copy
     end
 
+    -- Turns one quest type on or off (M5). Only types the plugin offers are kept.
+    -- Returns true if the value changed (and was saved).
+    function self:setFilter(category, included)
+        if values.filter[category] == nil or type(included) ~= "boolean" then
+            return false
+        end
+
+        if values.filter[category] == included then
+            return false
+        end
+
+        values.filter[category] = included
+        save()
+
+        return true
+    end
+
     return self
 end
 

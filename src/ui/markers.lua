@@ -763,6 +763,22 @@ function Markers.new(options)
         end
     end
 
+    -- Re-checks every screen now rather than at the next server tick (the filter
+    -- changed, M5). Reads no quest status. Does nothing while markers are off.
+    function self:refreshNow()
+        if not self.enabled then
+            return
+        end
+
+        self:markAllDirty()
+
+        local ok, problem = pcall(onServerLogic)
+
+        if not ok then
+            Log.write("ServerLogic failed:", problem)
+        end
+    end
+
     -- Turning on draws from the cached quest states on the next server tick; it
     -- reads no quest status. Turning off removes everything we own.
     function self:setEnabled(enabled)

@@ -519,6 +519,65 @@ function FakeClient.install()
                 return tooltip
             end,
         },
+        -- Just enough of a SimpleView for the settings panel: it records what was
+        -- added, and each checkbox group can be clicked with button:click(value).
+        SimpleView = {
+            new = function()
+                local view = { root = { visibleGlobal = true }, texts = {}, checkboxes = {} }
+
+                function view:AddTitle(text)
+                    self.title = text
+                end
+
+                function view:AddText(text)
+                    self.texts[#self.texts + 1] = text
+                end
+
+                function view:AddCheckboxButton(choices, options)
+                    local button = { choices = choices, onChange = options.onChange }
+
+                    function button:IsSelected(value)
+                        for _, choice in ipairs(self.choices) do
+                            if choice.value == value then
+                                return choice.selected
+                            end
+                        end
+                    end
+
+                    function button:SetSelected(value, selected, notify)
+                        for _, choice in ipairs(self.choices) do
+                            if choice.value == value then
+                                choice.selected = selected
+                            end
+                        end
+
+                        if notify ~= false and self.onChange then
+                            self.onChange(self, {}, value, selected)
+                        end
+                    end
+
+                    function button:click(value)
+                        self:SetSelected(value, not self:IsSelected(value))
+                    end
+
+                    self.checkboxes[#self.checkboxes + 1] = button
+
+                    return button
+                end
+
+                function view:AddKeybindField() end
+
+                function view:AddSimpleButton() end
+
+                function view:Destroy()
+                    self.destroyed = true
+                end
+
+                client.view = view
+
+                return view
+            end,
+        },
         KeybindField = {
             IsDown = function(binding)
                 return #binding > 0 and client.keyDown == true

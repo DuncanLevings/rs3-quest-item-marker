@@ -1,5 +1,6 @@
--- The plugin's ribbon panel: the on/off checkbox, the shortcut and "Move quest box".
--- Nothing else (author, 2026-11-16): status and diagnostics go to the console log.
+-- The plugin's ribbon panel: the on/off checkbox, which quest types to mark (M5), the
+-- shortcut and "Move quest box". Nothing else (author, 2026-11-16): status and
+-- diagnostics go to the console log.
 --
 -- The client hands us an empty layer (Event.ContentLayerReady) every time the ribbon
 -- icon is selected; we fill it with a PrettyUI SimpleView.
@@ -12,8 +13,13 @@ local SettingsWindow = {}
 
 local SUBSCRIPTION = "quest-item-marker-settings"
 
+-- How each quest type reads in the panel.
+local CATEGORY_LABELS = { quest = "Quests", miniquest = "Miniquests" }
+
 -- options:
 --   preferences     Preferences instance
+--   categories      the quest types offered, in order (QuestData.CATEGORIES)
+--   setCategory(category, on)  turns one quest type on or off
 --   setEnabled(on)  shared with the keybind
 --   onKeyChanged()  called after the shortcut is saved
 --   moveBox()       opens the window that moves the quest box
@@ -63,6 +69,27 @@ function SettingsWindow.new(options)
             onChange = function(_, _, _, selected)
                 if alive() then
                     options.setEnabled(selected)
+                end
+            end,
+        })
+
+        -- Which quest types count (CUJ 6). Both on by default.
+        local filter = options.preferences:getFilter()
+        local choices = {}
+
+        for _, category in ipairs(options.categories) do
+            choices[#choices + 1] = {
+                text = CATEGORY_LABELS[category] or category,
+                value = category,
+                selected = filter[category] == true,
+            }
+        end
+
+        current:AddText("Mark items needed for")
+        current:AddCheckboxButton(choices, {
+            onChange = function(_, _, category, selected)
+                if alive() then
+                    options.setCategory(category, selected)
                 end
             end,
         })

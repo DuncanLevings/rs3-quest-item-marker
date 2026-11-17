@@ -69,6 +69,60 @@ spec["only the required item gets an icon and a tooltip; common items get neithe
     shutdown()
 end
 
+-- Opens the ribbon panel and returns its "Mark items needed for" checkboxes.
+local function openFilter(client)
+    client.fire("ContentLayerReady", { component = { interfaceID = 1477 } })
+
+    for _, button in ipairs(client.view.checkboxes) do
+        if button.choices[1].value == "quest" then
+            return button
+        end
+    end
+end
+
+local DORICS_TASK_V_ITEM = 45526 -- needed only by a miniquest
+
+spec["turning Miniquests off drops a miniquest's icon at once, reads no quest, and is kept (CUJ 6)"] = function()
+    local client, shutdown = setup()
+
+    client.setSlot(5, DORICS_TASK_V_ITEM)
+    client.fire("InventoryUpdated", { inv = { id = 93 } })
+    settle(client)
+    check.equal(#client.liveIcons(), 2)
+
+    local filter = openFilter(client)
+
+    check.equal(filter.choices[1].text, "Quests")
+    check.equal(filter.choices[2].text, "Miniquests")
+    check.truthy(filter:IsSelected("miniquest"), "on by default")
+
+    local reads = client.questReads
+
+    filter:click("miniquest")
+
+    -- No server tick needed, and only the miniquest item lost its icon.
+    check.equal(#client.liveIcons(), 1)
+    check.contains(client.liveTooltips()[1].text, "Priest in Peril")
+    check.equal(client.questReads, reads, "no quest read")
+    check.equal(client.db["quest-item-marker.settings.v1"].filter.miniquest, false)
+
+    shutdown()
+
+    -- Next start: still off, and the panel shows it.
+    local saved = client.db["quest-item-marker.settings.v1"]
+    local client2, shutdown2 = setup(saved)
+
+    client2.setSlot(5, DORICS_TASK_V_ITEM)
+    settle(client2)
+    check.equal(#client2.liveIcons(), 1)
+    check.falsy(openFilter(client2):IsSelected("miniquest"))
+
+    -- Back on: the icon returns at once.
+    openFilter(client2):click("miniquest")
+    check.equal(#client2.liveIcons(), 2)
+    shutdown2()
+end
+
 spec["no icons before the first quest read finishes"] = function()
     local client, shutdown = setup()
 

@@ -67,7 +67,7 @@ function App.start()
     local preferences = Preferences.new(PersistentDB, QuestData.CATEGORIES)
 
     -- Filled in below; callbacks created first need to see them.
-    local questStatus, markers, settings, keybind
+    local questStatus, requiredItems, markers, settings, keybind
     local boxMover = BoxMover.new(preferences)
 
     local function refreshSettings()
@@ -107,7 +107,7 @@ function App.start()
             end
         end)
 
-        local requiredItems = RequiredItems.new(questData, function(questId)
+        requiredItems = RequiredItems.new(questData, function(questId)
             return questStatus:get(questId)
         end, filter)
 
@@ -137,8 +137,25 @@ function App.start()
         setEnabled(not preferences:isEnabled(), true)
     end)
 
+    -- A quest type turned on or off (CUJ 6): save it, and redraw every open screen now
+    -- from the cached quest states (no quest is read).
+    local function setCategory(category, included)
+        if not preferences:setFilter(category, included) then
+            return
+        end
+
+        if requiredItems then
+            requiredItems:setFilter(preferences:getFilter())
+            markers:refreshNow()
+        end
+
+        Log.write("filter:", category, included and "on" or "off")
+    end
+
     settings = SettingsWindow.new({
         preferences = preferences,
+        categories = QuestData.CATEGORIES,
+        setCategory = setCategory,
         setEnabled = function(enabled)
             setEnabled(enabled, false)
         end,

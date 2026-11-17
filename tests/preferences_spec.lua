@@ -46,6 +46,23 @@ spec["a removed category is dropped and a new one defaults to included"] = funct
     check.truthy(filter.saga)
 end
 
+spec["a quest type turned off is saved; unknown types and non-booleans are refused (M5)"] = function()
+    local client = FakeClient.install()
+    local Preferences = require("src/storage/preferences")
+    local first = Preferences.new(PersistentDB, CATEGORIES)
+
+    check.truthy(first:setFilter("miniquest", false))
+    check.falsy(first:setFilter("miniquest", false), "no change, no save")
+    check.falsy(first:setFilter("tutorial", false), "not offered")
+    check.falsy(first:setFilter("quest", "no"), "not a boolean")
+    check.equal(client.db[KEY].filter.tutorial, nil)
+
+    local second = Preferences.new(PersistentDB, CATEGORIES)
+
+    check.falsy(second:getFilter().miniquest)
+    check.truthy(second:getFilter().quest)
+end
+
 spec["changes are saved and survive a reload"] = function()
     local client = FakeClient.install()
     local Preferences = require("src/storage/preferences")

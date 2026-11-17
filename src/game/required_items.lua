@@ -31,6 +31,18 @@ end
 function RequiredItems.new(questData, getState, filter)
     local self = {}
 
+    -- Uses a new filter from now on (the player changed it in settings, M5). Copied,
+    -- so the caller's table can't change it later.
+    function self:setFilter(newFilter)
+        local copy = {}
+
+        for category, included in pairs(newFilter) do
+            copy[category] = included
+        end
+
+        filter = copy
+    end
+
     -- Should a line from this quest count right now?
     local function counts(quest)
         if not filter[quest.category] then
